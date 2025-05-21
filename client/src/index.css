@@ -97,3 +97,33 @@ html {
 .progress-bar {
   transition: width 1s ease-in-out;
 }
+
+.gradient-button {
+  background: linear-gradient(120deg, #143442, #1c3c30);
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+  z-index: 1;
+}
+
+.gradient-button:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.gradient-button:hover::before {
+  opacity: 1;
+}
+
+.gradient-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(120deg, #1c3c30, #143442);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
