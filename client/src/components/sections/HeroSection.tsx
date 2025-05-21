@@ -61,7 +61,7 @@ export default function HeroSection() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">Sharyu <span className="text-primary">Chevale</span></h1>
             </motion.div>
             <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl text-white/90 mb-6">
-              Nature Photography & Environmental Design
+              Product Manager
             </motion.h2>
             <motion.p variants={itemVariants} className="text-white/80 text-lg mb-8 leading-relaxed">
               Capturing the beauty of our natural world through stunning photography and sustainable design. 
