@@ -28,34 +28,27 @@ export default function Header({ activeSection }: HeaderProps) {
     setMobileMenuOpen(false);
   };
 
-  // Navigation links
+  // Navigation links - updated to match reference image
   const navLinks = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
+    { id: "about", label: "My Journey" },
     { id: "projects", label: "Projects" },
-    { id: "skills", label: "Skills" },
-    { id: "contact", label: "Contact" },
+    { id: "skills", label: "Extracurriculars" },
+    { id: "interests", label: "Interests" },
+    { id: "contact", label: "Get in Touch" },
   ];
 
   return (
-    <header className={`fixed w-full bg-transparent z-50 transition-all ${scrolled ? 'bg-black/50 backdrop-blur-sm' : ''}`}>
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a 
-          onClick={() => scrollToSection("home")} 
-          className="text-2xl font-bold text-white cursor-pointer"
-        >
-          Sharyu <span className="text-primary">Chevale</span>
-        </a>
-        
+    <header className={`fixed w-full bg-transparent z-50 transition-all ${scrolled ? 'bg-black/30 backdrop-blur-sm' : ''}`}>
+      <div className="container mx-auto px-4 md:px-8 py-4 flex justify-end items-center">
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
-          <ul className="flex space-x-8">
+          <ul className="flex space-x-12">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <a
                   onClick={() => scrollToSection(link.id)}
-                  className={`nav-link text-white/80 hover:text-white font-medium transition-colors cursor-pointer ${
-                    activeSection === link.id ? "!text-primary" : ""
+                  className={`text-white/90 hover:text-white transition-colors cursor-pointer ${
+                    activeSection === link.id ? "text-primary" : ""
                   }`}
                 >
                   {link.label}
@@ -88,8 +81,8 @@ export default function Header({ activeSection }: HeaderProps) {
               <li key={link.id}>
                 <a
                   onClick={() => scrollToSection(link.id)}
-                  className={`block py-2 nav-link text-white/80 hover:text-white transition-colors cursor-pointer ${
-                    activeSection === link.id ? "!text-primary" : ""
+                  className={`block py-2 text-white/80 hover:text-white transition-colors cursor-pointer ${
+                    activeSection === link.id ? "text-primary" : ""
                   }`}
                 >
                   {link.label}
