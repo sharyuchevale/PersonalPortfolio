@@ -28,21 +28,28 @@ export default function Header({ activeSection }: HeaderProps) {
     setMobileMenuOpen(false);
   };
 
-  // Navigation links - updated to match reference image
+  // Navigation links
   const navLinks = [
-    { id: "about", label: "My Journey" },
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
     { id: "projects", label: "Projects" },
-    { id: "skills", label: "Extracurriculars" },
-    { id: "interests", label: "Interests" },
-    { id: "contact", label: "Get in Touch" },
+    { id: "skills", label: "Skills" },
+    { id: "contact", label: "Contact" },
   ];
 
   return (
-    <header className={`fixed w-full bg-transparent z-50 transition-all ${scrolled ? 'bg-black/30 backdrop-blur-sm' : ''}`}>
-      <div className="container mx-auto px-4 md:px-8 py-4 flex justify-end items-center">
+    <header className={`fixed w-full bg-transparent z-50 transition-all ${scrolled ? 'bg-black/50 backdrop-blur-sm' : ''}`}>
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <a 
+          onClick={() => scrollToSection("home")} 
+          className="text-2xl font-bold text-white cursor-pointer"
+        >
+          Sharyu <span className="text-primary">Chevale</span>
+        </a>
+        
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
-          <ul className="flex space-x-12">
+          <ul className="flex space-x-8">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <a
