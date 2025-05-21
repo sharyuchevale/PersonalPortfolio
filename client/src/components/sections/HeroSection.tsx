@@ -36,8 +36,8 @@ export default function HeroSection() {
     <section id="home" className="min-h-screen flex items-center pt-20 pb-16 relative">
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&h=1440" 
-          alt="Beautiful forest background" 
+          src="/assets/images/sharyu-background.jpg" 
+          alt="Sharyu standing on a dock with beautiful mountains and lake" 
           className="w-full h-full object-cover" 
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/30"></div>
@@ -83,18 +83,7 @@ export default function HeroSection() {
             </motion.div>
           </motion.div>
           
-          <motion.div 
-            className="md:w-1/2 flex justify-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-          >
-            <img 
-              src="https://images.unsplash.com/photo-1505765050516-f72dcac9c60e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800" 
-              alt="Mountain landscape at sunset" 
-              className="rounded-2xl w-80 h-80 object-cover shadow-xl border-4 border-white/20 shadow-primary/20" 
-            />
-          </motion.div>
+          {/* Removed the second image since we're using your photo as the main background */}
         </div>
         
         <motion.div 
