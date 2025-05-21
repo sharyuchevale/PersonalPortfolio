@@ -38,13 +38,13 @@ export default function Header({ activeSection }: HeaderProps) {
   ];
 
   return (
-    <header className={`fixed w-full bg-background/90 backdrop-blur-sm z-50 transition-all ${scrolled ? 'shadow-md shadow-primary/10' : ''}`}>
+    <header className={`fixed w-full bg-transparent z-50 transition-all ${scrolled ? 'bg-black/50 backdrop-blur-sm' : ''}`}>
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <a 
           onClick={() => scrollToSection("home")} 
-          className="text-2xl font-bold text-primary cursor-pointer"
+          className="text-2xl font-bold text-white cursor-pointer"
         >
-          Nature<span className="text-secondary">Portfolio</span>
+          Nature<span className="text-primary">Portfolio</span>
         </a>
         
         {/* Desktop Navigation */}
@@ -54,8 +54,8 @@ export default function Header({ activeSection }: HeaderProps) {
               <li key={link.id}>
                 <a
                   onClick={() => scrollToSection(link.id)}
-                  className={`nav-link hover:text-primary font-medium transition-colors cursor-pointer ${
-                    activeSection === link.id ? "active" : ""
+                  className={`nav-link text-white/80 hover:text-white font-medium transition-colors cursor-pointer ${
+                    activeSection === link.id ? "!text-primary" : ""
                   }`}
                 >
                   {link.label}
@@ -68,7 +68,7 @@ export default function Header({ activeSection }: HeaderProps) {
         {/* Mobile Navigation Toggle */}
         <button 
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden text-foreground focus:outline-none focus:ring-2 focus:ring-primary p-1 rounded-md"
+          className="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-primary p-1 rounded-md"
           aria-expanded={mobileMenuOpen}
           aria-label="Toggle navigation menu"
         >
@@ -81,15 +81,15 @@ export default function Header({ activeSection }: HeaderProps) {
       </div>
       
       {/* Mobile Navigation Menu */}
-      <div className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-background/95 backdrop-blur-sm w-full border-t border-border`}>
+      <div className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-black/80 backdrop-blur-sm w-full border-t border-gray-800`}>
         <div className="container mx-auto px-4 py-3">
           <ul className="space-y-3">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <a
                   onClick={() => scrollToSection(link.id)}
-                  className={`block py-2 nav-link hover:text-primary transition-colors cursor-pointer ${
-                    activeSection === link.id ? "active" : ""
+                  className={`block py-2 nav-link text-white/80 hover:text-white transition-colors cursor-pointer ${
+                    activeSection === link.id ? "!text-primary" : ""
                   }`}
                 >
                   {link.label}
