@@ -57,7 +57,7 @@ export default function HeroSection() {
             animate="visible"
           >
             <motion.p variants={itemVariants} className="text-white text-lg font-medium mb-2">
-              Welcome to
+              Hi!
             </motion.p>
             <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
               Sharyu <span className="text-primary">Chevale</span>
