@@ -44,7 +44,7 @@ export default function HeroSection() {
               objectPosition: 'center center'
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/75"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/75"></div>
         </div>
       </div>
 
