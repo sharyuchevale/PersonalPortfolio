@@ -42,9 +42,9 @@ export default function Header({ activeSection }: HeaderProps) {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <a 
           onClick={() => scrollToSection("home")} 
-          className="text-2xl font-bold text-white cursor-pointer"
+          className="text-2xl font-bold cursor-pointer"
         >
-          Sharyu <span className="text-primary">Chevale</span>
+          <span className="text-white">Sharyu</span> <span className="text-primary font-extrabold drop-shadow-md">Chevale</span>
         </a>
         
         {/* Desktop Navigation */}
