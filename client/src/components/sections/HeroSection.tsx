@@ -55,7 +55,7 @@ export default function HeroSection() {
               Welcome to
             </motion.p>
             <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
-              Nature<span className="text-primary">Portfolio</span>
+              Sharyu <span className="text-primary">Chevale</span>
             </motion.h1>
             <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl text-white/90 mb-6">
               Nature Photography & Environmental Design

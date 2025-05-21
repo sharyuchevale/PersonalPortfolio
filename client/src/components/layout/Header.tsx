@@ -44,7 +44,7 @@ export default function Header({ activeSection }: HeaderProps) {
           onClick={() => scrollToSection("home")} 
           className="text-2xl font-bold text-white cursor-pointer"
         >
-          Nature<span className="text-primary">Portfolio</span>
+          Sharyu <span className="text-primary">Chevale</span>
         </a>
         
         {/* Desktop Navigation */}

@@ -34,7 +34,7 @@ const Footer: FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <h2 className="text-2xl font-bold text-foreground mb-2">Nature<span className="text-secondary">Portfolio</span></h2>
+            <h2 className="text-2xl font-bold text-foreground mb-2">Sharyu <span className="text-secondary">Chevale</span></h2>
             <p className="text-muted-foreground">Nature Photography & Environmental Design</p>
           </div>
           
@@ -74,7 +74,7 @@ const Footer: FC = () => {
         
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm mb-4 md:mb-0">
-            &copy; {currentYear} Nature Portfolio. All rights reserved.
+            &copy; {currentYear} Sharyu Chevale. All rights reserved.
           </p>
           
           <p className="text-muted-foreground text-sm flex items-center">
