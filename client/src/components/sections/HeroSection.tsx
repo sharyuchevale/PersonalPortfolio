@@ -33,14 +33,14 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center pt-20 pb-16 relative bg-gradient-to-br from-background to-primary/5">
-      <div className="absolute inset-0 opacity-10">
-        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <pattern id="leaves" patternUnits="userSpaceOnUse" width="50" height="50">
-            <path d="M25,0 Q35,25 25,50 Q15,25 25,0" fill="currentColor" className="text-primary" />
-          </pattern>
-          <rect width="100" height="100" fill="url(#leaves)" />
-        </svg>
+    <section id="home" className="min-h-screen flex items-center pt-20 pb-16 relative">
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&h=1440" 
+          alt="Beautiful forest background" 
+          className="w-full h-full object-cover" 
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/30"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -51,16 +51,16 @@ export default function HeroSection() {
             initial="hidden"
             animate="visible"
           >
-            <motion.p variants={itemVariants} className="text-primary text-lg font-medium mb-2">
+            <motion.p variants={itemVariants} className="text-white text-lg font-medium mb-2">
               Welcome to
             </motion.p>
-            <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Nature<span className="text-secondary">Portfolio</span>
+            <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
+              Nature<span className="text-primary">Portfolio</span>
             </motion.h1>
-            <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl text-foreground/80 mb-6">
+            <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl text-white/90 mb-6">
               Nature Photography & Environmental Design
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-foreground/70 text-lg mb-8 leading-relaxed">
+            <motion.p variants={itemVariants} className="text-white/80 text-lg mb-8 leading-relaxed">
               Capturing the beauty of our natural world through stunning photography and sustainable design. 
               Explore my journey through forests, oceans, and mountains.
             </motion.p>
@@ -75,7 +75,7 @@ export default function HeroSection() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-secondary text-secondary hover:bg-secondary/10 rounded-lg"
+                className="border-white text-white hover:bg-white/10 rounded-lg"
                 onClick={() => scrollToSection("contact")}
               >
                 Contact Me
@@ -90,8 +90,8 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.5 }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800" 
-              alt="Beautiful forest landscape" 
+              src="https://images.unsplash.com/photo-1505765050516-f72dcac9c60e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800" 
+              alt="Mountain landscape at sunset" 
               className="rounded-2xl w-80 h-80 object-cover shadow-xl border-4 border-white/20 shadow-primary/20" 
             />
           </motion.div>
