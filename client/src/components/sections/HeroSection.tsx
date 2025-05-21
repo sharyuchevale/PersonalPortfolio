@@ -33,15 +33,21 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center pt-20 pb-16 relative">
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="/assets/images/sharyu-background-cropped.jpg" 
-          alt="Sharyu standing by a beautiful mountain lake" 
-          className="w-full h-full object-cover scale-150" 
-          style={{ transformOrigin: 'left center', objectPosition: '60% 40%' }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/60"></div>
+    <section id="home" className="h-screen flex items-center pt-20 pb-16 relative">
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="relative w-full h-full">
+          <img 
+            src="/assets/images/sharyu-background-cropped.jpg" 
+            alt="Sharyu standing by a beautiful mountain lake" 
+            className="w-full h-full object-cover scale-150" 
+            style={{ 
+              transformOrigin: 'left center', 
+              objectPosition: '60% 40%',
+              clipPath: 'inset(5% 0 0 0)' /* Crops 5% from the top */
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/60"></div>
+        </div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
