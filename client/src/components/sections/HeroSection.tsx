@@ -56,11 +56,8 @@ export default function HeroSection() {
             initial="hidden"
             animate="visible"
           >
-            <motion.p variants={itemVariants} className="text-white text-lg font-medium mb-2">
-              Hi! I'm
-            </motion.p>
             <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
-              Sharyu <span className="text-primary">Chevale</span>
+              Hi! I'm Sharyu <span className="text-primary">Chevale</span>
             </motion.h1>
             <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl text-white/90 mb-6">
               Nature Photography & Environmental Design
