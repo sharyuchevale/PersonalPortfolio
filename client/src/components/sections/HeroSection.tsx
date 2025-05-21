@@ -42,7 +42,7 @@ export default function HeroSection() {
             className="w-full h-full object-cover scale-125" 
             style={{ 
               transformOrigin: 'left center', 
-              objectPosition: '60% 40%',
+              objectPosition: '65% 40%',
               clipPath: 'inset(5% 0 0 0)' /* Crops 5% from the top */
             }}
           />
