@@ -39,7 +39,7 @@ export default function HeroSection() {
           src="/assets/images/sharyu-background-cropped.jpg" 
           alt="Sharyu standing by a beautiful mountain lake" 
           className="w-full h-full object-cover scale-150" 
-          style={{ transformOrigin: 'left center', objectPosition: '40% center' }}
+          style={{ transformOrigin: 'left center', objectPosition: '50% center' }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/60"></div>
       </div>
