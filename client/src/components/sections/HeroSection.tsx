@@ -48,10 +48,10 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="w-full px-4 relative z-10">
         <div className="flex flex-col md:flex-row items-start justify-start">
           <motion.div 
-            className="md:w-3/4 lg:w-2/3 mb-10 md:mb-0 md:pr-10 max-h-screen overflow-y-auto pl-0"
+            className="md:w-11/12 lg:w-11/12 mb-10 md:mb-0 md:pr-0 max-h-screen overflow-y-auto pl-0"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
