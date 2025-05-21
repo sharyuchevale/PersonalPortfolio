@@ -66,7 +66,7 @@ export default function HeroSection() {
             <motion.p variants={itemVariants} className="text-white/80 text-lg mb-8 leading-relaxed">
               Built to build — products, plans, and purpose-driven progress
               <br />
-              My journey blends software development, finance, technology, management, and business. I've built financial products at Citi, led enterprise-wide strategic planning at HPE, and earned a Master's in MIS from Texas A&M. With expertise across tech, management, and business in the finance, academic, and enterprise solutions domains, I craft thoughtful, impact-driven products that move organizations forward.
+              My journey blends technology, management, and business. I've built financial products at Citi, led enterprise-wide strategic planning at HPE, and earned a Master's in MIS from Texas A&M. With expertise in the fintech, enterprise solutions, & academic administration domains, I craft thoughtful, impact-driven products that move organizations forward.
             </motion.p>
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
               <Button 
