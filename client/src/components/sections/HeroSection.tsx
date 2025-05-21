@@ -36,8 +36,8 @@ export default function HeroSection() {
     <section id="home" className="min-h-screen flex items-center pt-20 pb-16 relative">
       <div className="absolute inset-0 z-0">
         <img 
-          src="/assets/images/sharyu-background.jpg" 
-          alt="Sharyu standing on a dock with beautiful mountains and lake" 
+          src="/assets/images/sharyu-background-cropped.jpg" 
+          alt="Sharyu standing by a beautiful mountain lake" 
           className="w-full h-full object-cover" 
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/30"></div>
