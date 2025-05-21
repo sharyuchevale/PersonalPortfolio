@@ -38,10 +38,10 @@ export default function HeroSection() {
         <img 
           src="/assets/images/sharyu-background-cropped.jpg" 
           alt="Sharyu standing by a beautiful mountain lake" 
-          className="w-full h-full object-cover object-right scale-125" 
-          style={{ transformOrigin: 'right center' }}
+          className="w-full h-full object-cover object-left scale-125" 
+          style={{ transformOrigin: 'left center' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/60"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
