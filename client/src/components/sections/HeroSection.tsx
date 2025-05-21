@@ -64,8 +64,7 @@ export default function HeroSection() {
               Product Manager
             </motion.h2>
             <motion.p variants={itemVariants} className="text-white/80 text-lg mb-8 leading-relaxed">
-              Capturing the beauty of our natural world through stunning photography and sustainable design. 
-              Explore my journey through forests, oceans, and mountains.
+              Built to build — products, plans, and purpose-driven progress
             </motion.p>
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
               <Button 
