@@ -39,7 +39,7 @@ export default function HeroSection() {
           <img 
             src="/assets/images/sharyu-background-new.jpg" 
             alt="Sharyu standing by a beautiful mountain lake" 
-            className="w-full h-full object-cover scale-150" 
+            className="w-full h-full object-cover scale-125" 
             style={{ 
               transformOrigin: 'left center', 
               objectPosition: '60% 40%',
