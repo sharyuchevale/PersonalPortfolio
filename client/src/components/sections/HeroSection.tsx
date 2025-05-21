@@ -48,10 +48,10 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="w-full px-4 relative z-10">
-        <div className="flex flex-col md:flex-row items-start justify-start">
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="flex flex-col md:flex-row items-start">
           <motion.div 
-            className="md:w-1/2 lg:w-5/12 xl:w-4/12 mb-10 md:mb-0 md:pr-16 lg:pr-24 xl:pr-32 max-h-screen overflow-y-auto pl-0"
+            className="md:w-7/12 lg:w-6/12 mb-10 md:mb-0 md:pr-10 lg:pr-16 max-h-screen overflow-y-auto"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -63,7 +63,7 @@ export default function HeroSection() {
             <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl text-white/90 mb-6">
               Product Manager
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-white/80 text-base sm:text-lg md:text-lg lg:text-xl max-w-full mb-8 leading-relaxed">
+            <motion.p variants={itemVariants} className="text-white/90 text-base sm:text-lg md:text-lg lg:text-lg max-w-xl mb-8 leading-relaxed">
               <span className="block text-lg sm:text-xl md:text-xl lg:text-2xl font-medium mb-2">Built to build — products, plans, and purpose-driven progress</span>
               My journey blends technology, management, and business. I've built financial products at Citi, led enterprise-wide strategic planning at HPE, and earned a Master's in MIS from Texas A&M. With expertise in the fintech, enterprise solutions, & academic administration domains, I craft thoughtful, impact-driven products that move organizations forward.
             </motion.p>

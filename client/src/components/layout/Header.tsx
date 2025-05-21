@@ -39,7 +39,7 @@ export default function Header({ activeSection }: HeaderProps) {
 
   return (
     <header className={`fixed w-full bg-transparent z-50 transition-all ${scrolled ? 'bg-black/50 backdrop-blur-sm' : ''}`}>
-      <div className="w-full px-4 py-6 flex justify-between items-center">
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <a 
           onClick={() => scrollToSection("home")} 
           className="text-2xl font-bold text-white cursor-pointer"
