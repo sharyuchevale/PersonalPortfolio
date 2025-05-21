@@ -56,9 +56,12 @@ export default function HeroSection() {
             initial="hidden"
             animate="visible"
           >
-            <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
-              Hi! I'm Sharyu <span className="text-primary">Chevale</span>
-            </motion.h1>
+            <motion.div variants={itemVariants} className="mb-4">
+              <p className="text-2xl md:text-3xl font-medium text-white">Hi! I'm</p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+                Sharyu <span className="text-primary">Chevale</span>
+              </h1>
+            </motion.div>
             <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl text-white/90 mb-6">
               Nature Photography & Environmental Design
             </motion.h2>
