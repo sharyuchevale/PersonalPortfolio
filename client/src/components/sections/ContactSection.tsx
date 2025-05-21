@@ -75,7 +75,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-20 section-fade bg-gradient-to-br from-background to-secondary/5">
+    <section id="contact" className="py-20 section-fade" style={{ background: 'linear-gradient(180deg, #143442, #1c3c30)' }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h3 className="text-primary text-lg font-medium mb-2">Get in touch</h3>

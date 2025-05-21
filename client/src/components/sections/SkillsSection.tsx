@@ -46,7 +46,7 @@ export default function SkillsSection() {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-gradient-to-br from-background to-primary/5 section-fade">
+    <section id="skills" className="py-20 section-fade" style={{ background: 'linear-gradient(160deg, #1c3b45, #18432f)' }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h3 className="text-primary text-lg font-medium mb-2">My expertise</h3>
