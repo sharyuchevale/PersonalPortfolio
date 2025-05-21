@@ -38,13 +38,13 @@ export default function Header({ activeSection }: HeaderProps) {
   ];
 
   return (
-    <header className={`fixed w-full bg-white bg-opacity-90 z-50 transition-shadow ${scrolled ? 'shadow-sm' : ''}`}>
+    <header className={`fixed w-full bg-background/90 backdrop-blur-sm z-50 transition-all ${scrolled ? 'shadow-md shadow-primary/10' : ''}`}>
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <a 
           onClick={() => scrollToSection("home")} 
           className="text-2xl font-bold text-primary cursor-pointer"
         >
-          John<span className="text-dark">Doe</span>
+          Nature<span className="text-secondary">Portfolio</span>
         </a>
         
         {/* Desktop Navigation */}
@@ -54,7 +54,7 @@ export default function Header({ activeSection }: HeaderProps) {
               <li key={link.id}>
                 <a
                   onClick={() => scrollToSection(link.id)}
-                  className={`nav-link hover:text-primary transition-colors cursor-pointer ${
+                  className={`nav-link hover:text-primary font-medium transition-colors cursor-pointer ${
                     activeSection === link.id ? "active" : ""
                   }`}
                 >
@@ -68,7 +68,7 @@ export default function Header({ activeSection }: HeaderProps) {
         {/* Mobile Navigation Toggle */}
         <button 
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden text-dark focus:outline-none"
+          className="md:hidden text-foreground focus:outline-none focus:ring-2 focus:ring-primary p-1 rounded-md"
           aria-expanded={mobileMenuOpen}
           aria-label="Toggle navigation menu"
         >
@@ -81,7 +81,7 @@ export default function Header({ activeSection }: HeaderProps) {
       </div>
       
       {/* Mobile Navigation Menu */}
-      <div className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-white w-full border-t border-gray-100`}>
+      <div className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-background/95 backdrop-blur-sm w-full border-t border-border`}>
         <div className="container mx-auto px-4 py-3">
           <ul className="space-y-3">
             {navLinks.map((link) => (

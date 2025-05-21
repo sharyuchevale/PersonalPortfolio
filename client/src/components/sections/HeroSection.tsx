@@ -33,8 +33,17 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center pt-20 pb-16 relative">
-      <div className="container mx-auto px-4">
+    <section id="home" className="min-h-screen flex items-center pt-20 pb-16 relative bg-gradient-to-br from-background to-primary/5">
+      <div className="absolute inset-0 opacity-10">
+        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <pattern id="leaves" patternUnits="userSpaceOnUse" width="50" height="50">
+            <path d="M25,0 Q35,25 25,50 Q15,25 25,0" fill="currentColor" className="text-primary" />
+          </pattern>
+          <rect width="100" height="100" fill="url(#leaves)" />
+        </svg>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row items-center">
           <motion.div 
             className="md:w-1/2 mb-10 md:mb-0 md:pr-10"
@@ -43,17 +52,17 @@ export default function HeroSection() {
             animate="visible"
           >
             <motion.p variants={itemVariants} className="text-primary text-lg font-medium mb-2">
-              Hello! I'm
+              Welcome to
             </motion.p>
             <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              John Doe
+              Nature<span className="text-secondary">Portfolio</span>
             </motion.h1>
-            <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl text-gray-600 mb-6">
-              Software Developer & UX Designer
+            <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl text-foreground/80 mb-6">
+              Nature Photography & Environmental Design
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-gray-600 text-lg mb-8 leading-relaxed">
-              I build exceptional digital experiences that blend functionality with aesthetics.
-              Welcome to my professional portfolio.
+            <motion.p variants={itemVariants} className="text-foreground/70 text-lg mb-8 leading-relaxed">
+              Capturing the beauty of our natural world through stunning photography and sustainable design. 
+              Explore my journey through forests, oceans, and mountains.
             </motion.p>
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
               <Button 
@@ -66,7 +75,7 @@ export default function HeroSection() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-primary text-primary hover:bg-primary/10 rounded-lg"
+                className="border-secondary text-secondary hover:bg-secondary/10 rounded-lg"
                 onClick={() => scrollToSection("contact")}
               >
                 Contact Me
@@ -81,9 +90,9 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.5 }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800" 
-              alt="John Doe - Professional Portrait" 
-              className="rounded-full w-64 h-64 object-cover border-4 border-white shadow-xl" 
+              src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800" 
+              alt="Beautiful forest landscape" 
+              className="rounded-2xl w-80 h-80 object-cover shadow-xl border-4 border-white/20 shadow-primary/20" 
             />
           </motion.div>
         </div>
