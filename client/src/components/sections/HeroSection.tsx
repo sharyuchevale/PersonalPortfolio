@@ -33,7 +33,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center pt-20 pb-16 relative line-design cross-lines">
+    <section id="home" className="min-h-screen flex items-center pt-20 pb-16 relative">
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="relative w-full h-full">
           <img 

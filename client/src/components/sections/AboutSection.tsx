@@ -7,7 +7,7 @@ import {
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-20 section-fade" style={{ background: 'linear-gradient(120deg, #0f2e3d, #173a2d)' }}>
+    <section id="about" className="py-20 section-fade" style={{ background: 'linear-gradient(120deg, #0f2e3d, #1b5668)' }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h3 className="text-primary text-lg font-medium mb-2">Get to know me</h3>
