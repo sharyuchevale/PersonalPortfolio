@@ -57,27 +57,27 @@ export default function HeroSection() {
             animate="visible"
           >
             <motion.div variants={itemVariants} className="mb-4">
-              <p className="text-2xl md:text-3xl font-medium text-cream shadow-text">Hi! I'm</p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-cream shadow-text">Sharyu <span className="text-primary">Chevale</span></h1>
+              <p className="text-2xl md:text-3xl font-medium text-white shadow-text">Hi! I'm</p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white shadow-text">Sharyu <span className="text-primary">Chevale</span></h1>
             </motion.div>
-            <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl text-cream mb-6 shadow-text">
+            <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl text-white mb-6 shadow-text">
               Product Manager
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-cream text-base sm:text-lg md:text-lg lg:text-lg max-w-xl mb-8 leading-relaxed shadow-text">
+            <motion.p variants={itemVariants} className="text-white text-base sm:text-lg md:text-lg lg:text-lg max-w-xl mb-8 leading-relaxed shadow-text">
               <span className="block text-lg sm:text-xl md:text-xl lg:text-2xl font-medium mb-2 text-primary">Built to build — products, plans, and purpose-driven progress</span>
               My journey blends technology, management, and business. I've built financial products at Citi, led enterprise-wide strategic planning at HPE, and earned a Master's in MIS from Texas A&M. With expertise in the fintech, enterprise solutions, & academic administration domains, I craft thoughtful, impact-driven products that move organizations forward.
             </motion.p>
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
               <Button 
                 size="lg" 
-                className="gradient-button text-cream rounded-lg shadow-md"
+                className="gradient-button text-white rounded-lg shadow-md"
                 onClick={() => scrollToSection("projects")}
               >
                 View My Work
               </Button>
               <Button 
                 size="lg" 
-                className="gradient-button text-cream rounded-lg shadow-md"
+                className="gradient-button text-white rounded-lg shadow-md"
                 onClick={() => scrollToSection("contact")}
               >
                 Contact Me
