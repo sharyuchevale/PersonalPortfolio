@@ -116,16 +116,16 @@ export default function ContactSection() {
             
             <h4 className="font-medium mb-3">Connect with me on:</h4>
             <div className="flex space-x-4">
-              <a href="#" className="bg-primary/5 p-3 rounded-full text-foreground/70 hover:bg-primary hover:text-white transition-colors">
+              <a href="#" className="bg-primary/5 p-3 rounded-full text-foreground/70 hover:bg-primary hover:text-cream transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="#" className="bg-primary/5 p-3 rounded-full text-foreground/70 hover:bg-secondary hover:text-white transition-colors">
+              <a href="#" className="bg-primary/5 p-3 rounded-full text-foreground/70 hover:bg-secondary hover:text-cream transition-colors">
                 <Github className="h-5 w-5" />
               </a>
-              <a href="#" className="bg-primary/5 p-3 rounded-full text-foreground/70 hover:bg-accent hover:text-white transition-colors">
+              <a href="#" className="bg-primary/5 p-3 rounded-full text-foreground/70 hover:bg-accent hover:text-cream transition-colors">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="bg-primary/5 p-3 rounded-full text-foreground/70 hover:bg-green-500 hover:text-white transition-colors">
+              <a href="#" className="bg-primary/5 p-3 rounded-full text-foreground/70 hover:bg-green-500 hover:text-cream transition-colors">
                 <Dribbble className="h-5 w-5" />
               </a>
             </div>
@@ -210,7 +210,7 @@ export default function ContactSection() {
                 
                 <Button 
                   type="submit" 
-                  className="w-full gradient-button text-white py-3 px-4 rounded-lg shadow-md"
+                  className="w-full gradient-button text-cream py-3 px-4 rounded-lg shadow-md"
                   disabled={mutation.isPending}
                 >
                   {mutation.isPending ? "Sending..." : "Send Message"}
