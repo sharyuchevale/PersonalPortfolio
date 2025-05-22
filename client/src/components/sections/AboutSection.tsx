@@ -14,10 +14,10 @@ export default function AboutSection() {
     {
       year: "2015",
       title: "Educational Beginnings",
-      description: "Graduated with a B.S. in Environmental Science from VNIT Nagpur, specializing in conservation photography.",
+      description: "Graduated with a B.S. in Electrical and Electronics Engineering from VNIT Nagpur, specializing in technical photography.",
       icon: <GraduationCap className="text-primary h-6 w-6" />,
-      image: "https://i.imgur.com/mNtYUbw.png", // Using a hosted version of your VNIT image
-      imageAlt: "Standing at the VNIT campus entrance with mechanical gears display",
+      image: "https://media.licdn.com/dms/image/D5612AQGRXj5dUFYVRQ/article-cover_image-shrink_720_1280/0/1707897541048?e=2147483647&v=beta&t=7oZYi_cQ4a3y1tODvfE8nNVS-gQMrEpmcMsT4AZiKGY",
+      imageAlt: "VNIT Nagpur campus with mechanical engineering display",
       isLeft: true
     },
     {
