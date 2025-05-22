@@ -99,7 +99,7 @@ html {
 }
 
 .gradient-button {
-  background: linear-gradient(120deg, #143442, #8eb227);
+  background: linear-gradient(120deg, #143442, #2a6e5e);
   transition: all 0.3s ease;
   border: none;
   position: relative;
@@ -124,7 +124,7 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(120deg, #8eb227, #143442);
+  background: linear-gradient(120deg, #2a6e5e, #143442);
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
