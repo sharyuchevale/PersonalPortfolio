@@ -45,7 +45,7 @@ export default function Header({ activeSection }: HeaderProps) {
           onClick={() => scrollToSection("home")} 
           className="text-2xl font-bold cursor-pointer"
         >
-          <span className="text-white">Sharyu</span> <span className="text-primary font-extrabold drop-shadow-md">Chevale</span>
+          <span className="text-cream">Sharyu</span> <span className="text-primary font-extrabold drop-shadow-md">Chevale</span>
         </a>
         
         {/* Desktop Navigation */}
@@ -55,7 +55,7 @@ export default function Header({ activeSection }: HeaderProps) {
               <li key={link.id}>
                 <a
                   onClick={() => scrollToSection(link.id)}
-                  className={`text-white/90 hover:text-white transition-colors cursor-pointer ${
+                  className={`text-cream/90 hover:text-cream transition-colors cursor-pointer ${
                     activeSection === link.id ? "text-primary" : ""
                   }`}
                 >
@@ -69,7 +69,7 @@ export default function Header({ activeSection }: HeaderProps) {
         {/* Mobile Navigation Toggle */}
         <button 
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-primary p-1 rounded-md"
+          className="md:hidden text-cream focus:outline-none focus:ring-2 focus:ring-primary p-1 rounded-md"
           aria-expanded={mobileMenuOpen}
           aria-label="Toggle navigation menu"
         >
@@ -89,7 +89,7 @@ export default function Header({ activeSection }: HeaderProps) {
               <li key={link.id}>
                 <a
                   onClick={() => scrollToSection(link.id)}
-                  className={`block py-2 text-white/80 hover:text-white transition-colors cursor-pointer ${
+                  className={`block py-2 text-cream/80 hover:text-cream transition-colors cursor-pointer ${
                     activeSection === link.id ? "text-primary" : ""
                   }`}
                 >
