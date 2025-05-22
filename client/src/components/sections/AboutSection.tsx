@@ -88,11 +88,21 @@ export default function AboutSection() {
                     
                     {/* Main circle with image */}
                     <div className="relative w-32 h-32 md:w-44 md:h-44 rounded-full border-4 border-primary z-10 overflow-hidden group">
-                      <img 
-                        src={event.image}
-                        alt={event.imageAlt}
-                        className="w-full h-full object-cover"
-                      />
+                      {index === 0 ? (
+                        <div className="w-full h-full bg-cover bg-center" 
+                             style={{ 
+                               backgroundImage: `url('/vnit-campus.jpg')`,
+                               backgroundSize: 'cover',
+                               backgroundPosition: 'center'
+                             }}>
+                        </div>
+                      ) : (
+                        <img 
+                          src={event.image}
+                          alt={event.imageAlt}
+                          className="w-full h-full object-cover"
+                        />
+                      )}
                       {/* Green overlay with slight transparency */}
                       <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors duration-300"></div>
                     </div>
