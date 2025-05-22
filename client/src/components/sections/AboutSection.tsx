@@ -50,7 +50,7 @@ export default function AboutSection() {
       title: "First Expedition",
       description: "Joined a conservation team on a six-month expedition through the Amazon rainforest, documenting endangered species and habitats.",
       icon: <TreePine className="text-primary h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1518729571365-9a891a9df2bd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+      image: "/assets/images/citi-office.jpg"
     },
     {
       year: "2019",
