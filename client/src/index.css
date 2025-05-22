@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* Updated colors to match mountain lake background image - more teal/blue-green */
+  /* Updated colors with new olive green #4E542A */
   --background: 190 30% 12%;
   --foreground: 190 30% 98%;
   --muted: 190 25% 20%;
@@ -14,26 +14,26 @@
   --card-foreground: 190 30% 98%;
   --border: 190 25% 25%;
   --input: 190 25% 25%;
-  --primary: 180 65% 40%;   /* More teal color to match the lake */
+  --primary: 65 33% 25%;    /* The olive green #4E542A color */
   --primary-foreground: 190 100% 98%;
   --secondary: 210 70% 45%; /* Blue shade for complementary color */
   --secondary-foreground: 210 100% 98%;
-  --accent: 180 65% 40%;
+  --accent: 65 33% 25%;     /* Same olive green */
   --accent-foreground: 190 100% 98%;
   --destructive: 0 80% 60%;
   --destructive-foreground: 60 10% 98%;
-  --ring: 190 40% 40%;
+  --ring: 65 33% 25%;
   --radius: 0.5rem;
 
-  --chart-1: 180 65% 40%;
+  --chart-1: 65 33% 25%;
   --chart-2: 210 70% 45%;
-  --chart-3: 180 65% 40%;
+  --chart-3: 65 33% 25%;
   --chart-4: 190 70% 45%;
-  --chart-5: 180 65% 40%;
+  --chart-5: 65 33% 25%;
 
   --sidebar-background: 190 30% 12%;
   --sidebar-foreground: 190 30% 98%;
-  --sidebar-primary: 180 65% 40%;
+  --sidebar-primary: 65 33% 25%;
   --sidebar-primary-foreground: 0 0% 100%;
   --sidebar-accent: 190 25% 20%;
   --sidebar-accent-foreground: 190 30% 98%;
@@ -52,15 +52,15 @@
   --card-foreground: 190 30% 98%;
   --border: 190 15% 20%;
   --input: 190 15% 20%;
-  --primary: 180 65% 40%;
+  --primary: 65 33% 25%;    /* The olive green #4E542A color */
   --primary-foreground: 190 100% 98%;
   --secondary: 210 70% 45%;
   --secondary-foreground: 190 30% 98%;
-  --accent: 180 65% 40%;
+  --accent: 65 33% 25%;     /* Same olive green */
   --accent-foreground: 190 30% 98%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 190 30% 98%;
-  --ring: 190 35% 50%;
+  --ring: 65 33% 25%;
   --radius: 0.5rem;
 }
 
