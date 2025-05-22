@@ -83,175 +83,109 @@ export default function AboutSection() {
           <h2 className="text-3xl md:text-4xl font-bold">My Journey</h2>
         </div>
         
-        {/* DESKTOP: Creative Nature-Inspired Horizontal Timeline */}
+        {/* DESKTOP: Creative Nature-Inspired Timeline */}
         <div className="hidden lg:block relative py-12 mt-8">
           <div className="max-w-6xl mx-auto">
-            {/* Background Elements */}
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute w-full h-1/2 bg-gradient-to-b from-emerald-900/5 to-transparent"></div>
-              
-              {/* Decorative Leaf Pattern */}
-              <div className="absolute right-0 top-0 w-64 h-64 opacity-10">
-                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M100,0 C130,50 170,50 200,50 C170,80 170,120 200,150 C170,150 130,150 100,200 C70,150 30,150 0,150 C30,120 30,80 0,50 C30,50 70,50 100,0 Z" fill="#7EA046" />
-                </svg>
+            {/* Main timeline bar */}
+            <div className="relative mb-16">
+              {/* Main Path - Gradient Line */}
+              <div className="relative h-8 flex items-center">
+                <div className="absolute w-full h-4 bg-gradient-to-r from-emerald-800 via-primary to-teal-700 rounded-full"></div>
+                <div className="absolute w-full h-1 bg-white/20 rounded-full mt-[-4px]"></div>
               </div>
               
-              <div className="absolute left-0 bottom-0 w-64 h-64 opacity-10">
-                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M100,0 C130,50 170,50 200,50 C170,80 170,120 200,150 C170,150 130,150 100,200 C70,150 30,150 0,150 C30,120 30,80 0,50 C30,50 70,50 100,0 Z" fill="#7EA046" />
-                </svg>
+              {/* Timeline markers */}
+              <div className="absolute top-0 w-full flex justify-between">
+                {timelineEvents.map((event, index) => (
+                  <div key={`marker-${index}`} className="relative" style={{ left: `${(index * 25)}%` }}>
+                    <div className="absolute top-0 w-16 h-16 rounded-full bg-primary/20 animate-pulse" style={{ 
+                      left: '-32px',
+                      top: '-4px', 
+                      animationDuration: "3s" 
+                    }}></div>
+                    
+                    <div className="absolute w-12 h-12 rounded-full border-4 border-primary bg-background flex items-center justify-center shadow-lg" style={{ 
+                      left: '-24px',
+                      top: '0px'
+                    }}>
+                      <span className="text-primary font-bold">{event.year}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             
-            {/* Main Timeline Container */}
-            <div className="relative">
-              {/* Creative Winding Path with Leaf Pattern */}
-              <div className="relative h-28 mb-16">
-                {/* Main Path - Green Gradient Line */}
-                <div className="absolute top-1/2 w-full h-4 transform -translate-y-1/2 bg-gradient-to-r from-emerald-800 via-primary to-teal-700 rounded-full"></div>
-                
-                {/* Light Highlight on Path */}
-                <div className="absolute top-1/2 w-full h-1 transform -translate-y-1/2 mt-[-1px] bg-white/20 rounded-full"></div>
-                
-                {/* Leaf Pattern Decorations along Timeline */}
-                {[...Array(8)].map((_, i) => (
-                  <div 
-                    key={`leaf-${i}`} 
-                    className="absolute top-1/2 transform -translate-y-1/2" 
-                    style={{ left: `${i * 12 + 6}%`, opacity: 0.3 }}
-                  >
-                    <div className="text-primary h-6 w-6 animate-pulse" style={{ animationDelay: `${i * 0.5}s` }}>
-                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6,3 C14,1 16,10 16,12 C12,14 6,14 4,8 C2,4 6,3 6,3 Z" fill="currentColor" />
-                        <path d="M18,21 C10,23 8,14 8,12 C12,10 18,10 20,16 C22,20 18,21 18,21 Z" fill="currentColor" />
-                      </svg>
-                    </div>
-                  </div>
-                ))}
-                
-                {/* Event Markers on the Timeline */}
-                <div className="flex justify-between absolute top-1/2 w-full transform -translate-y-1/2">
-                  {timelineEvents.map((event, index) => (
-                    <div key={`marker-${index}`} className="relative">
-                      {/* Marker Outer Glow Effect */}
-                      <div className="absolute w-16 h-16 rounded-full bg-primary/20 animate-pulse transform -translate-x-1/2 -translate-y-1/2" 
-                           style={{ animationDuration: "3s", animationDelay: `${index * 0.5}s` }}></div>
+            {/* Event cards in grid */}
+            <div className="grid grid-cols-5 gap-6">
+              {timelineEvents.map((event, index) => (
+                <div key={`event-${index}`} className="group hover:scale-105 transition-all duration-300">
+                  <div className="bg-black/40 rounded-xl overflow-hidden border border-primary/30 shadow-xl">
+                    {/* Card image */}
+                    <div className="relative h-48">
+                      <img 
+                        src={event.image} 
+                        alt={event.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                       
-                      {/* Marker Circle */}
-                      <div className="absolute w-12 h-12 rounded-full border-4 border-primary bg-background/90 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-10 shadow-lg">
-                        <span className="text-primary font-bold">{event.year}</span>
+                      {/* Icon badge */}
+                      <div className="absolute top-3 right-3 p-2 rounded-full bg-primary shadow-lg">
+                        {event.icon}
+                      </div>
+                      
+                      {/* Title and location */}
+                      <div className="absolute bottom-0 left-0 p-4">
+                        <h3 className="text-white text-lg font-bold">{event.title}</h3>
+                        <div className="mt-1">
+                          <span className="bg-white/20 text-white text-xs px-2 py-1 rounded-full">
+                            {index === 0 && "VNIT Nagpur, India"}
+                            {index === 1 && "Amazon Rainforest"}
+                            {index === 2 && "National Geographic"}
+                            {index === 3 && "Global Initiative"}
+                            {index === 4 && "Award Ceremony"}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  ))}
+                    
+                    {/* Card content */}
+                    <div className="p-4">
+                      <p className="text-sm text-gray-300 mb-4">{event.description}</p>
+                      
+                      {/* Stats */}
+                      <div className="border-t border-primary/20 pt-3 flex justify-between items-center">
+                        <div className="flex items-center gap-2">
+                          <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                            {index === 0 && <span className="text-xs text-primary font-bold">A+</span>}
+                            {index === 1 && <span className="text-xs text-primary font-bold">47</span>}
+                            {index === 2 && <span className="text-xs text-primary font-bold">12</span>}
+                            {index === 3 && <span className="text-xs text-primary font-bold">5</span>}
+                            {index === 4 && <span className="text-xs text-primary font-bold">7</span>}
+                          </div>
+                          <span className="text-xs text-gray-300">
+                            {index === 0 && "GPA: 3.92/4.0"}
+                            {index === 1 && "Species Documented"}
+                            {index === 2 && "Featured Photos"}
+                            {index === 3 && "NGO Partners"}
+                            {index === 4 && "Exhibitions"}
+                          </span>
+                        </div>
+                        
+                        <span className="text-xs bg-primary/20 text-primary px-2 py-1 rounded-full">
+                          {index === 0 && "Honors"}
+                          {index === 1 && "6 Months"}
+                          {index === 2 && "2.3M Reach"}
+                          {index === 3 && "16 Workshops"}
+                          {index === 4 && "Award"}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              
-              {/* Event Cards with 3D Effects */}
-              <div className="grid grid-cols-5 gap-6 perspective-1000">
-                {timelineEvents.map((event, index) => (
-                  <div 
-                    key={`event-${index}`} 
-                    className="group transform transition-all duration-500 hover:scale-105 hover:rotate-y-10 hover:z-10"
-                  >
-                    {/* Card with 3D effects */}
-                    <div className="relative rounded-xl overflow-hidden shadow-2xl border border-primary/30 h-full bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur">
-                      {/* Card Top with Hexagonal Cutout for Image */}
-                      <div className="relative">
-                        {/* Hexagonal Mask */}
-                        <div className="relative h-48 overflow-hidden">
-                          <div className="absolute inset-0 clip-hex">
-                            <img 
-                              src={event.image} 
-                              alt={event.title}
-                              className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
-                            />
-                          </div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                        </div>
-                        
-                        {/* Icon Badge - Floating Effect */}
-                        <div className="absolute top-4 right-4 p-3 rounded-full bg-primary shadow-lg shadow-primary/30 transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12">
-                          {event.icon}
-                        </div>
-                        
-                        {/* Title and Location Badge */}
-                        <div className="absolute bottom-3 left-0 p-4">
-                          <h3 className="text-white text-xl font-bold drop-shadow-md">{event.title}</h3>
-                          <div className="flex items-center mt-2 gap-2">
-                            <div className="bg-white/20 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm shadow-inner">
-                              {index === 0 && "VNIT Nagpur, India"}
-                              {index === 1 && "Amazon Rainforest, Brazil"}
-                              {index === 2 && "National Geographic Feature"}
-                              {index === 3 && "Global Conservation Initiative"}
-                              {index === 4 && "Environmental Award Ceremony"}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Card Content with Nature-Themed Details */}
-                      <div className="p-5 relative">
-                        {/* Leaf Decoration */}
-                        <div className="absolute top-2 right-2 opacity-10 text-primary">
-                          <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M6,3 C14,1 16,10 16,12 C12,14 6,14 4,8 C2,4 6,3 6,3 Z" />
-                          </svg>
-                        </div>
-                        
-                        <p className="text-sm text-gray-300 leading-relaxed mb-4">{event.description}</p>
-                        
-                        {/* Achievements with Icon Indicators */}
-                        <div className="border-t border-primary/20 pt-3 mt-2">
-                          <div className="flex items-center justify-between">
-                            {/* Left Achievement */}
-                            <div className="flex items-center gap-1.5">
-                              <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center">
-                                {index === 0 && <span className="text-xs text-primary font-bold">A+</span>}
-                                {index === 1 && <span className="text-xs text-primary font-bold">47</span>}
-                                {index === 2 && <span className="text-xs text-primary font-bold">12</span>}
-                                {index === 3 && <span className="text-xs text-primary font-bold">5</span>}
-                                {index === 4 && <span className="text-xs text-primary font-bold">7</span>}
-                              </div>
-                              <span className="text-xs text-gray-200">
-                                {index === 0 && "GPA: 3.92/4.0"}
-                                {index === 1 && "Species Documented"}
-                                {index === 2 && "Featured Photos"}
-                                {index === 3 && "NGO Partners"}
-                                {index === 4 && "Global Exhibitions"}
-                              </span>
-                            </div>
-                            
-                            {/* Right Achievement Badge */}
-                            <div className="bg-primary/20 text-primary text-xs px-2 py-0.5 rounded-full">
-                              {index === 0 && "Honors Graduate"}
-                              {index === 1 && "6 Month Expedition"}
-                              {index === 2 && "2.3M Reach"}
-                              {index === 3 && "16 Workshops"}
-                              {index === 4 && "Environmental Award"}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
-          
-          {/* Custom CSS for Hexagonal Clip */}
-          <style jsx>{`
-            .clip-hex {
-              clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
-            }
-            .perspective-1000 {
-              perspective: 1000px;
-            }
-            .rotate-y-10:hover {
-              transform: rotateY(10deg) scale(1.05);
-            }
-          `}</style>
         </div>
         
         {/* TABLET: Hybrid Timeline (not quite horizontal, not quite vertical) */}
