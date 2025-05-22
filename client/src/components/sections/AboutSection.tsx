@@ -14,10 +14,10 @@ export default function AboutSection() {
     {
       year: "2015",
       title: "Educational Beginnings",
-      description: "Graduated with a B.S. in Environmental Science from Green Mountain University, specializing in conservation photography.",
+      description: "Graduated with a B.S. in Environmental Science from VNIT Nagpur, specializing in conservation photography.",
       icon: <GraduationCap className="text-primary h-6 w-6" />,
-      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      imageAlt: "University graduation ceremony",
+      image: "https://i.imgur.com/mNtYUbw.png", // Using a hosted version of your VNIT image
+      imageAlt: "Standing at the VNIT campus entrance with mechanical gears display",
       isLeft: true
     },
     {

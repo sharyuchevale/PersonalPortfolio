@@ -1,0 +1,1 @@
+This file is a placeholder for the VNIT campus image which would normally be saved as client/src/assets/vnit-campus.png but we're using a public URL reference for now.
