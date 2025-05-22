@@ -67,52 +67,56 @@ export default function AboutSection() {
         </div>
         
         <div className="relative">
-          {/* Timeline line */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/30 z-0"></div>
-          
-          {/* Timeline events */}
-          <div className="space-y-12 relative z-10">
-            {timelineEvents.map((event, index) => (
-              <div key={index} className={`flex flex-col md:flex-row items-center ${event.isLeft ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8`}>
-                {/* Timeline dot */}
-                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-primary shadow-lg shadow-primary/20 z-10 flex items-center justify-center">
-                  <span className="font-bold text-white">{event.year}</span>
-                </div>
-                
-                {/* Content card */}
-                <div className={`md:w-5/12 flex flex-col ${event.isLeft ? 'md:items-end md:text-right' : 'md:items-start'} relative`}>
-                  {/* Year display (mobile only) */}
-                  <div className="md:hidden mb-4 flex items-center">
-                    <div className="w-10 h-10 rounded-full bg-primary shadow-lg shadow-primary/20 flex items-center justify-center mr-3">
-                      <span className="font-bold text-white">{event.year}</span>
+          {/* Horizontal Timeline */}
+          <div className="flex flex-col">
+            {/* Timeline line with dots */}
+            <div className="relative mb-12 mt-6">
+              <div className="hidden md:block absolute left-0 right-0 h-1 bg-primary/30 top-1/2 transform -translate-y-1/2"></div>
+              <div className="flex justify-between relative">
+                {timelineEvents.map((event, index) => (
+                  <div key={index} className="relative flex flex-col items-center">
+                    <div className="w-10 h-10 rounded-full bg-primary shadow-lg shadow-primary/20 z-10 flex items-center justify-center">
+                      <span className="font-bold text-white text-sm">{event.year}</span>
                     </div>
+                    <div className="hidden md:block mt-4 text-center">
+                      <h4 className="font-medium text-sm">{event.title}</h4>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Timeline content */}
+            <div className="md:grid md:grid-cols-5 gap-4 space-y-8 md:space-y-0">
+              {timelineEvents.map((event, index) => (
+                <div key={index} className="flex flex-col">
+                  {/* Timeline Mobile Title */}
+                  <div className="md:hidden mb-3 flex items-center">
                     <h3 className="text-xl font-bold">{event.title}</h3>
                   </div>
                   
-                  {/* Content card for desktop */}
-                  <div className="bg-background/30 backdrop-blur-sm p-6 rounded-xl border border-border/50 hover:shadow-lg transition-all hover:-translate-y-1 duration-300 w-full">
-                    <div className="hidden md:block mb-4">
-                      <h3 className="text-xl font-bold mb-1">{event.title}</h3>
-                    </div>
-                    <p className="text-foreground/70 leading-relaxed">{event.description}</p>
-                    <div className={`hidden md:flex items-center gap-2 mt-4 ${event.isLeft ? 'justify-end' : 'justify-start'}`}>
-                      <span className="bg-primary/10 p-2 rounded-full">
+                  {/* Image */}
+                  <div className="mb-4">
+                    <img 
+                      src={event.image}
+                      alt={event.imageAlt}
+                      className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-white/10 shadow-primary/20 hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  
+                  {/* Content card */}
+                  <div className="bg-background/30 backdrop-blur-sm p-4 rounded-xl border border-border/50 hover:shadow-lg transition-all hover:-translate-y-1 duration-300 flex-1">
+                    <div className="flex items-center mb-3">
+                      <span className="bg-primary/10 p-2 rounded-full mr-2">
                         {event.icon}
                       </span>
+                      <h3 className="hidden md:block text-lg font-bold">{event.title}</h3>
                     </div>
+                    <p className="text-foreground/70 text-sm leading-relaxed">{event.description}</p>
                   </div>
                 </div>
-                
-                {/* Image */}
-                <div className="md:w-5/12">
-                  <img 
-                    src={event.image}
-                    alt={event.imageAlt}
-                    className="rounded-xl shadow-lg w-full h-auto border-4 border-white/10 shadow-primary/20 hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
         
