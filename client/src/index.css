@@ -99,7 +99,7 @@ html {
 }
 
 .gradient-button {
-  background: linear-gradient(120deg, #7EA046, #6A8937);
+  background: #7EA046;
   transition: all 0.3s ease;
   border: none;
   position: relative;
@@ -112,26 +112,9 @@ html {
 }
 
 .gradient-button:hover {
+  background: #6A8937;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.2);
   transform: translateY(-3px);
-}
-
-.gradient-button:hover::before {
-  opacity: 1;
-}
-
-.gradient-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(120deg, #6A8937, #7EA046);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: inherit;
 }
 
 .shadow-text {
