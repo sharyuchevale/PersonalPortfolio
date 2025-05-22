@@ -62,7 +62,7 @@ export default function AboutSection() {
     <section id="about" className="py-20 section-fade" style={{ background: 'linear-gradient(120deg, #0f2e3d, #173a2d)' }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h3 className="text-primary text-lg font-medium mb-2">Get to know me</h3>
+          <h3 className="text-primary text-lg font-medium mb-2">The Road Behind, the Road Ahead</h3>
           <h2 className="text-3xl md:text-4xl font-bold">My Journey</h2>
         </div>
         
