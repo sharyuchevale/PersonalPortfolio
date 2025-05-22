@@ -14,10 +14,10 @@ export default function AboutSection() {
     {
       year: "2015",
       title: "Educational Beginnings",
-      description: "Graduated with a B.S. in Electrical and Electronics Engineering from VNIT Nagpur, specializing in technical photography.",
+      description: "Graduated with a B.S. in Electrical and Electronics Engineering from VNIT Nagpur.",
       icon: <GraduationCap className="text-primary h-6 w-6" />,
-      image: "https://media.licdn.com/dms/image/D5612AQGRXj5dUFYVRQ/article-cover_image-shrink_720_1280/0/1707897541048?e=2147483647&v=beta&t=7oZYi_cQ4a3y1tODvfE8nNVS-gQMrEpmcMsT4AZiKGY",
-      imageAlt: "VNIT Nagpur campus with mechanical engineering display",
+      image: "https://i.postimg.cc/zDwfTWfc/vnit-campus.jpg",
+      imageAlt: "VNIT campus with mechanical engineering gears display",
       isLeft: true
     },
     {
