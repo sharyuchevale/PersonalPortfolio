@@ -15,7 +15,7 @@ export default function ProjectsSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h3 className="text-primary text-lg font-medium mb-2">My photo collections</h3>
-          <h2 className="text-3xl md:text-4xl font-bold">Nature Gallery</h2>
+          <h2 className="text-3xl md:text-4xl font-bold">Projects</h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
