@@ -16,7 +16,7 @@ export default function AboutSection() {
       title: "Educational Beginnings",
       description: "Graduated with a B.S. in Electrical and Electronics Engineering from VNIT Nagpur.",
       icon: <GraduationCap className="text-primary h-6 w-6" />,
-      image: "https://i.postimg.cc/zDwfTWfc/vnit-campus.jpg",
+      image: "https://static.wixstatic.com/media/d7123f_b1e1b2cbd06845bbb30de8b3e7ba07e0~mv2.jpg/v1/fill/w_640,h_428,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d7123f_b1e1b2cbd06845bbb30de8b3e7ba07e0~mv2.jpg",
       imageAlt: "VNIT campus with mechanical engineering gears display",
       isLeft: true
     },
@@ -89,12 +89,11 @@ export default function AboutSection() {
                     {/* Main circle with image */}
                     <div className="relative w-32 h-32 md:w-44 md:h-44 rounded-full border-4 border-primary z-10 overflow-hidden group">
                       {index === 0 ? (
-                        <div className="w-full h-full bg-cover bg-center" 
-                             style={{ 
-                               backgroundImage: `url('https://lh3.googleusercontent.com/pw/ABLVV87wRBLFbTIx5KRFuLe3YAqILQZYWG1Rc2JcXPQtWUxUUMFm2nJyqXqqvYBJhQE7-FQ89qNfO4l7vl9-2Y4u2vEBomn6WKm1e7NKhG2gT_f9lwLlCdDrcH9GHKHx6h4cS6pzZrvlPVMy4qT6sBbT0sjr=w972-h1295-s-no')`,
-                               backgroundSize: 'cover',
-                               backgroundPosition: 'center'
-                             }}>
+                        <div className="w-full h-full flex items-center justify-center bg-gray-700">
+                          <div className="text-white text-center p-2">
+                            <GraduationCap className="h-10 w-10 mx-auto mb-2 text-primary" />
+                            <span className="text-sm">VNIT Nagpur</span>
+                          </div>
                         </div>
                       ) : (
                         <img 
