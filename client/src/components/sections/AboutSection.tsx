@@ -43,7 +43,7 @@ export default function AboutSection() {
       title: "Educational Beginnings",
       description: "Graduated with a B.S. in Electrical and Electronics Engineering from VNIT Nagpur.",
       icon: <GraduationCap className="text-primary h-6 w-6" />,
-      image: "https://i.ibb.co/L8NGLyK/vnit-campus-with-gears.jpg"
+      image: "/assets/images/citi-office.jpg"
     },
     {
       year: "2017",
