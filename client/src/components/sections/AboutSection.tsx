@@ -83,215 +83,228 @@ export default function AboutSection() {
           <h2 className="text-3xl md:text-4xl font-bold">My Journey</h2>
         </div>
         
-        {/* DESKTOP: Enhanced Creative Horizontal Timeline */}
-        <div className="hidden lg:block relative max-w-6xl mx-auto mb-20">
-          {/* Background elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent top-[110px] z-0"></div>
-            {/* Decorative circles */}
-            {[...Array(8)].map((_, i) => (
-              <div 
-                key={`circle-${i}`}
-                className="absolute rounded-full bg-primary/5 z-0"
-                style={{
-                  width: `${Math.random() * 60 + 20}px`,
-                  height: `${Math.random() * 60 + 20}px`,
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 300 + 50}px`,
-                  opacity: Math.random() * 0.5 + 0.1,
-                  animationDuration: `${Math.random() * 10 + 10}s`,
-                }}
-              ></div>
-            ))}
+        {/* DESKTOP: Flowing Visual Journey Timeline */}
+        <div className="hidden lg:block relative mx-auto mb-20 mt-10 overflow-hidden">
+          {/* Dynamic Background */}
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="absolute w-full h-[600px] bg-gradient-to-b from-emerald-900/10 to-transparent opacity-30"></div>
           </div>
           
-          {/* The journey path line with gradient */}
-          <div className="relative">
-            <div className="absolute h-[6px] bg-gradient-to-r from-emerald-500/40 via-primary/60 to-teal-500/40 w-[110%] -left-[5%] top-[110px] shadow-xl rounded-full"></div>
-            <div className="absolute h-1 bg-white/30 w-[108%] -left-[4%] top-[113px] shadow-inner rounded-full"></div>
+          {/* Timeline container */}
+          <div className="relative max-w-6xl mx-auto h-[550px]">
+            {/* Main journey path - curved SVG path */}
+            <svg className="absolute w-full h-[400px] top-0" viewBox="0 0 1200 400" fill="none" preserveAspectRatio="none">
+              {/* Background glow */}
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="10" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+              
+              {/* Decorative grid lines */}
+              <g className="opacity-10">
+                {[...Array(10)].map((_, i) => (
+                  <line 
+                    key={`vline-${i}`} 
+                    x1={120 * i} 
+                    y1="0" 
+                    x2={120 * i} 
+                    y2="400" 
+                    stroke="#ffffff" 
+                    strokeWidth="1" 
+                    strokeDasharray="5,5"
+                  />
+                ))}
+                {[...Array(5)].map((_, i) => (
+                  <line 
+                    key={`hline-${i}`} 
+                    x1="0" 
+                    y1={80 * i} 
+                    x2="1200" 
+                    y2={80 * i} 
+                    stroke="#ffffff" 
+                    strokeWidth="1" 
+                    strokeDasharray="5,5"
+                  />
+                ))}
+              </g>
+              
+              {/* Timeline main path */}
+              <path 
+                d="M0,200 C300,100 500,300 700,150 S1000,250 1200,200" 
+                stroke="url(#gradient)" 
+                strokeWidth="6"
+                strokeLinecap="round"
+                fill="none"
+                filter="url(#glow)"
+              />
+              
+              {/* Gradient definition */}
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#2D5F3E" />
+                <stop offset="30%" stopColor="#7EA046" />
+                <stop offset="70%" stopColor="#7EA046" />
+                <stop offset="100%" stopColor="#4A7A34" />
+              </linearGradient>
+              
+              {/* Timeline dots with connecting lines */}
+              {timelineEvents.map((_, index) => {
+                const xPos = 240 * index + 75;
+                const yPos = index % 2 === 0 ? 
+                             (index === 0 ? 200 : index === 2 ? 150 : 220) : 
+                             (index === 1 ? 100 : 170);
+                             
+                return (
+                  <g key={`path-point-${index}`}>
+                    <circle cx={xPos} cy={yPos} r="8" fill="#7EA046" />
+                    <circle cx={xPos} cy={yPos} r="4" fill="white" />
+                    
+                    {/* Year label */}
+                    <text 
+                      x={xPos} 
+                      y={yPos - 20} 
+                      fill="white" 
+                      fontSize="16" 
+                      fontWeight="bold" 
+                      textAnchor="middle"
+                    >
+                      {timelineEvents[index].year}
+                    </text>
+                  </g>
+                );
+              })}
+            </svg>
             
-            {/* Path decorations */}
-            <div className="absolute w-full top-[95px]">
-              {[...Array(20)].map((_, i) => (
-                <div 
-                  key={`dot-${i}`}
-                  className="absolute rounded-full bg-white/60 h-[3px] w-[3px]"
-                  style={{ left: `${i * 5 + 2}%` }}
-                ></div>
+            {/* Year Events with Images and Details */}
+            <div className="relative pt-[50px] flex justify-between px-5">
+              {timelineEvents.map((event, index) => {
+                // Calculate different positions based on index for visual variety
+                const topPosition = index % 2 === 0 ? 
+                                    (index === 0 ? '140px' : index === 2 ? '100px' : '160px') : 
+                                    (index === 1 ? '50px' : '120px');
+                
+                return (
+                  <div 
+                    key={`event-${index}`} 
+                    className="relative"
+                    style={{ 
+                      width: '200px', 
+                      top: topPosition,
+                    }}
+                  >
+                    {/* Connecting vertical line */}
+                    <div 
+                      className="absolute left-1/2 w-[2px] bg-gradient-to-b from-primary to-transparent h-20 -top-[40px]"
+                      style={{ transform: 'translateX(-50%)' }}
+                    ></div>
+                    
+                    {/* Event content */}
+                    <div className="transform transition-all duration-300 hover:scale-105 hover:z-50">
+                      {/* Image */}
+                      <div className="relative w-full h-36 rounded-lg overflow-hidden shadow-lg">
+                        <img 
+                          src={event.image} 
+                          alt={event.title}
+                          className="w-full h-full object-cover"
+                        />
+                        
+                        {/* Image overlay with icon */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                          <div className="absolute bottom-0 left-0 p-3 flex items-center gap-2">
+                            <div className="w-10 h-10 rounded-full bg-primary/80 backdrop-blur-sm flex items-center justify-center shadow-inner">
+                              {event.icon}
+                            </div>
+                            <div>
+                              <h3 className="text-white font-bold text-sm">{event.title}</h3>
+                              
+                              {/* Location tag based on index */}
+                              <div className="bg-white/20 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur-sm mt-1 inline-block">
+                                {index === 0 && "VNIT Nagpur, India"}
+                                {index === 1 && "Amazon, Brazil"}
+                                {index === 2 && "Feature Publication"}
+                                {index === 3 && "Global Initiative"}
+                                {index === 4 && "Award Ceremony"}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Content details with pop-up effect */}
+                      <div className="relative bg-background/30 backdrop-blur-md rounded-lg p-3 shadow-lg border border-primary/30 -mt-6 mx-3 z-10">
+                        <p className="text-xs text-gray-200 line-clamp-3">{event.description}</p>
+                        
+                        {/* Achievement highlights based on index */}
+                        <div className="mt-2 pt-2 border-t border-primary/20">
+                          <div className="flex justify-between items-center">
+                            {index === 0 && (
+                              <>
+                                <span className="text-xs text-primary/80">GPA: 3.92/4.0</span>
+                                <span className="text-xs bg-primary/20 text-primary px-1.5 py-0.5 rounded-full">Honors</span>
+                              </>
+                            )}
+                            {index === 1 && (
+                              <>
+                                <span className="text-xs text-primary/80">47 Species</span>
+                                <span className="text-xs bg-primary/20 text-primary px-1.5 py-0.5 rounded-full">6 Months</span>
+                              </>
+                            )}
+                            {index === 2 && (
+                              <>
+                                <span className="text-xs text-primary/80">12 Photos</span>
+                                <span className="text-xs bg-primary/20 text-primary px-1.5 py-0.5 rounded-full">2.3M Reach</span>
+                              </>
+                            )}
+                            {index === 3 && (
+                              <>
+                                <span className="text-xs text-primary/80">5 NGO Partners</span>
+                                <span className="text-xs bg-primary/20 text-primary px-1.5 py-0.5 rounded-full">16 Workshops</span>
+                              </>
+                            )}
+                            {index === 4 && (
+                              <>
+                                <span className="text-xs text-primary/80">7 Exhibitions</span>
+                                <span className="text-xs bg-primary/20 text-primary px-1.5 py-0.5 rounded-full">Global Award</span>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            
+            {/* Timeline year markers along the bottom */}
+            <div className="absolute bottom-0 left-0 right-0 flex justify-between px-16">
+              {timelineEvents.map((event, index) => (
+                <div key={`year-marker-${index}`} className="text-center">
+                  <div className="relative">
+                    <div className="h-12 w-[2px] bg-primary/30 mx-auto"></div>
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-primary"></div>
+                  </div>
+                  <div className="mt-2 bg-background/40 backdrop-blur-sm px-3 py-1 rounded-full border border-primary/20">
+                    <span className="text-white font-bold">{event.year}</span>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
           
-          {/* Timeline markers and cards */}
-          <div className="flex justify-between relative">
-            {timelineEvents.map((event, index) => (
+          {/* Decorative elements - stars/dots */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(20)].map((_, i) => (
               <div 
-                key={`desktop-${index}`} 
-                className="relative px-3" 
-                style={{ width: `${100 / timelineEvents.length}%` }}
-              >
-                {/* Connection lines to main path */}
-                <div 
-                  className={`absolute left-1/2 w-[3px] ${index % 2 === 0 ? 'bg-gradient-to-b' : 'bg-gradient-to-t'} from-primary/80 to-transparent`}
-                  style={{ 
-                    height: index % 2 === 0 ? '60px' : '20px', 
-                    top: index % 2 === 0 ? '120px' : '50px',
-                    transform: 'translateX(-50%)',
-                  }}
-                ></div>
-                
-                {/* Year marker with pulse effect */}
-                <div className="flex flex-col items-center">
-                  <div className={`relative my-4 ${index % 2 === 0 ? 'mt-32' : 'mb-2'}`}>
-                    {/* Pulse animation rings */}
-                    <div className="absolute inset-0 rounded-full animate-ping bg-primary/30 z-0" style={{ animationDuration: '3s' }}></div>
-                    <div className="absolute inset-[-4px] rounded-full animate-ping bg-primary/20 z-0" style={{ animationDuration: '4s' }}></div>
-                    
-                    {/* Main year bubble */}
-                    <div className="relative flex flex-col items-center">
-                      <div className="w-20 h-20 rounded-full border-4 border-primary bg-background/90 flex items-center justify-center z-10 shadow-lg">
-                        {event.icon}
-                        <span className="absolute -bottom-8 text-xl font-bold bg-background/90 px-3 py-1 rounded-full border border-primary/30">
-                          {event.year}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Content card with enhanced visuals */}
-                  <div className={`${index % 2 === 0 ? '-mt-8' : 'mt-14'} w-full`}>
-                    <div className="group bg-background/20 backdrop-blur-sm rounded-xl border border-primary/20 shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-primary/50">
-                      {/* Enhanced image section */}
-                      <div className="relative h-40 overflow-hidden">
-                        <img 
-                          src={event.image}
-                          alt={event.title}
-                          className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent group-hover:opacity-60 transition-opacity duration-300"></div>
-                        <div className="absolute bottom-0 left-0 p-4 w-full">
-                          <h3 className="text-white text-xl font-bold">{event.title}</h3>
-                          
-                          {/* Location tag if we add it */}
-                          {index === 0 && (
-                            <div className="flex items-center mt-1">
-                              <div className="bg-white/20 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur-sm">
-                                VNIT Nagpur, India
-                              </div>
-                            </div>
-                          )}
-                          {index === 1 && (
-                            <div className="flex items-center mt-1">
-                              <div className="bg-white/20 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur-sm">
-                                Amazon Rainforest, Brazil
-                              </div>
-                            </div>
-                          )}
-                          {index === 2 && (
-                            <div className="flex items-center mt-1">
-                              <div className="bg-white/20 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur-sm">
-                                Publication Feature
-                              </div>
-                            </div>
-                          )}
-                          {index === 3 && (
-                            <div className="flex items-center mt-1">
-                              <div className="bg-white/20 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur-sm">
-                                Global Initiative
-                              </div>
-                            </div>
-                          )}
-                          {index === 4 && (
-                            <div className="flex items-center mt-1">
-                              <div className="bg-white/20 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur-sm">
-                                International Recognition
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      
-                      {/* Enhanced content section */}
-                      <div className="p-4">
-                        <p className="text-sm text-gray-200 mb-3">{event.description}</p>
-                        
-                        {/* Tags for each event */}
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          {index === 0 && (
-                            <>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Electrical Engineering</span>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Bachelor's Degree</span>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Academic</span>
-                            </>
-                          )}
-                          {index === 1 && (
-                            <>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Conservation</span>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Field Work</span>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Biodiversity</span>
-                            </>
-                          )}
-                          {index === 2 && (
-                            <>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">National Geographic</span>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Photography</span>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Old-growth Forests</span>
-                            </>
-                          )}
-                          {index === 3 && (
-                            <>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">NGO Partnership</span>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Visual Storytelling</span>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Awareness</span>
-                            </>
-                          )}
-                          {index === 4 && (
-                            <>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Award Winner</span>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Climate Change</span>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Coastal Communities</span>
-                            </>
-                          )}
-                        </div>
-                        
-                        {/* Additional metrics/stats specific to each event */}
-                        <div className="mt-3 pt-3 border-t border-white/10">
-                          {index === 0 && (
-                            <div className="flex justify-between text-xs text-gray-300">
-                              <span>GPA: 3.92/4.0</span>
-                              <span>Graduated with Honors</span>
-                            </div>
-                          )}
-                          {index === 1 && (
-                            <div className="flex justify-between text-xs text-gray-300">
-                              <span>Duration: 6 months</span>
-                              <span>Species documented: 47</span>
-                            </div>
-                          )}
-                          {index === 2 && (
-                            <div className="flex justify-between text-xs text-gray-300">
-                              <span>Featured photos: 12</span>
-                              <span>Publication reach: 2.3M</span>
-                            </div>
-                          )}
-                          {index === 3 && (
-                            <div className="flex justify-between text-xs text-gray-300">
-                              <span>NGO partners: 5</span>
-                              <span>Workshops conducted: 16</span>
-                            </div>
-                          )}
-                          {index === 4 && (
-                            <div className="flex justify-between text-xs text-gray-300">
-                              <span>Global competition entries: 3,827</span>
-                              <span>Exhibition locations: 7</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                key={`star-${i}`}
+                className="absolute rounded-full bg-white/60"
+                style={{
+                  width: `${Math.random() * 3 + 1}px`,
+                  height: `${Math.random() * 3 + 1}px`,
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  opacity: Math.random() * 0.7 + 0.3,
+                }}
+              ></div>
             ))}
           </div>
         </div>
