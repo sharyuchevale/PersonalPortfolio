@@ -91,7 +91,7 @@ export default function AboutSection() {
                       {index === 0 ? (
                         <div className="w-full h-full bg-cover bg-center" 
                              style={{ 
-                               backgroundImage: `url('/vnit-campus.jpg')`,
+                               backgroundImage: `url('https://lh3.googleusercontent.com/pw/ABLVV87wRBLFbTIx5KRFuLe3YAqILQZYWG1Rc2JcXPQtWUxUUMFm2nJyqXqqvYBJhQE7-FQ89qNfO4l7vl9-2Y4u2vEBomn6WKm1e7NKhG2gT_f9lwLlCdDrcH9GHKHx6h4cS6pzZrvlPVMy4qT6sBbT0sjr=w972-h1295-s-no')`,
                                backgroundSize: 'cover',
                                backgroundPosition: 'center'
                              }}>
