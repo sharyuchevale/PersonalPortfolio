@@ -80,7 +80,7 @@ export default function ProjectsSection() {
         </div>
         
         <div className="text-center mt-12">
-          <a href="#" className="inline-flex items-center px-6 py-3 gradient-button text-white">
+          <a href="#" className="inline-flex items-center px-6 py-3 gradient-button text-white rounded-lg shadow-md">
             View All Collections <ArrowRight className="ml-2 h-4 w-4" />
           </a>
         </div>

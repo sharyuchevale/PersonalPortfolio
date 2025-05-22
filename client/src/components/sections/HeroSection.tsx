@@ -70,14 +70,14 @@ export default function HeroSection() {
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
               <Button 
                 size="lg" 
-                className="gradient-button text-white"
+                className="gradient-button text-white rounded-lg shadow-md"
                 onClick={() => scrollToSection("projects")}
               >
                 View My Work
               </Button>
               <Button 
                 size="lg" 
-                className="gradient-button text-white"
+                className="gradient-button text-white rounded-lg shadow-md"
                 onClick={() => scrollToSection("contact")}
               >
                 Contact Me
