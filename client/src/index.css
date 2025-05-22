@@ -3,64 +3,64 @@
 @tailwind utilities;
 
 :root {
-  /* Updated green color to better complement the background */
-  --background: 70 30% 12%;
-  --foreground: 65 30% 98%;
-  --muted: 70 25% 20%;
-  --muted-foreground: 65 30% 85%;
-  --popover: 70 30% 12%;
-  --popover-foreground: 65 30% 98%;
-  --card: 70 25% 15%;
-  --card-foreground: 65 30% 98%;
-  --border: 70 25% 25%;
-  --input: 70 25% 25%;
-  --primary: 70 85% 35%;
-  --primary-foreground: 65 100% 98%;
-  --secondary: 200 70% 45%;
+  /* Updated colors to match mountain lake background image - more teal/blue-green */
+  --background: 190 30% 12%;
+  --foreground: 190 30% 98%;
+  --muted: 190 25% 20%;
+  --muted-foreground: 190 30% 85%;
+  --popover: 190 30% 12%;
+  --popover-foreground: 190 30% 98%;
+  --card: 190 25% 15%;
+  --card-foreground: 190 30% 98%;
+  --border: 190 25% 25%;
+  --input: 190 25% 25%;
+  --primary: 180 65% 40%;   /* More teal color to match the lake */
+  --primary-foreground: 190 100% 98%;
+  --secondary: 210 70% 45%; /* Blue shade for complementary color */
   --secondary-foreground: 210 100% 98%;
-  --accent: 70 85% 35%;
-  --accent-foreground: 65 100% 98%;
+  --accent: 180 65% 40%;
+  --accent-foreground: 190 100% 98%;
   --destructive: 0 80% 60%;
   --destructive-foreground: 60 10% 98%;
-  --ring: 65 40% 40%;
+  --ring: 190 40% 40%;
   --radius: 0.5rem;
 
-  --chart-1: 70 85% 35%;
-  --chart-2: 200 70% 45%;
-  --chart-3: 70 85% 35%;
-  --chart-4: 180 70% 45%;
-  --chart-5: 70 85% 35%;
+  --chart-1: 180 65% 40%;
+  --chart-2: 210 70% 45%;
+  --chart-3: 180 65% 40%;
+  --chart-4: 190 70% 45%;
+  --chart-5: 180 65% 40%;
 
-  --sidebar-background: 70 30% 12%;
-  --sidebar-foreground: 65 30% 98%;
-  --sidebar-primary: 70 85% 35%;
+  --sidebar-background: 190 30% 12%;
+  --sidebar-foreground: 190 30% 98%;
+  --sidebar-primary: 180 65% 40%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 70 25% 20%;
-  --sidebar-accent-foreground: 65 30% 98%;
-  --sidebar-border: 70 25% 25%;
-  --sidebar-ring: 70 25% 25%;
+  --sidebar-accent: 190 25% 20%;
+  --sidebar-accent-foreground: 190 30% 98%;
+  --sidebar-border: 190 25% 25%;
+  --sidebar-ring: 190 25% 25%;
 }
 
 .dark {
-  --background: 65 20% 5%;
-  --foreground: 65 30% 98%;
-  --muted: 65 15% 15%;
-  --muted-foreground: 65 20% 70%;
-  --popover: 65 20% 5%;
-  --popover-foreground: 65 30% 98%;
-  --card: 65 20% 7%;
-  --card-foreground: 65 30% 98%;
-  --border: 65 15% 20%;
-  --input: 65 15% 20%;
-  --primary: 70 85% 35%;
-  --primary-foreground: 65 100% 98%;
-  --secondary: 200 70% 45%;
-  --secondary-foreground: 65 30% 98%;
-  --accent: 70 85% 35%;
-  --accent-foreground: 65 30% 98%;
+  --background: 190 20% 5%;
+  --foreground: 190 30% 98%;
+  --muted: 190 15% 15%;
+  --muted-foreground: 190 20% 70%;
+  --popover: 190 20% 5%;
+  --popover-foreground: 190 30% 98%;
+  --card: 190 20% 7%;
+  --card-foreground: 190 30% 98%;
+  --border: 190 15% 20%;
+  --input: 190 15% 20%;
+  --primary: 180 65% 40%;
+  --primary-foreground: 190 100% 98%;
+  --secondary: 210 70% 45%;
+  --secondary-foreground: 190 30% 98%;
+  --accent: 180 65% 40%;
+  --accent-foreground: 190 30% 98%;
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 65 30% 98%;
-  --ring: 65 35% 50%;
+  --destructive-foreground: 190 30% 98%;
+  --ring: 190 35% 50%;
   --radius: 0.5rem;
 }
 
@@ -146,7 +146,7 @@ html {
   left: 15%;
   width: 1px;
   height: 100%;
-  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), transparent);
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08), transparent);
   z-index: 0;
 }
 
@@ -157,7 +157,7 @@ html {
   right: 15%;
   width: 1px;
   height: 100%;
-  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), transparent);
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08), transparent);
   z-index: 0;
 }
 
@@ -170,10 +170,10 @@ html {
 .cross-lines::after {
   content: "";
   position: absolute;
-  top: 0;
+  left: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.03), transparent);
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.08), transparent);
   z-index: 0;
 }
 
@@ -187,19 +187,37 @@ html {
 
 .diagonal-line {
   position: relative;
+  overflow: hidden;
 }
 
 .diagonal-line::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 200%;
-  background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
   transform: rotate(45deg);
-  transform-origin: 0 0;
+  transform-origin: center;
   z-index: 0;
+}
+
+.diagonal-line::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(-45deg);
+  transform-origin: center;
+  z-index: 0;
+}
+
+.corner-lines {
+  position: relative;
 }
 
 .corner-lines::before {
@@ -207,9 +225,9 @@ html {
   position: absolute;
   top: 50px;
   left: 50px;
-  width: 100px;
+  width: 150px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .corner-lines::after {
@@ -218,6 +236,51 @@ html {
   top: 50px;
   left: 50px;
   width: 1px;
-  height: 100px;
-  background: rgba(255, 255, 255, 0.05);
+  height: 150px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Right corner lines */
+.corner-lines-right {
+  position: relative;
+}
+
+.corner-lines-right::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 150px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.corner-lines-right::after {
+  content: "";
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 1px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Grid lines */
+.grid-lines {
+  position: relative;
+  overflow: hidden;
+}
+
+.grid-lines::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 0;
 }
