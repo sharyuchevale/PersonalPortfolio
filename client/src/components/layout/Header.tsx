@@ -31,7 +31,7 @@ export default function Header({ activeSection }: HeaderProps) {
   // Navigation links
   const navLinks = [
     { id: "home", label: "Home" },
-    { id: "about", label: "About" },
+    { id: "about", label: "Journey" },
     { id: "projects", label: "Projects" },
     { id: "skills", label: "Skills" },
     { id: "contact", label: "Contact" },
