@@ -1,13 +1,41 @@
+import { useState, useEffect } from "react";
 import { 
   GraduationCap, 
   Briefcase, 
   Camera, 
   TreePine,
   Award,
-  Download
+  Download,
+  ChevronRight,
+  ChevronLeft
 } from "lucide-react";
 
 export default function AboutSection() {
+  // State to track active event on mobile
+  const [activeEvent, setActiveEvent] = useState(0);
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  // Check screen size on mount and resize
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobileView(window.innerWidth < 768);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  // Navigation functions for mobile view
+  const nextEvent = () => {
+    setActiveEvent(prev => Math.min(prev + 1, timelineEvents.length - 1));
+  };
+
+  const prevEvent = () => {
+    setActiveEvent(prev => Math.max(prev - 1, 0));
+  };
+
   // Define timeline data with 5 key timestamps
   const timelineEvents = [
     {
@@ -48,65 +76,163 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-20 section-fade" style={{ background: 'linear-gradient(120deg, #0f2e3d, #173a2d)' }}>
+    <section id="about" className="py-20 section-fade overflow-x-hidden" style={{ background: 'linear-gradient(120deg, #0f2e3d, #173a2d)' }}>
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h3 className="text-primary text-lg font-medium mb-2">The Road Behind, the Road Ahead</h3>
           <h2 className="text-3xl md:text-4xl font-bold">My Journey</h2>
         </div>
         
-        {/* Simple Timeline */}
-        <div className="max-w-4xl mx-auto">
-          {/* Timeline container with connecting line */}
-          <div className="relative">
-            {/* Center line - visible on tablet and up */}
-            <div className="hidden md:block absolute h-full w-0.5 bg-primary/30 left-1/2 transform -translate-x-1/2"></div>
-            
-            {/* Timeline events */}
-            <div className="space-y-12">
-              {timelineEvents.map((event, index) => (
-                <div key={index} className={`flex flex-col md:flex-row gap-8 md:items-center ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}>
-                  {/* Image section - equal width on desktop */}
-                  <div className="md:w-5/12">
-                    <div className="relative rounded-xl overflow-hidden shadow-lg">
+        {/* DESKTOP: Horizontal Timeline */}
+        <div className="hidden lg:block relative max-w-6xl mx-auto">
+          {/* Horizontal line */}
+          <div className="absolute h-0.5 bg-primary/30 w-full top-28"></div>
+          
+          {/* Timeline markers and cards */}
+          <div className="flex justify-between relative">
+            {timelineEvents.map((event, index) => (
+              <div key={`desktop-${index}`} className="relative px-2" style={{ width: `${100 / timelineEvents.length}%` }}>
+                {/* Year marker */}
+                <div className="flex flex-col items-center mb-8">
+                  <div className="w-14 h-14 rounded-full border-4 border-primary bg-background/80 flex items-center justify-center z-10 mb-2">
+                    {event.icon}
+                  </div>
+                  <span className="text-xl font-bold">{event.year}</span>
+                </div>
+                
+                {/* Content card */}
+                <div className={`h-auto ${index % 2 === 0 ? 'mt-16' : 'mt-8'}`}>
+                  <div className="bg-background/20 backdrop-blur-sm rounded-xl border border-primary/20 shadow-xl overflow-hidden h-full">
+                    {/* Image at top */}
+                    <div className="relative h-32 overflow-hidden">
                       <img 
                         src={event.image}
                         alt={event.title}
-                        className="w-full aspect-video object-cover"
+                        className="w-full h-full object-cover"
                       />
-                      <div className="absolute top-0 left-0 m-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm text-white font-bold">
-                        {event.year}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                      <div className="absolute bottom-0 left-0 p-3">
+                        <h3 className="text-white text-lg font-bold">{event.title}</h3>
                       </div>
                     </div>
-                  </div>
-                  
-                  {/* Timeline dot - visible on tablet and up */}
-                  <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center">
-                    <div className="w-12 h-12 rounded-full border-4 border-primary bg-background flex items-center justify-center z-10">
-                      {event.icon}
-                    </div>
-                  </div>
-                  
-                  {/* Content section - equal width on desktop */}
-                  <div className="md:w-5/12">
-                    <div className="bg-background/30 backdrop-blur-sm p-6 rounded-xl border border-primary/20 shadow-lg">
-                      {/* Year badge - mobile only */}
-                      <div className="md:hidden flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 rounded-full border-2 border-primary bg-background/50 flex items-center justify-center">
-                          {event.icon}
-                        </div>
-                        <span className="text-primary font-bold">{event.year}</span>
-                      </div>
-                      
-                      <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-                      <p className="text-foreground/80 mb-0">{event.description}</p>
+                    
+                    {/* Content */}
+                    <div className="p-4">
+                      <p className="text-sm text-gray-200">{event.description}</p>
                     </div>
                   </div>
                 </div>
-              ))}
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* TABLET: Hybrid Timeline (not quite horizontal, not quite vertical) */}
+        <div className="hidden md:block lg:hidden">
+          <div className="grid grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {timelineEvents.map((event, index) => (
+              <div key={`tablet-${index}`} className="bg-background/20 backdrop-blur-sm rounded-xl border border-primary/20 shadow-lg overflow-hidden">
+                {/* Header with year and icon */}
+                <div className="flex items-center p-3 border-b border-primary/10 gap-3">
+                  <div className="w-10 h-10 rounded-full border-2 border-primary bg-background/50 flex items-center justify-center">
+                    {event.icon}
+                  </div>
+                  <div>
+                    <span className="text-primary font-bold block">{event.year}</span>
+                    <h3 className="font-bold text-sm">{event.title}</h3>
+                  </div>
+                </div>
+                
+                {/* Image */}
+                <div className="h-36 relative overflow-hidden">
+                  <img 
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                
+                {/* Content */}
+                <div className="p-3">
+                  <p className="text-sm text-gray-300 line-clamp-3">{event.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* MOBILE: Vertical Timeline with navigation */}
+        <div className="md:hidden">
+          {/* Current event display */}
+          <div className="bg-background/20 backdrop-blur-sm rounded-xl border border-primary/20 shadow-lg overflow-hidden mb-6">
+            {/* Image at top */}
+            <div className="relative h-48 overflow-hidden">
+              <img 
+                src={timelineEvents[activeEvent].image}
+                alt={timelineEvents[activeEvent].title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute top-0 left-0 m-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm text-white font-bold">
+                {timelineEvents[activeEvent].year}
+              </div>
             </div>
+            
+            {/* Content */}
+            <div className="p-5">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 rounded-full bg-primary/20">
+                  {timelineEvents[activeEvent].icon}
+                </div>
+                <h3 className="text-xl font-bold">{timelineEvents[activeEvent].title}</h3>
+              </div>
+              <p className="text-gray-200">{timelineEvents[activeEvent].description}</p>
+            </div>
+          </div>
+          
+          {/* Timeline navigation */}
+          <div className="flex items-center justify-between mb-6">
+            <button 
+              onClick={prevEvent} 
+              disabled={activeEvent === 0}
+              className={`p-2 rounded-full ${activeEvent === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-primary/20'}`}
+            >
+              <ChevronLeft className="h-6 w-6 text-primary" />
+            </button>
+            
+            <div className="flex-1 px-4">
+              <div className="relative h-2 bg-gray-700 rounded-full">
+                <div 
+                  className="absolute h-full bg-primary rounded-full"
+                  style={{ width: `${(activeEvent / (timelineEvents.length - 1)) * 100}%` }}
+                ></div>
+                <div className="flex justify-between absolute -top-2 w-full">
+                  {timelineEvents.map((_, index) => (
+                    <button 
+                      key={index}
+                      onClick={() => setActiveEvent(index)}
+                      className={`w-6 h-6 rounded-full border-2 ${
+                        activeEvent === index 
+                          ? 'border-primary bg-background' 
+                          : 'border-gray-600 bg-gray-800'
+                      }`}
+                      aria-label={`View event from ${timelineEvents[index].year}`}
+                    >
+                      {activeEvent === index && (
+                        <span className="block w-2 h-2 bg-primary rounded-full mx-auto"></span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            <button 
+              onClick={nextEvent} 
+              disabled={activeEvent === timelineEvents.length - 1}
+              className={`p-2 rounded-full ${activeEvent === timelineEvents.length - 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-primary/20'}`}
+            >
+              <ChevronRight className="h-6 w-6 text-primary" />
+            </button>
           </div>
         </div>
         
