@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* Updated colors with lime green #6E8500 */
+  /* Updated colors with dark teal #042C38 */
   --background: 190 30% 12%;
   --foreground: 190 30% 98%;
   --muted: 190 25% 20%;
@@ -14,26 +14,26 @@
   --card-foreground: 190 30% 98%;
   --border: 190 25% 25%;
   --input: 190 25% 25%;
-  --primary: 73 100% 26%;   /* The lime green #6E8500 color */
+  --primary: 192 88% 12%;   /* The dark teal #042C38 color */
   --primary-foreground: 190 100% 98%;
   --secondary: 210 70% 45%; /* Blue shade for complementary color */
   --secondary-foreground: 210 100% 98%;
-  --accent: 73 100% 26%;    /* Same lime green */
+  --accent: 192 88% 12%;    /* Same dark teal */
   --accent-foreground: 190 100% 98%;
   --destructive: 0 80% 60%;
   --destructive-foreground: 60 10% 98%;
-  --ring: 73 100% 26%;
+  --ring: 192 88% 12%;
   --radius: 0.5rem;
 
-  --chart-1: 73 100% 26%;
+  --chart-1: 192 88% 12%;
   --chart-2: 210 70% 45%;
-  --chart-3: 73 100% 26%;
+  --chart-3: 192 88% 12%;
   --chart-4: 190 70% 45%;
-  --chart-5: 73 100% 26%;
+  --chart-5: 192 88% 12%;
 
   --sidebar-background: 190 30% 12%;
   --sidebar-foreground: 190 30% 98%;
-  --sidebar-primary: 73 100% 26%;
+  --sidebar-primary: 192 88% 12%;
   --sidebar-primary-foreground: 0 0% 100%;
   --sidebar-accent: 190 25% 20%;
   --sidebar-accent-foreground: 190 30% 98%;
@@ -52,15 +52,15 @@
   --card-foreground: 190 30% 98%;
   --border: 190 15% 20%;
   --input: 190 15% 20%;
-  --primary: 73 100% 26%;   /* The lime green #6E8500 color */
+  --primary: 192 88% 12%;   /* The dark teal #042C38 color */
   --primary-foreground: 190 100% 98%;
   --secondary: 210 70% 45%;
   --secondary-foreground: 190 30% 98%;
-  --accent: 73 100% 26%;    /* Same lime green */
+  --accent: 192 88% 12%;    /* Same dark teal */
   --accent-foreground: 190 30% 98%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 190 30% 98%;
-  --ring: 73 100% 26%;
+  --ring: 192 88% 12%;
   --radius: 0.5rem;
 }
 
