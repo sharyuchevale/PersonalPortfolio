@@ -83,148 +83,98 @@ export default function AboutSection() {
           <h2 className="text-3xl md:text-4xl font-bold">My Journey</h2>
         </div>
         
-        {/* DESKTOP: Enhanced Horizontal Timeline with Visual Journey */}
-        <div className="hidden lg:block relative mx-auto mb-12 mt-10">
-          <div className="relative max-w-6xl mx-auto">
+        {/* DESKTOP: Simple and Clean Horizontal Timeline */}
+        <div className="hidden lg:block relative py-8 mt-8">
+          {/* Timeline Container */}
+          <div className="max-w-6xl mx-auto">
             {/* Main Timeline Track */}
-            <div className="relative h-[400px]">
-              {/* The Main Journey Line - Wavy Pattern */}
-              <div className="absolute top-[180px] left-0 right-0 h-[8px] bg-primary/40 rounded-full overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/60 via-primary to-teal-500/60"></div>
-                <div className="absolute inset-y-0 left-0 right-0 bg-white/10 h-[2px] top-[3px]"></div>
-              </div>
+            <div className="relative">
+              {/* The Timeline Line */}
+              <div className="absolute h-2 bg-primary w-full top-12 rounded-full"></div>
               
-              {/* Timeline Markers and Event Cards */}
-              <div className="relative flex justify-between">
-                {timelineEvents.map((event, index) => {
-                  const offsetY = index % 2 === 0 ? -80 : 80; // Alternate above/below
-                  const basePosition = 180; // Baseline position (center of timeline)
-                  
-                  return (
-                    <div key={index} className="relative mx-2" style={{ width: `${90 / timelineEvents.length}%` }}>
-                      {/* Timeline Circle Marker */}
-                      <div className="absolute left-1/2 transform -translate-x-1/2" style={{ top: `${basePosition - 16}px` }}>
-                        <div className="relative">
-                          {/* Pulse animation */}
-                          <div className="absolute w-10 h-10 rounded-full bg-primary/30 animate-ping"></div>
-                          
-                          {/* Main marker */}
-                          <div className="relative w-8 h-8 rounded-full border-4 border-primary bg-background flex items-center justify-center z-20">
-                            <span className="text-primary font-bold text-xs">{event.year}</span>
+              {/* Timeline Events */}
+              <div className="flex">
+                {timelineEvents.map((event, index) => (
+                  <div key={index} className="flex-1 px-2">
+                    {/* Year Marker */}
+                    <div className="relative flex flex-col items-center">
+                      <div className="w-12 h-12 rounded-full border-4 border-primary bg-background flex items-center justify-center z-10 relative">
+                        <span className="text-primary font-bold">{event.year}</span>
+                      </div>
+                      <div className="h-20 w-1 bg-primary mt-4"></div>
+                    </div>
+                    
+                    {/* Card */}
+                    <div className="bg-black/30 rounded-lg overflow-hidden mt-4 shadow-lg border border-primary/30">
+                      {/* Image and Title */}
+                      <div className="relative">
+                        <img 
+                          src={event.image} 
+                          alt={event.title}
+                          className="w-full h-48 object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                        
+                        <div className="absolute top-2 right-2 p-2 bg-primary rounded-full">
+                          {event.icon}
+                        </div>
+                        
+                        <div className="absolute bottom-0 left-0 p-4">
+                          <h3 className="text-white text-xl font-bold">{event.title}</h3>
+                          <div className="flex items-center mt-1 gap-2">
+                            <div className="text-xs bg-white/20 text-white px-2 py-1 rounded-full">
+                              {index === 0 && "VNIT Nagpur"}
+                              {index === 1 && "Amazon Rainforest"}
+                              {index === 2 && "National Geographic"}
+                              {index === 3 && "Global Initiative"}
+                              {index === 4 && "Award Ceremony"}
+                            </div>
                           </div>
-                          
-                          {/* Vertical connection line to content */}
-                          <div 
-                            className="absolute left-1/2 w-[3px] bg-primary/50 -translate-x-1/2" 
-                            style={{ 
-                              height: `${Math.abs(offsetY)}px`, 
-                              top: offsetY > 0 ? '32px' : `${-Math.abs(offsetY)}px` 
-                            }}
-                          ></div>
                         </div>
                       </div>
                       
-                      {/* Event Card - Alternating Position */}
-                      <div 
-                        className="absolute w-full left-1/2 transform -translate-x-1/2" 
-                        style={{ top: `${basePosition + offsetY - (offsetY > 0 ? 160 : 0)}px` }}
-                      >
-                        <div className="bg-background/40 backdrop-blur-sm border border-primary/30 rounded-xl overflow-hidden shadow-xl hover:shadow-primary/20 transition-all duration-300 hover:scale-105">
-                          {/* Card Header with Image */}
-                          <div className="relative h-32 overflow-hidden">
-                            <img 
-                              src={event.image} 
-                              alt={event.title} 
-                              className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                            
-                            {/* Icon Badge */}
-                            <div className="absolute top-3 left-3 w-10 h-10 rounded-full bg-primary/80 backdrop-blur-sm flex items-center justify-center shadow-lg">
-                              {event.icon}
-                            </div>
-                            
-                            <div className="absolute bottom-0 left-0 p-3">
-                              <h3 className="text-white font-bold">{event.title}</h3>
-                              
-                              {/* Location Badge */}
-                              <div className="mt-1 inline-flex bg-white/20 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur-sm">
-                                {index === 0 && "VNIT Nagpur, India"}
-                                {index === 1 && "Amazon, Brazil"}
-                                {index === 2 && "National Geographic"}
-                                {index === 3 && "Global Initiative"}
-                                {index === 4 && "International Award"}
-                              </div>
-                            </div>
-                          </div>
-                          
-                          {/* Card Content */}
-                          <div className="p-3">
-                            <p className="text-sm text-gray-300 mb-3">{event.description}</p>
-                            
-                            {/* Achievement Tags */}
-                            <div className="flex flex-wrap gap-1 mt-2">
-                              {index === 0 && (
-                                <>
-                                  <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">Engineering</span>
-                                  <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">GPA: 3.92</span>
-                                </>
-                              )}
-                              {index === 1 && (
-                                <>
-                                  <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">47 Species</span>
-                                  <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">6 Month Expedition</span>
-                                </>
-                              )}
-                              {index === 2 && (
-                                <>
-                                  <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">Publication</span>
-                                  <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">2.3M Reach</span>
-                                </>
-                              )}
-                              {index === 3 && (
-                                <>
-                                  <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">Conservation</span>
-                                  <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">5 NGO Partners</span>
-                                </>
-                              )}
-                              {index === 4 && (
-                                <>
-                                  <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">Award Winner</span>
-                                  <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">7 Exhibitions</span>
-                                </>
-                              )}
-                            </div>
-                          </div>
+                      {/* Content */}
+                      <div className="p-4">
+                        <p className="text-sm text-gray-300 mb-3">{event.description}</p>
+                        
+                        {/* Achievement Stats */}
+                        <div className="flex justify-between items-center pt-2 border-t border-gray-700">
+                          {index === 0 && (
+                            <>
+                              <span className="text-xs font-medium">GPA: 3.92/4.0</span>
+                              <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">Honors Graduate</span>
+                            </>
+                          )}
+                          {index === 1 && (
+                            <>
+                              <span className="text-xs font-medium">47 Species Documented</span>
+                              <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">6 Month Expedition</span>
+                            </>
+                          )}
+                          {index === 2 && (
+                            <>
+                              <span className="text-xs font-medium">12 Featured Photos</span>
+                              <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">2.3M Reach</span>
+                            </>
+                          )}
+                          {index === 3 && (
+                            <>
+                              <span className="text-xs font-medium">5 NGO Partners</span>
+                              <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">16 Workshops</span>
+                            </>
+                          )}
+                          {index === 4 && (
+                            <>
+                              <span className="text-xs font-medium">7 Global Exhibitions</span>
+                              <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">Environmental Award</span>
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
-              
-              {/* Extra Timeline Decorations - Dotted lines along the main path */}
-              <div className="absolute top-[184px] left-0 right-0">
-                {[...Array(40)].map((_, i) => (
-                  <div 
-                    key={`dot-${i}`} 
-                    className="absolute w-1 h-1 bg-white/60 rounded-full"
-                    style={{ left: `${(i * 2.5) + 1}%` }}
-                  ></div>
+                  </div>
                 ))}
               </div>
-            </div>
-            
-            {/* Year markers at the bottom */}
-            <div className="flex justify-between px-10 mt-4">
-              {timelineEvents.map((event, index) => (
-                <div key={`year-${index}`} className="text-center">
-                  <div className="h-8 w-[1px] bg-primary/40 mx-auto mb-2"></div>
-                  <div className="bg-primary/20 px-3 py-1 rounded-full">
-                    <span className="font-bold text-white">{event.year}</span>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
