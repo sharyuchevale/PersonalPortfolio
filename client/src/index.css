@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* Updated colors with light beige #F5F5DC */
+  /* Updated colors with pale yellow #FFF9C4 */
   --background: 190 30% 12%;
   --foreground: 190 30% 98%;
   --muted: 190 25% 20%;
@@ -14,26 +14,26 @@
   --card-foreground: 190 30% 98%;
   --border: 190 25% 25%;
   --input: 190 25% 25%;
-  --primary: 60 56% 91%;    /* The light beige #F5F5DC color */
-  --primary-foreground: 210 50% 15%; /* Dark text for contrast with light beige */
+  --primary: 54 100% 89%;   /* The pale yellow #FFF9C4 color */
+  --primary-foreground: 210 50% 15%;  /* Dark text for contrast with pale yellow */
   --secondary: 210 70% 45%; /* Blue shade for complementary color */
   --secondary-foreground: 210 100% 98%;
-  --accent: 60 56% 91%;     /* Same light beige */
-  --accent-foreground: 210 50% 15%; /* Dark text for contrast */
+  --accent: 54 100% 89%;    /* Same pale yellow */
+  --accent-foreground: 210 50% 15%;   /* Dark text for contrast */
   --destructive: 0 80% 60%;
   --destructive-foreground: 60 10% 98%;
-  --ring: 60 56% 91%;
+  --ring: 54 100% 89%;
   --radius: 0.5rem;
 
-  --chart-1: 60 56% 91%;
+  --chart-1: 54 100% 89%;
   --chart-2: 210 70% 45%;
-  --chart-3: 60 56% 91%;
+  --chart-3: 54 100% 89%;
   --chart-4: 190 70% 45%;
-  --chart-5: 60 56% 91%;
+  --chart-5: 54 100% 89%;
 
   --sidebar-background: 190 30% 12%;
   --sidebar-foreground: 190 30% 98%;
-  --sidebar-primary: 60 56% 91%;
+  --sidebar-primary: 54 100% 89%;
   --sidebar-primary-foreground: 210 50% 15%;
   --sidebar-accent: 190 25% 20%;
   --sidebar-accent-foreground: 190 30% 98%;
@@ -52,15 +52,15 @@
   --card-foreground: 190 30% 98%;
   --border: 190 15% 20%;
   --input: 190 15% 20%;
-  --primary: 60 56% 91%;    /* The light beige #F5F5DC color */
-  --primary-foreground: 210 50% 15%; /* Dark text for contrast */
+  --primary: 54 100% 89%;   /* The pale yellow #FFF9C4 color */
+  --primary-foreground: 210 50% 15%;  /* Dark text for contrast */
   --secondary: 210 70% 45%;
   --secondary-foreground: 190 30% 98%;
-  --accent: 60 56% 91%;     /* Same light beige */
-  --accent-foreground: 210 50% 15%; /* Dark text for contrast */
+  --accent: 54 100% 89%;    /* Same pale yellow */
+  --accent-foreground: 210 50% 15%;   /* Dark text for contrast */
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 190 30% 98%;
-  --ring: 60 56% 91%;
+  --ring: 54 100% 89%;
   --radius: 0.5rem;
 }
 
