@@ -67,50 +67,72 @@ export default function AboutSection() {
         </div>
         
         <div className="relative">
-          {/* Horizontal Timeline */}
+          {/* Horizontal Timeline inspired by the image */}
           <div className="flex flex-col">
-            {/* Timeline line with dots */}
-            <div className="relative mb-12 mt-6">
-              <div className="hidden md:block absolute left-0 right-0 h-1 bg-primary/30 top-1/2 transform -translate-y-1/2"></div>
+            {/* Circle timeline with connecting line */}
+            <div className="relative mb-20">
+              {/* Horizontal connecting line */}
+              <div className="hidden md:block absolute left-0 right-0 h-0.5 bg-gray-600 top-1/2 transform -translate-y-1/2"></div>
+              
+              {/* Timeline circles */}
               <div className="flex justify-between relative">
                 {timelineEvents.map((event, index) => (
-                  <div key={index} className="relative flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-full bg-primary shadow-lg shadow-primary/20 z-10 flex items-center justify-center">
-                      <span className="font-bold text-white text-sm">{event.year}</span>
+                  <div key={index} className="relative">
+                    {/* Small decorative dots - before */}
+                    {index > 0 && (
+                      <>
+                        <div className="hidden md:block absolute top-1/2 transform -translate-y-1/2 -left-5 w-1.5 h-1.5 rounded-full bg-white"></div>
+                        <div className="hidden md:block absolute top-1/2 transform -translate-y-1/2 -left-12 w-1.5 h-1.5 rounded-full bg-white"></div>
+                      </>
+                    )}
+                    
+                    {/* Main circle with image */}
+                    <div className="relative w-32 h-32 md:w-44 md:h-44 rounded-full border-4 border-primary z-10 overflow-hidden group">
+                      <img 
+                        src={event.image}
+                        alt={event.imageAlt}
+                        className="w-full h-full object-cover"
+                      />
+                      {/* Green overlay with slight transparency */}
+                      <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors duration-300"></div>
                     </div>
-                    <div className="hidden md:block mt-4 text-center">
-                      <h4 className="font-medium text-sm">{event.title}</h4>
-                    </div>
+                    
+                    {/* Small decorative dots - after */}
+                    {index < timelineEvents.length - 1 && (
+                      <>
+                        <div className="hidden md:block absolute top-1/2 transform -translate-y-1/2 -right-5 w-1.5 h-1.5 rounded-full bg-white"></div>
+                        <div className="hidden md:block absolute top-1/2 transform -translate-y-1/2 -right-12 w-1.5 h-1.5 rounded-full bg-white"></div>
+                      </>
+                    )}
+                    
+                    {/* Vertical connecting line to text */}
+                    <div className="hidden md:block absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-gray-600"></div>
                   </div>
                 ))}
               </div>
             </div>
             
-            {/* Timeline content */}
-            <div className="md:grid md:grid-cols-5 gap-4 space-y-8 md:space-y-0">
+            {/* Timeline content cards */}
+            <div className="md:grid md:grid-cols-5 gap-6 space-y-10 md:space-y-0">
               {timelineEvents.map((event, index) => (
                 <div key={index} className="flex flex-col">
-                  {/* Timeline Mobile Title */}
-                  <div className="md:hidden mb-3 flex items-center">
-                    <h3 className="text-xl font-bold">{event.title}</h3>
-                  </div>
-                  
-                  {/* Image */}
-                  <div className="mb-4">
-                    <img 
-                      src={event.image}
-                      alt={event.imageAlt}
-                      className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-white/10 shadow-primary/20 hover:scale-105 transition-transform duration-300"
-                    />
+                  {/* Year and Title */}
+                  <div className="text-center mb-4">
+                    <p className="text-primary font-medium">{event.year}</p>
+                    <h3 className="text-lg font-bold mb-1">{event.title}</h3>
                   </div>
                   
                   {/* Content card */}
-                  <div className="bg-background/30 backdrop-blur-sm p-4 rounded-xl border border-border/50 hover:shadow-lg transition-all hover:-translate-y-1 duration-300 flex-1">
+                  <div className="bg-black/60 backdrop-blur-sm p-5 rounded-lg border border-gray-800 hover:border-primary/40 transition-all hover:-translate-y-1 duration-300 flex-1">
                     <div className="flex items-center mb-3">
                       <span className="bg-primary/10 p-2 rounded-full mr-2">
                         {event.icon}
                       </span>
-                      <h3 className="hidden md:block text-lg font-bold">{event.title}</h3>
+                      <h4 className="font-medium">{index === 0 ? "Beginnings" : 
+                               index === 1 ? "Education" : 
+                               index === 2 ? "Recognition" : 
+                               index === 3 ? "Initiative" : 
+                               "Achievement"}</h4>
                     </div>
                     <p className="text-foreground/70 text-sm leading-relaxed">{event.description}</p>
                   </div>
