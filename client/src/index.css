@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* Updated colors with olive green #768744 */
+  /* Updated colors with dark navy #1C2A39 */
   --background: 190 30% 12%;
   --foreground: 190 30% 98%;
   --muted: 190 25% 20%;
@@ -14,26 +14,26 @@
   --card-foreground: 190 30% 98%;
   --border: 190 25% 25%;
   --input: 190 25% 25%;
-  --primary: 83 34% 40%;    /* The olive green #768744 color */
+  --primary: 216 35% 17%;   /* The dark navy #1C2A39 color */
   --primary-foreground: 190 100% 98%;
   --secondary: 210 70% 45%; /* Blue shade for complementary color */
   --secondary-foreground: 210 100% 98%;
-  --accent: 83 34% 40%;     /* Same olive green */
+  --accent: 216 35% 17%;    /* Same dark navy */
   --accent-foreground: 190 100% 98%;
   --destructive: 0 80% 60%;
   --destructive-foreground: 60 10% 98%;
-  --ring: 83 34% 40%;
+  --ring: 216 35% 17%;
   --radius: 0.5rem;
 
-  --chart-1: 83 34% 40%;
+  --chart-1: 216 35% 17%;
   --chart-2: 210 70% 45%;
-  --chart-3: 83 34% 40%;
+  --chart-3: 216 35% 17%;
   --chart-4: 190 70% 45%;
-  --chart-5: 83 34% 40%;
+  --chart-5: 216 35% 17%;
 
   --sidebar-background: 190 30% 12%;
   --sidebar-foreground: 190 30% 98%;
-  --sidebar-primary: 83 34% 40%;
+  --sidebar-primary: 216 35% 17%;
   --sidebar-primary-foreground: 0 0% 100%;
   --sidebar-accent: 190 25% 20%;
   --sidebar-accent-foreground: 190 30% 98%;
@@ -52,15 +52,15 @@
   --card-foreground: 190 30% 98%;
   --border: 190 15% 20%;
   --input: 190 15% 20%;
-  --primary: 83 34% 40%;    /* The olive green #768744 color */
+  --primary: 216 35% 17%;   /* The dark navy #1C2A39 color */
   --primary-foreground: 190 100% 98%;
   --secondary: 210 70% 45%;
   --secondary-foreground: 190 30% 98%;
-  --accent: 83 34% 40%;     /* Same olive green */
+  --accent: 216 35% 17%;    /* Same dark navy */
   --accent-foreground: 190 30% 98%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 190 30% 98%;
-  --ring: 83 34% 40%;
+  --ring: 216 35% 17%;
   --radius: 0.5rem;
 }
 
