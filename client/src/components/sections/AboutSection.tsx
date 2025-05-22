@@ -297,11 +297,7 @@ export default function AboutSection() {
           </div>
         </div>
         
-        <div className="mt-16 text-center">
-          <a href="#" className="inline-flex items-center text-primary font-medium hover:underline">
-            Download Complete Timeline <Download className="ml-2 h-4 w-4" />
-          </a>
-        </div>
+
       </div>
     </section>
   );
