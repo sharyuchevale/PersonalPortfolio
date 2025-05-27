@@ -38,9 +38,9 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="relative w-full h-full">
           <img 
-            src="/assets/images/sharyu-background-new.jpg" 
+            src="/src/assets/sharyu-background-new.jpg" 
             alt="Sharyu standing by a beautiful mountain lake" 
-            className="w-full h-full object-cover scale-110 md:object-center object-[70%_center]"
+            className="w-full h-full object-cover scale-110 md:scale-110 md:object-center object-[70%_center] transform-gpu"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/75 to-transparent"></div>
         </div>
