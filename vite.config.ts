@@ -4,14 +4,15 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+  base: "/PersonalPortfolio/",
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "client/src"),
+      "@": path.resolve(__dirname, "src"),
     },
   },
   root: path.resolve(__dirname, "client"),
   build: {
-    outDir: path.resolve(__dirname, "dist/public"),
+    outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
   },
 });
