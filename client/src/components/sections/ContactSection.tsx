@@ -1,24 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { apiRequest } from "@/lib/queryClient";
-import { useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
+import emailjs from '@emailjs/browser';
 import {
-  RectangleEllipsis,
-  MapPin,
   Linkedin,
   Github,
-  Twitter,
-  Dribbble
+  Mail,
+  Send,
+  MapPin
 } from "lucide-react";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -29,14 +27,32 @@ import { Button } from "@/components/ui/button";
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
-  subject: z.string().min(5, { message: "Subject must be at least 5 characters" }),
   message: z.string().min(10, { message: "Message must be at least 10 characters" }),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
+const socialLinks = [
+  { 
+    icon: <Linkedin className="h-5 w-5" />,
+    href: "https://www.linkedin.com/in/sharyu-chevale/",
+    label: "LinkedIn"
+  },
+  { 
+    icon: <Mail className="h-5 w-5" />,
+    href: "mailto:sharyuchevale@gmail.com",
+    label: "Email"
+  }
+];
+
 export default function ContactSection() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init("M9mMNPoTpZwzgfLC9");
+  }, []);
   
   // Initialize form
   const form = useForm<ContactFormValues>({
@@ -44,163 +60,149 @@ export default function ContactSection() {
     defaultValues: {
       name: "",
       email: "",
-      subject: "",
       message: "",
     },
   });
 
-  // Handle form submission
-  const mutation = useMutation({
-    mutationFn: (values: ContactFormValues) => 
-      apiRequest("POST", "/api/contact", values),
-    onSuccess: () => {
+  async function onSubmit(values: ContactFormValues) {
+    try {
+      setIsSubmitting(true);
+      console.log('Sending email with values:', values);
+      
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        'service_6n0fpnn',
+        'template_tpge3hu',
+        {
+          from_name: values.name,
+          from_email: values.email,
+          message: values.message,
+          to_name: 'Sharyu',
+          reply_to: values.email,
+        },
+        'M9mMNPoTpZwzgfLC9' // Adding public key here as well for extra security
+      );
+      
+      console.log('EmailJS Response:', result);
+
       toast({
         title: "Message sent!",
         description: "Thank you for your message. I'll get back to you soon.",
       });
       form.reset();
-    },
-    onError: (error) => {
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      let errorMessage = "Please try again later or contact me directly via email.";
+      if (error instanceof Error) {
+        errorMessage = `Error: ${error.message}. Please try again or email directly.`;
+      }
       toast({
         title: "Oops! Something went wrong",
-        description: error.message || "Please try again later",
+        description: errorMessage,
         variant: "destructive",
       });
-    },
-  });
-
-  // Handle form submission
-  function onSubmit(values: ContactFormValues) {
-    mutation.mutate(values);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
-    <section id="contact" className="py-20 section-fade" style={{ background: 'linear-gradient(180deg, #143442, #1c3c30)' }}>
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h3 className="text-primary text-lg font-medium mb-2">Get in touch</h3>
-          <h2 className="text-3xl md:text-4xl font-bold">Contact Me</h2>
-        </div>
-        
-        <div className="flex flex-col md:flex-row gap-10">
-          <div className="md:w-1/2">
-            <h3 className="text-xl font-bold mb-4">Let's Connect</h3>
-            <p className="text-foreground/70 mb-6 leading-relaxed">
-              I'm available for photography collaborations, environmental projects, and speaking engagements.
-              Feel free to reach out if you'd like to discuss a project or just share your love for nature!
-            </p>
-            
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center">
-                <div className="bg-primary/10 p-3 rounded-full mr-4">
-                  <RectangleEllipsis className="text-primary h-5 w-5" />
-                </div>
-                <div>
-                  <h4 className="font-medium">Email</h4>
-                  <a href="mailto:hello@natureportfolio.com" className="text-foreground/70 hover:text-primary transition-colors">
-                    hello@natureportfolio.com
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-center">
-                <div className="bg-secondary/10 p-3 rounded-full mr-4">
-                  <MapPin className="text-secondary h-5 w-5" />
-                </div>
-                <div>
-                  <h4 className="font-medium">Location</h4>
-                  <p className="text-foreground/70">Portland, Oregon</p>
-                </div>
-              </div>
-            </div>
-            
-            <h4 className="font-medium mb-3">Connect with me on:</h4>
-            <div className="flex space-x-4">
-              <a href="#" className="bg-primary/5 p-3 rounded-full text-foreground/70 hover:bg-primary hover:text-white transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="bg-primary/5 p-3 rounded-full text-foreground/70 hover:bg-secondary hover:text-white transition-colors">
-                <Github className="h-5 w-5" />
-              </a>
-              <a href="#" className="bg-primary/5 p-3 rounded-full text-foreground/70 hover:bg-accent hover:text-white transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="bg-primary/5 p-3 rounded-full text-foreground/70 hover:bg-green-500 hover:text-white transition-colors">
-                <Dribbble className="h-5 w-5" />
-              </a>
-            </div>
+    <section 
+      id="contact" 
+      className="py-20 relative overflow-hidden" 
+      style={{ background: 'linear-gradient(180deg, #143442, #1c3c30)' }}
+    >
+      {/* Subtle animated gradient */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          animate={{
+            opacity: [0.05, 0.1, 0.05],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(circle at 50% 50%, rgba(126,160,70,0.15) 0%, transparent 70%)',
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h3 className="text-lg font-medium mb-2" style={{ color: '#7EA046' }}>Get in touch</h3>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Let's Connect</h2>
+          <div className="flex items-center justify-center gap-2 text-gray-400">
+            <MapPin className="w-4 h-4" />
+            <span className="text-sm">Seattle, WA</span>
           </div>
-          
-          <div className="md:w-1/2">
+        </motion.div>
+
+        <div className="max-w-2xl mx-auto">
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="bg-background border border-border/50 p-6 rounded-xl shadow-sm">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem className="mb-4">
-                      <FormLabel className="text-sm font-medium">Name</FormLabel>
-                      <FormControl>
-                        <Input 
-                          {...field} 
-                          placeholder="Your name" 
-                          className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem className="mb-4">
-                      <FormLabel className="text-sm font-medium">Email</FormLabel>
-                      <FormControl>
-                        <Input 
-                          {...field} 
-                          type="email" 
-                          placeholder="Your email" 
-                          className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="subject"
-                  render={({ field }) => (
-                    <FormItem className="mb-4">
-                      <FormLabel className="text-sm font-medium">Subject</FormLabel>
-                      <FormControl>
-                        <Input 
-                          {...field} 
-                          placeholder="Subject" 
-                          className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input 
+                            {...field} 
+                            placeholder="Your name" 
+                            className="bg-black/20 border-[#7EA046]/20 focus:border-[#7EA046] text-white placeholder:text-gray-400"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input 
+                            {...field} 
+                            type="email" 
+                            placeholder="Your email" 
+                            className="bg-black/20 border-[#7EA046]/20 focus:border-[#7EA046] text-white placeholder:text-gray-400"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 
                 <FormField
                   control={form.control}
                   name="message"
                   render={({ field }) => (
-                    <FormItem className="mb-4">
-                      <FormLabel className="text-sm font-medium">Message</FormLabel>
+                    <FormItem>
                       <FormControl>
                         <Textarea 
                           {...field} 
                           rows={4} 
                           placeholder="Your message" 
-                          className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                          className="bg-black/20 border-[#7EA046]/20 focus:border-[#7EA046] text-white placeholder:text-gray-400 resize-none"
                         />
                       </FormControl>
                       <FormMessage />
@@ -208,16 +210,36 @@ export default function ContactSection() {
                   )}
                 />
                 
-                <Button 
-                  type="submit" 
-                  className="w-full gradient-button text-white py-3 px-4 rounded-lg shadow-md"
-                  disabled={mutation.isPending}
-                >
-                  {mutation.isPending ? "Sending..." : "Send Message"}
-                </Button>
+                <div className="flex flex-col md:flex-row items-center gap-4 pt-2">
+                  <Button 
+                    type="submit" 
+                    className="w-full md:w-auto bg-[#7EA046] hover:bg-[#7EA046]/80 text-white px-8 py-2 rounded-lg
+                             transition-all duration-300 flex items-center justify-center gap-2 group order-2 md:order-1"
+                    disabled={isSubmitting}
+                  >
+                    <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
+                    <Send className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                  </Button>
+
+                  <div className="flex gap-4 order-1 md:order-2 md:ml-auto">
+                    {socialLinks.map((link) => (
+                      <motion.a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#7EA046]/70 hover:text-[#7EA046] transition-colors"
+                        whileHover={{ y: -2 }}
+                        title={link.label}
+                      >
+                        {link.icon}
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
               </form>
             </Form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

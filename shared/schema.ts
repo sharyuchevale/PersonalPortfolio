@@ -21,7 +21,6 @@ export const contacts = pgTable("contacts", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull(),
-  subject: text("subject").notNull(),
   message: text("message").notNull(),
   createdAt: text("created_at").notNull().$defaultFn(() => new Date().toISOString()),
 });
@@ -29,7 +28,6 @@ export const contacts = pgTable("contacts", {
 export const contactSchema = createInsertSchema(contacts).pick({
   name: true,
   email: true,
-  subject: true,
   message: true,
 });
 

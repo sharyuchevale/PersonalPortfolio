@@ -1,5 +1,6 @@
 import { FC } from 'react';
-import { Heart } from 'lucide-react';
+import { Heart, Sparkles, ArrowUp } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Footer: FC = () => {
   // Get current year for copyright
@@ -13,15 +14,6 @@ const Footer: FC = () => {
     { id: "contact", label: "Contact" },
   ];
   
-  // Social media links
-  const socialLinks = [
-    { label: "LinkedIn", href: "#" },
-    { label: "GitHub", href: "#" },
-    { label: "Twitter", href: "#" },
-    { label: "Dribbble", href: "#" },
-  ];
-  
-  // Scroll to section handler
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -29,57 +21,129 @@ const Footer: FC = () => {
     }
   };
   
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
-    <footer className="bg-gradient-to-b from-primary/10 to-primary/20 dark:from-primary/5 dark:to-primary/10 py-10">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-6 md:mb-0">
-            <h2 className="text-2xl font-bold text-foreground mb-2">Sharyu <span className="text-secondary">Chevale</span></h2>
-            <p className="text-muted-foreground">Nature Photography & Environmental Design</p>
-          </div>
-          
-          <div className="flex flex-col md:flex-row md:space-x-12 space-y-6 md:space-y-0 mb-6 md:mb-0">
-            <div>
-              <h4 className="font-medium mb-3 text-primary">Quick Links</h4>
-              <ul className="space-y-2">
-                {quickLinks.map(link => (
-                  <li key={link.id}>
-                    <a 
-                      onClick={() => scrollToSection(link.id)}
-                      className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-medium mb-3 text-secondary">Social Media</h4>
-              <ul className="space-y-2">
-                {socialLinks.map(link => (
-                  <li key={link.label}>
-                    <a href={link.href} className="text-muted-foreground hover:text-secondary transition-colors">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+    <footer className="relative py-8 overflow-hidden" style={{ background: 'linear-gradient(0deg, #143442 0%, #1c3c30 100%)' }}>
+      {/* Subtle separator design */}
+      <div className="absolute top-0 left-0 right-0 flex justify-center overflow-hidden">
+        <div className="w-full max-w-[800px] h-[1px] bg-gradient-to-r from-transparent via-[#7EA046]/30 to-transparent">
+          <motion.div
+            className="h-full w-full bg-gradient-to-r from-transparent via-[#7EA046]/20 to-transparent"
+            animate={{
+              opacity: [0.3, 1, 0.3]
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
         </div>
-        
-        <hr className="border-border my-8" />
-        
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-muted-foreground text-sm mb-4 md:mb-0">
-            &copy; {currentYear} Sharyu Chevale. All rights reserved.
-          </p>
-          
-          <p className="text-muted-foreground text-sm flex items-center">
-            Designed and built with <Heart className="h-4 w-4 text-accent mx-1" />
-          </p>
+      </div>
+
+      {/* Animated background elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          animate={{
+            opacity: [0.1, 0.15, 0.1],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(circle at 20% 50%, rgba(126,160,70,0.15) 0%, transparent 50%)',
+          }}
+        />
+        <motion.div
+          animate={{
+            opacity: [0.15, 0.1, 0.15],
+            scale: [1.1, 1, 1.1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 4
+          }}
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(circle at 80% 50%, rgba(126,160,70,0.15) 0%, transparent 50%)',
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col items-center">
+          {/* Back to top button */}
+          <motion.button
+            onClick={scrollToTop}
+            whileHover={{ y: -4 }}
+            whileTap={{ scale: 0.95 }}
+            className="mb-8 p-2 rounded-full bg-[#7EA046]/10 hover:bg-[#7EA046]/20 
+                     text-[#7EA046] transition-colors group"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="w-5 h-5 transition-transform group-hover:-translate-y-1" />
+          </motion.button>
+
+          {/* Footer content */}
+          <div className="flex flex-col items-center space-y-4">
+            <motion.div 
+              className="flex items-center gap-2 text-white/90"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <Sparkles className="w-4 h-4 text-[#7EA046]" />
+              <span className="font-medium">Sharyu Chevale</span>
+              <Sparkles className="w-4 h-4 text-[#7EA046]" />
+            </motion.div>
+
+            <div className="text-center text-gray-400 text-sm space-y-2">
+              <motion.p 
+                className="flex items-center justify-center gap-2"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+              >
+                Built with 
+                <motion.span
+                  animate={{
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <Heart className="w-4 h-4 text-[#7EA046] inline" />
+                </motion.span>
+                by Sharyu Chevale
+              </motion.p>
+              
+              <motion.p 
+                className="flex items-center justify-center gap-2"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                © {currentYear} All Rights Reserved
+              </motion.p>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

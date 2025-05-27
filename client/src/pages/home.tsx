@@ -7,6 +7,7 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import SkillsSection from "@/components/sections/SkillsSection";
 import InterestsSection from "@/components/sections/InterestsSection";
 import ContactSection from "@/components/sections/ContactSection";
+import ExtracurricularsSection from "@/components/sections/ExtracurricularsSection";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 
@@ -28,6 +29,7 @@ export default function Home() {
         <AboutSection />
         <ProjectsSection />
         <SkillsSection />
+        <ExtracurricularsSection />
         <InterestsSection />
         <ContactSection />
       </main>

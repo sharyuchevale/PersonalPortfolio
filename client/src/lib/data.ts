@@ -1,28 +1,73 @@
 export const projects = [
   {
-    title: "E-commerce Platform",
+    title: "Breeze: Mental Wellness Platform",
+    type: "Prototype",
+    description: "Intuitive, customizable platform with a simple UI/UX, making mental wellness accessible and tailored to individual needs.",
+    technologies: ["Figma", "Google Forms", "Microsoft 365", "Perplexity"],
+    image: "/src/assets/breeze-prototype.png",
+    demoLink: "https://docs.google.com/presentation/d/1OBAr351k1X8PO-ktrBgobEpcFBp6-okJ/edit?usp=sharing&ouid=102226150680802502289&rtpof=true&sd=true",
+    githubLink: "#"
+  },
+  {
+    title: "DeliverEase: Product Canvas",
+    type: "Product Breakdown",
+    description: "Canvas with detailed analysis of a food delivery services comparison app; created a comprehensive product design including product roadmaps, features, product performance metrics, user personas, mock-ups, and user stories.",
+    technologies: ["Figma", "Canvas", "Lucidchart"],
+    image: "/src/assets/product-canvas.png",
+    demoLink: "https://drive.google.com/file/d/1Hf1mHzqS0R8hs5fXVHah-ijDcZHtqZLv/view?usp=sharing",
+    githubLink: "#"
+  },
+  {
+    title: "Portfolio Website",
     type: "Web App",
-    description: "A full-featured e-commerce solution with product management, cart functionality, and secure checkout process.",
-    technologies: ["React", "Node.js", "MongoDB"],
-    image: "https://images.unsplash.com/photo-1551522435-a13afa10f103?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+    description: "A responsive and interactive website, to showcase my work, journey and interests. Features modern UI/UX design, smooth animations, and dynamic content management.",
+    technologies: ["React", "HTML/CSS", "Replit", "Cursor", "Vercel", "Git", "Github"],
+    image: "/src/assets/portfolio-preview.png",
     demoLink: "#",
+    githubLink: "#"
+  },
+  {
+    title: "SimpliBills: Budget Tracker",
+    type: "Product Breakdown",
+    description: "Intuitive, customizable platform with a simple UI/UX, making mental wellness accessible and tailored to individual needs.",
+    technologies: ["Figma", "Google Forms", "Microsoft 365", "Perplexity"],
+    image: "/src/assets/Simplibills.png",
+    demoLink: "https://docs.google.com/presentation/d/1OBAr351k1X8PO-ktrBgobEpcFBp6-okJ/edit?usp=sharing&ouid=102226150680802502289&rtpof=true&sd=true",
     githubLink: "#"
   },
   {
     title: "Fitness Tracker",
     type: "Mobile App",
-    description: "A mobile application for tracking workouts, setting goals, and monitoring health metrics over time.",
-    technologies: ["React Native", "Firebase", "Redux"],
-    image: "https://images.unsplash.com/photo-1576153192396-180ecef2a715?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+    description: "A comprehensive mobile application for tracking workouts, setting fitness goals, and monitoring health metrics. Features real-time progress tracking and social sharing.",
+    technologies: ["React Native", "Firebase", "Redux", "HealthKit"],
+    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     demoLink: "#",
     githubLink: "#"
   },
   {
     title: "Analytics Dashboard",
     type: "Web App",
-    description: "A comprehensive dashboard for visualizing business metrics and analyzing performance data.",
-    technologies: ["Vue.js", "D3.js", "Express"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+    description: "An interactive dashboard for visualizing complex business metrics and analyzing performance data. Includes customizable widgets and real-time data updates.",
+    technologies: ["Vue.js", "D3.js", "Express", "PostgreSQL"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+    demoLink: "#",
+    githubLink: "#"
+  },
+  {
+    title: "Smart Home Hub",
+    type: "IoT Solution",
+    description: "A centralized IoT platform for managing smart home devices. Features automation rules, energy monitoring, and voice control integration.",
+    technologies: ["Python", "MQTT", "React", "Node.js"],
+    image: "https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+    demoLink: "#",
+    githubLink: "#"
+  },
+  {
+    title: "AI Image Generator",
+    type: "Web App",
+    description: "A creative tool that uses AI to generate unique images from text descriptions. Implements state-of-the-art machine learning models for image synthesis.",
+    technologies: ["Python", "TensorFlow", "React", "FastAPI"],
+    image: "https://images.unsplash.com/photo-1675412637504-97b2f5c2d2df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     demoLink: "#",
     githubLink: "#"
   }
@@ -30,30 +75,74 @@ export const projects = [
 
 export const skills = [
   {
-    name: "Frontend Development",
+    name: "Product Management",
+    percentage: 80,
+    color: "bg-[#7EA046]"
+  },
+  {
+    name: "UI Design & Development",
     percentage: 90,
-    color: "bg-primary"
+    color: "bg-[#7EA046]"
   },
   {
     name: "Backend Development",
-    percentage: 85,
-    color: "bg-secondary"
-  },
-  {
-    name: "UI/UX Design",
-    percentage: 75,
-    color: "bg-accent"
-  },
-  {
-    name: "Mobile Development",
     percentage: 70,
-    color: "bg-blue-400"
+    color: "bg-[#7EA046]"
   },
   {
-    name: "DevOps & Deployment",
-    percentage: 65,
-    color: "bg-green-400"
+    name: "Data Management",
+    percentage: 70,
+    color: "bg-[#7EA046]"
   }
+];
+
+export const software = [
+  {
+    category: "Planning & Documentation",
+    tools: [
+      { name: "Jira", proficiency: 90 },
+      { name: "Confluence", proficiency: 85 },
+      { name: "Trello", proficiency: 90 },
+      { name: "Notion", proficiency: 85 },
+      { name: "Miro", proficiency: 80 },
+      { name: "Slack", proficiency: 90 }
+    ]
+  },
+  {
+    category: "Design",
+    tools: [
+      { name: "Figma", proficiency: 85 },
+      { name: "Framer", proficiency: 80 },
+      { name: "Lucidchart", proficiency: 85 }
+    ]
+  },
+  {
+    category: "Development",
+    tools: [
+      { name: "Visual Studio", proficiency: 85 },
+      { name: "Eclipse", proficiency: 80 },
+      { name: "IntelliJ", proficiency: 90 },
+      { name: "GitHub & Git", proficiency: 90 }
+    ]
+  },
+  {
+    category: "Data Management",
+    tools: [
+      { name: "Tableau", proficiency: 80 },
+      { name: "Jupyter Notebook", proficiency: 85 }
+    ]
+  }
+  // Commented out AI category
+  // {
+  //   category: "AI",
+  //   tools: [
+  //     { name: "Replit", proficiency: 85 },
+  //     { name: "Cursor", proficiency: 90 },
+  //     { name: "Vercel", proficiency: 85 },
+  //     { name: "Perplexity", proficiency: 80 },
+  //     { name: "Claude", proficiency: 85 }
+  //   ]
+  // }
 ];
 
 export const technologies = [
@@ -93,4 +182,19 @@ export const technologies = [
     name: "Docker",
     icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="w-8 h-8 mx-auto text-blue-500"><path fill="currentColor" d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4 .4 67.6 .1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>'
   }
+];
+
+interface NavLink {
+  id: string;
+  label: string;
+}
+
+export const navLinks: NavLink[] = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "Journey" },
+  { id: "projects", label: "Projects" },
+  { id: "skills", label: "Skills" },
+  { id: "extracurriculars", label: "Extracurriculars" },
+  { id: "interests", label: "Interests" },
+  { id: "contact", label: "Contact" },
 ];

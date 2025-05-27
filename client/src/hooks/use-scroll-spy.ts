@@ -5,10 +5,22 @@ export function useScrollSpy() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100; // Offset for header height
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
       
       // Get all sections
       const sections = document.querySelectorAll("section[id]");
+      
+      // If we're at the bottom of the page, activate the last section
+      if (scrollPosition + windowHeight >= documentHeight - 50) {
+        const lastSection = sections[sections.length - 1];
+        const lastSectionId = lastSection.getAttribute("id") || "";
+        if (activeSection !== lastSectionId) {
+          setActiveSection(lastSectionId);
+        }
+        return;
+      }
       
       // Find the current active section
       let currentSection = "";
@@ -17,7 +29,7 @@ export function useScrollSpy() {
         const sectionTop = (section as HTMLElement).offsetTop;
         const sectionHeight = section.clientHeight;
         
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        if (scrollPosition >= sectionTop - 100 && scrollPosition < sectionTop + sectionHeight - 100) {
           currentSection = section.getAttribute("id") || "";
         }
       });
