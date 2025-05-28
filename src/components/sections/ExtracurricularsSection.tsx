@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import aarohiImage from "@/assets/aarohi.jpg";
-import culturalImage from "@/assets/cultural.jpg";
-import lrImage from "@/assets/lr.jpg";
-import receptionImage from "@/assets/reception.jpg";
-import buddyImage from "@/assets/buddy.jpeg";
+import aarohiImage from "@/assets/optimized/optimized-aarohi.jpg";
+import culturalImage from "@/assets/optimized/optimized-cultural.jpg";
+import lrImage from "@/assets/optimized/optimized-lr.jpg";
+import receptionImage from "@/assets/optimized/optimized-reception.jpg";
+import buddyImage from "@/assets/optimized/optimized-buddy.jpeg";
 
 const activities = [
   {

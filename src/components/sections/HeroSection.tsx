@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import backgroundImage from "@/assets/sharyu-background-new.jpg";
+import backgroundImage from '../../assets/optimized/optimized-sharyu-background-new.webp';
 
 export default function HeroSection() {
   // Animation variants

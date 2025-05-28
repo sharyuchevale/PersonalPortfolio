@@ -209,20 +209,6 @@ export default function ProjectsSection() {
                 <div className="swiper-button-next !-right-14 !mt-0 !top-1/2 !-translate-y-1/2"></div>
               </Swiper>
             </div>
-            
-            {/* View More Button */}
-            <div className="flex justify-center mt-2">
-              <a 
-                href="https://github.com/sharyuchevale" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[#7EA046]/80 hover:bg-[#7EA046] text-white px-6 py-2.5 rounded-lg 
-                         transition-all duration-500 hover:shadow-lg hover:-translate-y-1 font-medium"
-              >
-                <span>View More Projects</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
           </div>
 
           {/* Mobile Grid */}
@@ -324,20 +310,6 @@ export default function ProjectsSection() {
                 </SwiperSlide>
               ))}
             </Swiper>
-          </div>
-
-          {/* View More Button - Mobile */}
-          <div className="md:hidden flex justify-center mt-2">
-            <a 
-              href="https://github.com/sharyuchevale" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-[#7EA046]/80 hover:bg-[#7EA046] text-white px-6 py-2.5 rounded-lg 
-                       transition-all duration-500 hover:shadow-lg hover:-translate-y-1 font-medium"
-            >
-              <span>View More Projects</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
           </div>
         </div>
       </div>

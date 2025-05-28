@@ -6,11 +6,11 @@ import {
   School,
   Award
 } from "lucide-react";
-import vnitCampus from "@/assets/vnit_campus.jpg";
-import citiImage from "@/assets/citi.jpg";
-import tamuImage from "@/assets/tamu.jpg";
-import internshipImage from "@/assets/internship.jpg";
-import fulltimeImage from "@/assets/fulltime.jpg";
+import vnitCampus from "@/assets/optimized/optimized-vnit_campus.jpg";
+import citiImage from "@/assets/optimized/optimized-citi.jpg";
+import tamuImage from "@/assets/optimized/optimized-tamu.jpg";
+import internshipImage from "@/assets/optimized/optimized-internship.jpg";
+import fulltimeImage from "@/assets/optimized/optimized-fulltime.jpg";
 
 export default function AboutSection() {
   // Timeline data

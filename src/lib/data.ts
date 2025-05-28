@@ -1,7 +1,9 @@
-import breezePrototype from "@/assets/breeze-prototype.png";
-import productCanvas from "@/assets/product-canvas.png";
-import portfolioPreview from "@/assets/portfolio-preview.png";
-import simplibills from "@/assets/Simplibills.png";
+import breezePrototype from "@/assets/optimized/optimized-breeze-prototype.png";
+import productCanvas from "@/assets/optimized/optimized-product-canvas.png";
+import portfolioPreview from "@/assets/optimized/optimized-portfolio-preview.png";
+import simplibills from "@/assets/optimized/optimized-Simplibills.png";
+import oneswipe from "@/assets/optimized/optimized-oneswipe.png";
+import securebank from "@/assets/optimized/optimized-securebank.png";
 
 export const projects = [
   {
@@ -10,7 +12,7 @@ export const projects = [
     description: "Intuitive, customizable platform with a simple UI/UX, making mental wellness accessible and tailored to individual needs.",
     technologies: ["Figma", "Google Forms", "Microsoft 365", "Perplexity"],
     image: breezePrototype,
-    demoLink: "https://docs.google.com/presentation/d/1OBAr351k1X8PO-ktrBgobEpcFBp6-okJ/edit?usp=sharing&ouid=102226150680802502289&rtpof=true&sd=true",
+    demoLink: "https://drive.google.com/file/d/114mxZ1u2y-7T651AEyErZt4cwUSY618y/view?usp=sharing",
     githubLink: "#"
   },
   {
@@ -28,7 +30,7 @@ export const projects = [
     description: "A responsive and interactive website, to showcase my work, journey and interests. Features modern UI/UX design, smooth animations, and dynamic content management.",
     technologies: ["React", "HTML/CSS", "Replit", "Cursor", "Vercel", "Git", "Github"],
     image: portfolioPreview,
-    demoLink: "#",
+    demoLink: "https://github.com/sharyuchevale/PersonalPortfolio",
     githubLink: "#"
   },
   {
@@ -37,43 +39,25 @@ export const projects = [
     description: "Intuitive, customizable platform with a simple UI/UX, making mental wellness accessible and tailored to individual needs.",
     technologies: ["Figma", "Google Forms", "Microsoft 365", "Perplexity"],
     image: simplibills,
-    demoLink: "https://docs.google.com/presentation/d/1OBAr351k1X8PO-ktrBgobEpcFBp6-okJ/edit?usp=sharing&ouid=102226150680802502289&rtpof=true&sd=true",
+    demoLink: "https://drive.google.com/drive/folders/151XZSAs7RJ08nXQK30Lf1ag05GbnbRja?usp=sharing",
     githubLink: "#"
   },
   {
-    title: "Fitness Tracker",
-    type: "Mobile App",
-    description: "A comprehensive mobile application for tracking workouts, setting fitness goals, and monitoring health metrics. Features real-time progress tracking and social sharing.",
-    technologies: ["React Native", "Firebase", "Redux", "HealthKit"],
-    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-    demoLink: "#",
+    title: "One Swipe: All-in-One Card",
+    type: "Business",
+    description: "Managing multiple cards for different purposes in one card: Corporate credit card, access card, employee ID card",
+    technologies: ["Figma", "Canva", "Leanstack"],
+    image: oneswipe,
+    demoLink: "https://drive.google.com/drive/folders/1cVH8quLwyRzdJ_996CASOgRHCKo0A-Xm?usp=sharing",
     githubLink: "#"
   },
   {
-    title: "Analytics Dashboard",
-    type: "Web App",
-    description: "An interactive dashboard for visualizing complex business metrics and analyzing performance data. Includes customizable widgets and real-time data updates.",
-    technologies: ["Vue.js", "D3.js", "Express", "PostgreSQL"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-    demoLink: "#",
-    githubLink: "#"
-  },
-  {
-    title: "Smart Home Hub",
-    type: "IoT Solution",
-    description: "A centralized IoT platform for managing smart home devices. Features automation rules, energy monitoring, and voice control integration.",
-    technologies: ["Python", "MQTT", "React", "Node.js"],
-    image: "https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-    demoLink: "#",
-    githubLink: "#"
-  },
-  {
-    title: "AI Image Generator",
-    type: "Web App",
-    description: "A creative tool that uses AI to generate unique images from text descriptions. Implements state-of-the-art machine learning models for image synthesis.",
-    technologies: ["Python", "TensorFlow", "React", "FastAPI"],
-    image: "https://images.unsplash.com/photo-1675412637504-97b2f5c2d2df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-    demoLink: "#",
+    title: "Secure Bank",
+    type: "Case Study",
+    description: "Study to identify and provide solution for Secure bank's declining performance",
+    technologies: ["Figma", "Canva", "Perplexity"],
+    image: securebank,
+    demoLink: "https://drive.google.com/file/d/1gEwPHyqMbwobDBqQ5UsvOVpDhMyJsje3/view?usp=sharing",
     githubLink: "#"
   }
 ];

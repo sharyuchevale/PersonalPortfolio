@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Dumbbell, Palette, PenTool, Compass } from "lucide-react";
-import exerciseImage from "@/assets/exercise.jpeg";
-import decorImage from "@/assets/decor.jpg";
-import trekkingImage from "@/assets/trekking.jpg";
-import writingImage from "@/assets/writing.jpg";
+import exerciseImage from "@/assets/optimized/optimized-exercise.jpeg";
+import decorImage from "@/assets/optimized/optimized-decor.jpg";
+import trekkingImage from "@/assets/optimized/optimized-trekking.jpg";
+import writingImage from "@/assets/optimized/optimized-writing.jpg";
 
 // Particle animation variants
 const particleVariants = {
