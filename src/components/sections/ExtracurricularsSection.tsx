@@ -1,9 +1,14 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import aarohiImage from "@/assets/aarohi.jpg";
+import culturalImage from "@/assets/cultural.jpg";
+import lrImage from "@/assets/lr.jpg";
+import receptionImage from "@/assets/reception.jpg";
+import buddyImage from "@/assets/buddy.jpeg";
 
 const activities = [
   {
-    image: "/src/assets/aarohi.jpg",
+    image: aarohiImage,
     role: "Event Coordinator",
     year: "2017-18",
     organization: "Aarohi",
@@ -12,7 +17,7 @@ const activities = [
     size: "medium"
   },
   {
-    image: "/src/assets/cultural.jpg",
+    image: culturalImage,
     role: "Cultural Secretary",
     year: "2018-19",
     organization: "EEE Department",
@@ -21,7 +26,7 @@ const activities = [
     size: "large"
   },
   {
-    image: "/src/assets/lr.jpg",
+    image: lrImage,
     role: "Department Representative",
     year: "2019-20",
     organization: "EEE Department",
@@ -30,7 +35,7 @@ const activities = [
     size: "small"
   },
   {
-    image: "/src/assets/reception.jpg",
+    image: receptionImage,
     role: "Reception Head",
     year: "2019-20",
     organization: "AXIS",
@@ -39,7 +44,7 @@ const activities = [
     size: "medium"
   },
   {
-    image: "/src/assets/buddy.jpeg",
+    image: buddyImage,
     role: "Buddy",
     year: "2024-25",
     organization: "Buddy Connect",

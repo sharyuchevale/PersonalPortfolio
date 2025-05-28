@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
 import { Dumbbell, Palette, PenTool, Compass } from "lucide-react";
+import exerciseImage from "@/assets/exercise.jpeg";
+import decorImage from "@/assets/decor.jpg";
+import trekkingImage from "@/assets/trekking.jpg";
+import writingImage from "@/assets/writing.jpg";
 
 // Particle animation variants
 const particleVariants = {
@@ -31,7 +35,7 @@ const interests: Interest[] = [
     title: "Exercise",
     description: "Embracing physical and mental wellness through movement",
     icon: <Dumbbell className="w-6 h-6" />,
-    image: "/src/assets/exercise.jpeg",
+    image: exerciseImage,
     overlayText: "MOVE",
     details: [
       "Running",
@@ -43,7 +47,7 @@ const interests: Interest[] = [
     title: "Art & Design",
     description: "Exploring creativity through various mediums and styles",
     icon: <Palette className="w-6 h-6" />,
-    image: "/src/assets/decor.jpg",
+    image: decorImage,
     overlayText: "CREATE",
     details: [
       "UI/UX Design",
@@ -55,7 +59,7 @@ const interests: Interest[] = [
     title: "Trekking",
     description: "Exploring nature and challenging physical limits",
     icon: <Compass className="w-6 h-6" />,
-    image: "/src/assets/trekking.jpg",
+    image: trekkingImage,
     overlayText: "EXPLORE",
     details: [
       "Mountain trails",
@@ -67,7 +71,7 @@ const interests: Interest[] = [
     title: "Writing",
     description: "Crafting narratives and sharing thoughts through words",
     icon: <PenTool className="w-6 h-6" />,
-    image: "/src/assets/writing.jpg",
+    image: writingImage,
     overlayText: "CREATE",
     details: [
       "Technical Writing",

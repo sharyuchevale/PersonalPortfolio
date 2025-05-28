@@ -1,10 +1,15 @@
+import breezePrototype from "@/assets/breeze-prototype.png";
+import productCanvas from "@/assets/product-canvas.png";
+import portfolioPreview from "@/assets/portfolio-preview.png";
+import simplibills from "@/assets/Simplibills.png";
+
 export const projects = [
   {
     title: "Breeze: Mental Wellness Platform",
     type: "Prototype",
     description: "Intuitive, customizable platform with a simple UI/UX, making mental wellness accessible and tailored to individual needs.",
     technologies: ["Figma", "Google Forms", "Microsoft 365", "Perplexity"],
-    image: "/src/assets/breeze-prototype.png",
+    image: breezePrototype,
     demoLink: "https://docs.google.com/presentation/d/1OBAr351k1X8PO-ktrBgobEpcFBp6-okJ/edit?usp=sharing&ouid=102226150680802502289&rtpof=true&sd=true",
     githubLink: "#"
   },
@@ -13,7 +18,7 @@ export const projects = [
     type: "Product Breakdown",
     description: "Canvas with detailed analysis of a food delivery services comparison app; created a comprehensive product design including product roadmaps, features, product performance metrics, user personas, mock-ups, and user stories.",
     technologies: ["Figma", "Canvas", "Lucidchart"],
-    image: "/src/assets/product-canvas.png",
+    image: productCanvas,
     demoLink: "https://drive.google.com/file/d/1Hf1mHzqS0R8hs5fXVHah-ijDcZHtqZLv/view?usp=sharing",
     githubLink: "#"
   },
@@ -22,7 +27,7 @@ export const projects = [
     type: "Web App",
     description: "A responsive and interactive website, to showcase my work, journey and interests. Features modern UI/UX design, smooth animations, and dynamic content management.",
     technologies: ["React", "HTML/CSS", "Replit", "Cursor", "Vercel", "Git", "Github"],
-    image: "/src/assets/portfolio-preview.png",
+    image: portfolioPreview,
     demoLink: "#",
     githubLink: "#"
   },
@@ -31,7 +36,7 @@ export const projects = [
     type: "Product Breakdown",
     description: "Intuitive, customizable platform with a simple UI/UX, making mental wellness accessible and tailored to individual needs.",
     technologies: ["Figma", "Google Forms", "Microsoft 365", "Perplexity"],
-    image: "/src/assets/Simplibills.png",
+    image: simplibills,
     demoLink: "https://docs.google.com/presentation/d/1OBAr351k1X8PO-ktrBgobEpcFBp6-okJ/edit?usp=sharing&ouid=102226150680802502289&rtpof=true&sd=true",
     githubLink: "#"
   },

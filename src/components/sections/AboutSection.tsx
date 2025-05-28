@@ -6,6 +6,11 @@ import {
   School,
   Award
 } from "lucide-react";
+import vnitCampus from "@/assets/vnit_campus.jpg";
+import citiImage from "@/assets/citi.jpg";
+import tamuImage from "@/assets/tamu.jpg";
+import internshipImage from "@/assets/internship.jpg";
+import fulltimeImage from "@/assets/fulltime.jpg";
 
 export default function AboutSection() {
   // Timeline data
@@ -27,7 +32,7 @@ export default function AboutSection() {
         }
       ],
       icon: <GraduationCap className="w-6 h-6" />,
-      image: "./src/assets/vnit_campus.jpg"
+      image: vnitCampus
     },
     {
       year: "2021-2023",
@@ -49,7 +54,7 @@ export default function AboutSection() {
         }
       ],
       icon: <Building2 className="w-6 h-6" />,
-      image: "./src/assets/citi.jpg",
+      image: citiImage,
       imagePosition: "object-top"
     },
     {
@@ -73,7 +78,7 @@ export default function AboutSection() {
         }
       ],
       icon: <GraduationCap className="w-6 h-6" />,
-      image: "./src/assets/tamu.jpg"
+      image: tamuImage
     },
     {
       year: "2024",
@@ -91,7 +96,7 @@ export default function AboutSection() {
         }
       ],
       icon: <Briefcase className="w-6 h-6" />,
-      image: "./src/assets/internship.jpg"
+      image: internshipImage
     },
     {
       year: "2025 - Present",
@@ -99,7 +104,7 @@ export default function AboutSection() {
       subtitle: "Hewlett Packard Enterprise",
       description: "Joining Hewlett Packard Enterprise as a full-time PREP through the HPE PREP rotational program, starting July.",
       icon: <Building2 className="w-6 h-6" />,
-      image: "./src/assets/fulltime.jpg",
+      image: fulltimeImage,
       imagePosition: "object-bottom"
     }
   ];
