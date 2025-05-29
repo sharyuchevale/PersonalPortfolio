@@ -1,16 +1,19 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { 
   GraduationCap, 
   Briefcase, 
   Building2, 
   School,
-  Award
+  Award,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import vnitCampus from "@/assets/optimized/optimized-vnit_campus.jpg";
 import citiImage from "@/assets/optimized/optimized-citi.jpg";
 import tamuImage from "@/assets/optimized/optimized-tamu.jpg";
 import internshipImage from "@/assets/optimized/optimized-internship.jpg";
 import fulltimeImage from "@/assets/optimized/optimized-fulltime.jpg";
+import { useState } from "react";
 
 export default function AboutSection() {
   // Timeline data
@@ -108,6 +111,50 @@ export default function AboutSection() {
       imagePosition: "object-bottom"
     }
   ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  const goToPrev = () => {
+    setCurrentIndex((prevIndex: number) => (prevIndex === 0 ? timelineEvents.length - 1 : prevIndex - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex: number) => (prevIndex === timelineEvents.length - 1 ? 0 : prevIndex + 1));
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    // Implementation of touch start
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    // Implementation of touch move
+  };
+
+  const handleTouchEnd = () => {
+    // Implementation of touch end
+  };
+
+  const getImagePosition = (index: number) => {
+    const event = timelineEvents[index];
+    if (event.title === "Master's in Management Information Systems") {
+      return "rotate-[270deg] scale-[2.2] origin-center"; // Corrected rotation and increased zoom
+    }
+    return event.imagePosition || 'object-center';
+  };
+
+  const dotVariants: Variants = {
+    animate: (index: number) => ({
+      scale: [1, 1.1, 1], // More subtle scale animation
+      transition: {
+        duration: 1.5,
+        repeat: Infinity,
+        repeatType: "loop" as const,
+        repeatDelay: index * 0.1
+      }
+    })
+  };
 
   return (
     <section 
@@ -290,49 +337,82 @@ export default function AboutSection() {
         <div className="hidden md:block lg:hidden">
           <div className="relative max-w-2xl mx-auto px-4">
             {/* Vertical Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#7EA046] via-[#7EA046] to-[#7EA046]"></div>
+            <div className="absolute left-8 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#7EA046]/20 via-[#7EA046] to-[#7EA046]/20"></div>
 
             {timelineEvents.slice(0, 5).map((event, index) => (
               <motion.div
                 key={event.year}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="flex items-center gap-8 mb-16"
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="relative pl-16 mb-12 last:mb-0"
               >
-                <div className={`w-1/2 ${index % 2 === 0 ? 'order-1' : 'order-3'}`}>
-                  <div className="bg-black/40 backdrop-blur-sm border border-[#7EA046]/30 rounded-xl overflow-hidden shadow-xl group
-                                min-h-[350px] h-full">
-                    {/* Image Container - Fixed height */}
-                    <div className="relative h-40 overflow-hidden">
-                      <img
-                        src={event.image}
-                        alt={event.title}
-                        className="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                      <div className="absolute top-3 right-3 p-1.5 rounded-full bg-[#7EA046]/20">
+                {/* Timeline Icon Badge */}
+                <div className="absolute left-0 top-[120px] z-10">
+                  <motion.div 
+                    className="relative"
+                    whileHover={{ scale: 1.1, rotate: 12 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {/* Icon Badge */}
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#7EA046] to-[#7EA046]/70 
+                                  flex items-center justify-center relative z-10 
+                                  shadow-[0_0_10px_rgba(126,160,70,0.3)] border border-[#7EA046]/30">
+                      <div className="w-6 h-6 text-white/90">
                         {event.icon}
                       </div>
-                      <div className="absolute bottom-3 left-3">
-                        <span style={{ color: '#7EA046' }} className="font-bold">{event.year}</span>
+                    </div>
+                    {/* Glowing Effect */}
+                    <div className="absolute inset-0 w-10 h-10 -translate-x-1 -translate-y-1 
+                                  bg-[#7EA046]/10 rounded-full animate-pulse"></div>
+                  </motion.div>
+                </div>
+
+                {/* Year Badge */}
+                <div className="absolute left-16 top-0 bg-[#7EA046]/10 backdrop-blur-sm border border-[#7EA046]/30 
+                              px-3 py-1 rounded-full text-sm text-white">
+                  {event.year}
+                </div>
+
+                {/* Content Card */}
+                <div className="bg-black/40 backdrop-blur-sm border border-[#7EA046]/30 rounded-xl overflow-hidden 
+                              mt-8 transition-all duration-300 hover:border-[#7EA046]/50 
+                              hover:shadow-[0_8px_30px_rgba(126,160,70,0.15)] group">
+                  <div className="flex">
+                    {/* Image Section */}
+                    <div className="w-1/3 relative overflow-hidden">
+                      <img 
+                        src={event.image} 
+                        alt={event.title}
+                        className={`w-full h-full object-cover transition-transform duration-700 ${
+                          event.title === "Master's in Management Information Systems" 
+                          ? "md:rotate-[270deg] md:scale-[2.2] md:object-cover md:object-[45%_center] md:group-hover:scale-[2.4]" 
+                          : `group-hover:scale-110 ${event.imagePosition || 'object-center'}`
+                        }`}
+                        style={{ minHeight: '200px' }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent"></div>
+                      <div className="absolute top-3 left-3 p-2 rounded-full bg-[#7EA046]/20 backdrop-blur-sm">
+                        {event.icon}
                       </div>
                     </div>
 
-                    {/* Content - Flex grow to fill space */}
-                    <div className="p-3 flex flex-col h-[calc(100%-10rem)]">
-                      <h3 className="text-white font-bold text-sm mb-0.5">{event.title}</h3>
-                      <p style={{ color: '#7EA046' }} className="text-xs mb-2">{event.subtitle}</p>
+                    {/* Content Section */}
+                    <div className="w-2/3 p-4">
+                      <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#7EA046] transition-colors">
+                        {event.title}
+                      </h3>
+                      <p className="text-[#7EA046] text-sm mb-2">{event.subtitle}</p>
+                      <p className="text-gray-300 text-sm leading-relaxed mb-3">{event.description}</p>
 
-                      <div className="relative overflow-hidden transition-all duration-300 group-hover:max-h-[500px] max-h-[60px]">
-                        <p className="text-gray-300 text-xs leading-relaxed mb-2">{event.description}</p>
-                        
-                        {(event.achievements || event.projects) && (
-                          <div className="mt-2 pt-2 border-t border-[#7EA046]/20">
+                      {/* Achievements/Projects */}
+                      {(event.achievements || event.projects) && (
+                        <div className="border-t border-[#7EA046]/20 pt-3 mt-3">
+                          <div className="grid grid-cols-2 gap-3">
                             {event.achievements?.map((achievement, i) => (
-                              <div key={i} className="mb-1.5 last:mb-0">
-                                <h4 style={{ color: '#7EA046' }} className="text-xs font-semibold mb-0.5">
+                              <div key={i} className="group/item">
+                                <h4 className="text-[#7EA046] text-sm font-medium mb-1">
                                   {achievement.title}
                                 </h4>
                                 {achievement.link ? (
@@ -340,83 +420,145 @@ export default function AboutSection() {
                                     href={achievement.link} 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
-                                    className="text-gray-300 text-xs hover:text-[#7EA046] transition-colors duration-300 underline"
+                                    className="text-gray-400 text-xs hover:text-[#7EA046] transition-colors underline"
                                   >
                                     {achievement.detail}
                                   </a>
                                 ) : (
-                                  <p className="text-gray-300 text-xs">{achievement.detail}</p>
+                                  <p className="text-gray-400 text-xs">{achievement.detail}</p>
                                 )}
                               </div>
                             ))}
                             {event.projects?.map((project, i) => (
-                              <div key={i} className="mb-1.5 last:mb-0">
-                                <h4 style={{ color: '#7EA046' }} className="text-xs font-semibold mb-0.5">
+                              <div key={i} className="group/item">
+                                <h4 className="text-[#7EA046] text-sm font-medium mb-1">
                                   {project.title}
                                 </h4>
-                                <p className="text-gray-300 text-xs">{project.detail}</p>
+                                <p className="text-gray-400 text-xs">{project.detail}</p>
                               </div>
                             ))}
                           </div>
-                        )}
-                        
-                        <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-black/40 to-transparent group-hover:opacity-0 transition-opacity duration-300"></div>
-                      </div>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
-                
-                {/* Center Point */}
-                <div className="w-4 h-4 bg-[#7EA046] rounded-full order-2 relative">
-                  <div className="absolute inset-0 bg-[#7EA046] rounded-full animate-ping opacity-25"></div>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Mobile Timeline */}
-        <div className="md:hidden space-y-6 px-4">
-          {timelineEvents.slice(0, 5).map((event, index) => (
-            <motion.div
-              key={event.year}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative"
-            >
-              <div className="bg-black/40 backdrop-blur-sm border border-[#7EA046]/30 rounded-xl overflow-hidden shadow-xl group
-                            min-h-[300px] h-full">
-                {/* Image Container - Fixed height */}
-                <div className="relative h-36 overflow-hidden">
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    className="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-500"
+        {/* Mobile Timeline (Horizontal Swipe) */}
+        <div className="md:hidden">
+          {/* Progress Bar and Dots Container */}
+          <div className="relative w-full h-8 mb-6 flex items-center">
+            {/* Progress Bar */}
+            <div className="absolute left-[2%] right-[2%] h-[2px] bg-[#7EA046]/20">
+              <motion.div 
+                className="h-full bg-[#7EA046]"
+                initial={{ width: '20%' }}
+                animate={{ width: `${((currentIndex + 1) / timelineEvents.length) * 100}%` }}
+                transition={{ duration: 0.3 }}
+              />
+            </div>
+
+            {/* Dots Container - positioned relative to the bar */}
+            <div className="absolute left-[2%] right-[2%] flex justify-between items-center">
+              {timelineEvents.map((_, index) => (
+                <div key={index} className="relative">
+                  <motion.div
+                    className={`w-3 h-3 rounded-full border-2 ${
+                      index <= currentIndex 
+                        ? 'bg-[#7EA046] border-[#7EA046]' 
+                        : 'bg-transparent border-[#7EA046]/30'
+                    }`}
+                    variants={dotVariants}
+                    animate="animate"
+                    custom={index}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                  <div className="absolute top-3 right-3 p-1.5 rounded-full bg-[#7EA046]/20">
-                    {event.icon}
-                  </div>
-                  <div className="absolute bottom-3 left-3">
-                    <span style={{ color: '#7EA046' }} className="font-bold">{event.year}</span>
-                  </div>
+                  {index === currentIndex && (
+                    <div className="absolute inset-0 bg-[#7EA046]/20 rounded-full blur-md -z-10" />
+                  )}
                 </div>
+              ))}
+            </div>
+          </div>
 
-                {/* Content - Flex grow to fill space */}
-                <div className="p-3 flex flex-col h-[calc(100%-9rem)]">
-                  <h3 className="text-white font-bold text-sm mb-0.5">{event.title}</h3>
-                  <p style={{ color: '#7EA046' }} className="text-xs mb-2">{event.subtitle}</p>
+          {/* Navigation Buttons - Adjusted for mobile */}
+          <div className="flex justify-between items-center mb-4 px-2">
+            <button 
+              onClick={goToPrev}
+              disabled={currentIndex === 0}
+              className={`p-2 rounded-full transition-colors duration-300 ${
+                currentIndex === 0 
+                ? 'text-gray-500 opacity-50' 
+                : 'text-[#7EA046] hover:bg-[#7EA046]/10'
+              }`}
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <span className="text-white text-xs font-medium bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
+              {currentIndex + 1} / {timelineEvents.length}
+            </span>
+            <button 
+              onClick={goToNext}
+              disabled={currentIndex === timelineEvents.length - 1}
+              className={`p-2 rounded-full transition-colors duration-300 ${
+                currentIndex === timelineEvents.length - 1 
+                ? 'text-gray-500 opacity-50' 
+                : 'text-[#7EA046] hover:bg-[#7EA046]/10'
+              }`}
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
 
-                  <div className="relative overflow-hidden transition-all duration-300 group-hover:max-h-[500px] max-h-[60px]">
-                    <p className="text-gray-300 text-xs leading-relaxed mb-2">{event.description}</p>
-                    
-                    {(event.achievements || event.projects) && (
-                      <div className="mt-2 pt-2 border-t border-[#7EA046]/20">
-                        {event.achievements?.map((achievement, i) => (
-                          <div key={i} className="mb-1.5 last:mb-0">
-                            <h4 style={{ color: '#7EA046' }} className="text-xs font-semibold mb-0.5">
+          {/* Swipeable Cards Container - Mobile optimized */}
+          <div 
+            className="overflow-hidden touch-pan-x px-4"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.3 }}
+                className="w-full"
+              >
+                <div className="bg-black/40 backdrop-blur-sm border border-[#7EA046]/30 rounded-xl overflow-hidden shadow-xl
+                              min-h-[480px] max-w-sm mx-auto">
+                  {/* Image Container with Dynamic Position */}
+                  <div className="relative h-44 overflow-hidden">
+                    <img
+                      src={timelineEvents[currentIndex].image}
+                      alt={timelineEvents[currentIndex].title}
+                      className={`w-full h-full object-cover transform transition-transform duration-500 ${getImagePosition(currentIndex)}`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                    <div className="absolute top-3 right-3 p-1.5 rounded-full bg-[#7EA046]/20">
+                      {timelineEvents[currentIndex].icon}
+                    </div>
+                    <div className="absolute bottom-3 left-3">
+                      <span style={{ color: '#7EA046' }} className="text-sm font-bold">{timelineEvents[currentIndex].year}</span>
+                    </div>
+                  </div>
+
+                  {/* Content - Mobile optimized */}
+                  <div className="p-4">
+                    <h3 className="text-white font-bold text-base mb-1">{timelineEvents[currentIndex].title}</h3>
+                    <p style={{ color: '#7EA046' }} className="text-sm mb-3">{timelineEvents[currentIndex].subtitle}</p>
+                    <p className="text-gray-300 text-sm leading-relaxed mb-4">{timelineEvents[currentIndex].description}</p>
+
+                    {/* Achievements/Projects - Mobile optimized */}
+                    {(timelineEvents[currentIndex].achievements || timelineEvents[currentIndex].projects) && (
+                      <div className="mt-3 pt-3 border-t border-[#7EA046]/20">
+                        {timelineEvents[currentIndex].achievements?.map((achievement, i) => (
+                          <div key={i} className="mb-2.5 last:mb-0">
+                            <h4 style={{ color: '#7EA046' }} className="text-sm font-semibold mb-0.5">
                               {achievement.title}
                             </h4>
                             {achievement.link ? (
@@ -433,9 +575,9 @@ export default function AboutSection() {
                             )}
                           </div>
                         ))}
-                        {event.projects?.map((project, i) => (
-                          <div key={i} className="mb-1.5 last:mb-0">
-                            <h4 style={{ color: '#7EA046' }} className="text-xs font-semibold mb-0.5">
+                        {timelineEvents[currentIndex].projects?.map((project, i) => (
+                          <div key={i} className="mb-2.5 last:mb-0">
+                            <h4 style={{ color: '#7EA046' }} className="text-sm font-semibold mb-0.5">
                               {project.title}
                             </h4>
                             <p className="text-gray-300 text-xs">{project.detail}</p>
@@ -443,13 +585,24 @@ export default function AboutSection() {
                         ))}
                       </div>
                     )}
-                    
-                    <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-black/40 to-transparent group-hover:opacity-0 transition-opacity duration-300"></div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Bottom Dot Indicators - Mobile optimized */}
+          <div className="flex justify-center gap-1.5 mt-4">
+            {timelineEvents.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  index === currentIndex ? 'w-4 bg-[#7EA046]' : 'w-1.5 bg-[#7EA046]/30'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

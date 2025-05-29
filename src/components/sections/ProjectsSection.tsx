@@ -238,12 +238,12 @@ export default function ProjectsSection() {
               {projects.map((project, index) => (
                 <SwiperSlide key={index}>
                   <div 
-                    className="overflow-hidden shadow-lg transition-all hover:-translate-y-2 duration-300 rounded-xl border border-[#7EA046]/20 bg-background/50 backdrop-blur-sm h-full"
+                    className="overflow-hidden shadow-lg transition-all hover:-translate-y-2 duration-300 rounded-xl border border-[#7EA046]/20 bg-background/50 backdrop-blur-sm h-[500px]"
                   >
                     {/* Mobile Image Section */}
                     <div 
                       className="relative h-48" 
-                      style={{ background: 'linear-gradient(135deg, rgba(23, 58, 45, 0.95) 0%, rgba(26, 66, 87, 0.95) 100%)' }}
+                      style={{ background: 'linear-gradient(315deg, rgba(23, 58, 45, 0.95) 0%, rgba(26, 66, 87, 0.95) 100%)' }}
                     >
                       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
                         <img 
@@ -252,8 +252,8 @@ export default function ProjectsSection() {
                           className="w-[95%] h-[95%] object-cover transition-transform hover:scale-105 duration-500" 
                         />
                       </div>
-                      {/* Updated gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-[rgba(23,58,45,0.7)] to-transparent opacity-70"></div>
+                      {/* Updated gradient overlay - reversed direction */}
+                      <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-[rgba(23,58,45,0.7)] to-transparent opacity-70"></div>
                       
                       {/* Subtle pattern overlay */}
                       <div 
@@ -270,13 +270,13 @@ export default function ProjectsSection() {
                         </Badge>
                       </div>
                     </div>
-                    <div className="p-4">
+                    <div className="p-4 flex-1">
                       <h3 className="font-bold text-xl text-white group-hover:text-[#7EA046] transition-colors">
                         {project.title}
                       </h3>
                       <p className="text-gray-300 text-sm mt-2 line-clamp-3">{project.description}</p>
                     </div>
-                    <div className="px-4 py-2">
+                    <div className="px-4 py-2 flex-grow">
                       <div className="flex flex-wrap gap-2">
                         {project.technologies.slice(0, 3).map((tech, i) => (
                           <Badge 
@@ -297,7 +297,7 @@ export default function ProjectsSection() {
                         )}
                       </div>
                     </div>
-                    <div className="p-4 flex justify-center border-t border-[#7EA046]/20">
+                    <div className="p-4 mt-auto border-t border-[#7EA046]/20">
                       <a 
                         href={project.demoLink} 
                         className="flex items-center justify-center gap-2 text-[#7EA046] hover:text-[#7EA046]/80 transition-colors bg-[#7EA046]/10 hover:bg-[#7EA046]/20 px-4 py-2 rounded-lg w-full"

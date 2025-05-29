@@ -114,8 +114,119 @@ export default function ExtracurricularsSection() {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">Extracurriculars</h2>
         </motion.div>
 
-        {/* Magazine-style Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {/* Mobile View - Horizontal Scroll with Sticky Achievement Card */}
+        <div className="md:hidden relative">
+          {/* Sticky Achievement Card */}
+          <div className="sticky top-0 left-0 z-10 bg-[#0f2027] pb-4">
+            <motion.article
+              className="relative w-full h-[200px] bg-gradient-to-br from-[#7EA046]/10 via-black/80 to-black/90 rounded-lg overflow-hidden backdrop-blur-sm"
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="absolute inset-[1px] rounded-lg border border-[#7EA046]/20" />
+              <div className="relative h-full p-6 flex flex-col">
+                {/* Header */}
+                <div className="text-center mb-4">
+                  <motion.div 
+                    className="w-10 h-10 mx-auto mb-2 rounded-full border-2 border-[#7EA046]/40 flex items-center justify-center bg-black/30"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                  >
+                    <motion.span className="text-lg font-bold text-[#7EA046]">A</motion.span>
+                  </motion.div>
+                  <h3 className="text-lg font-bold text-white">Key Achievements</h3>
+                </div>
+
+                {/* Rotating Achievements */}
+                <div className="flex-1 flex items-center justify-center">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentAchievement}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.5 }}
+                      className="text-center px-4"
+                    >
+                      <p className="text-[#7EA046] text-base font-semibold leading-relaxed">
+                        {achievements[currentAchievement]}
+                      </p>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Progress Indicators */}
+                <div className="flex gap-2 justify-center">
+                  {achievements.map((_, index) => (
+                    <motion.div
+                      key={index}
+                      className="w-6 h-0.5 rounded-full"
+                      animate={{
+                        backgroundColor: index === currentAchievement 
+                          ? "rgb(126, 160, 70)" 
+                          : "rgba(126, 160, 70, 0.2)",
+                        scale: index === currentAchievement ? [1, 1.2, 1] : 1
+                      }}
+                      transition={{ 
+                        duration: index === currentAchievement ? 2 : 0.3,
+                        repeat: index === currentAchievement ? Infinity : 0
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </motion.article>
+          </div>
+
+          {/* Scrollable Activity Cards */}
+          <div className="-mx-4 px-4 overflow-x-auto pb-6 scrollbar-thin scrollbar-thumb-[#7EA046]/20 scrollbar-track-transparent">
+            <div className="flex gap-4 min-w-max pt-4">
+              {activities.map((activity, index) => (
+                <motion.article
+                  key={activity.role}
+                  className="relative w-[280px] h-[400px] flex-shrink-0 rounded-lg overflow-hidden"
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                >
+                  {/* Background Image */}
+                  <div className="absolute inset-0">
+                    <img
+                      src={activity.image}
+                      alt={activity.role}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative h-full p-6 flex flex-col justify-end">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span className="px-2 py-1 rounded-full bg-[#7EA046]/20 text-[#7EA046] text-xs border border-[#7EA046]/30">
+                          {activity.year}
+                        </span>
+                        <span className="px-2 py-1 rounded-full bg-white/10 text-white/90 text-xs">
+                          {activity.department}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-bold text-white">{activity.role}</h3>
+                      <p className="text-sm text-white/80">{activity.organization}</p>
+                      <p className="text-sm text-white/60 line-clamp-2">{activity.description}</p>
+                    </div>
+                  </div>
+
+                  {/* Decorative Border */}
+                  <div className="absolute inset-[1px] rounded-lg border border-white/10" />
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Grid - Unchanged */}
+        <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {/* Achievement Card */}
           <motion.article
             className="relative min-h-[280px] bg-gradient-to-br from-[#7EA046]/10 via-black/80 to-black/90 rounded-lg overflow-hidden backdrop-blur-sm"
