@@ -41,7 +41,9 @@ export default function HeroSection() {
           <img 
             src={backgroundImage}
             alt="Sharyu standing by a beautiful mountain lake" 
-            className="w-full h-full object-cover scale-110 md:scale-110 md:object-center object-[70%_center] transform-gpu"
+            className="w-full h-full object-cover scale-110 
+                      md:scale-110 md:object-[85%_center] lg:object-center 
+                      object-[70%_center] transform-gpu"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/75 to-transparent"></div>
         </div>

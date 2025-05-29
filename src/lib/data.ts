@@ -36,7 +36,7 @@ export const projects = [
   {
     title: "SimpliBills: Budget Tracker",
     type: "Product Breakdown",
-    description: "Intuitive, customizable platform with a simple UI/UX, making mental wellness accessible and tailored to individual needs.",
+    description: "Product to help patients navigate the complex journey of hospital bill payments and claims",
     technologies: ["Figma", "Google Forms", "Microsoft 365", "Perplexity"],
     image: simplibills,
     demoLink: "https://drive.google.com/drive/folders/151XZSAs7RJ08nXQK30Lf1ag05GbnbRja?usp=sharing",

@@ -133,7 +133,7 @@ export default function InterestsSection() {
                       alt={interest.title}
                       className={`w-full h-full transition-all duration-700 ${
                         interest.title === "Art & Design"
-                        ? "rotate-[90deg] scale-[1.4] object-cover object-center origin-center"
+                        ? "rotate-[90deg] scale-[1.4] object-cover object-center origin-center group-hover:scale-[1.6]"
                         : "object-cover group-hover:scale-110"
                       }`}
                     />
@@ -247,7 +247,7 @@ export default function InterestsSection() {
                   alt={interest.title}
                   className={`w-full h-full transition-all duration-700 ${
                     interest.title === "Art & Design"
-                    ? "rotate-[90deg] scale-[1.4] object-cover object-center origin-center"
+                    ? "rotate-[90deg] scale-[1.4] object-cover object-center origin-center group-hover:scale-[1.6]"
                     : "object-cover group-hover:scale-110"
                   }`}
                 />
