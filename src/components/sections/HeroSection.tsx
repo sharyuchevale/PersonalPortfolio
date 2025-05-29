@@ -97,35 +97,37 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll Down Indicator - Fixed at Bottom */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1 }}
-      >
-        <div 
-          className="relative cursor-pointer scale-75 sm:scale-90 md:scale-100" 
-          onClick={() => scrollToSection("about")}
+      <div className="absolute bottom-0 left-0 right-0 flex justify-center w-full">
+        <motion.div 
+          className="absolute bottom-4 sm:bottom-8 z-10"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1 }}
         >
-          {/* Glow Effect */}
-          <div className="absolute inset-0 rounded-full blur-lg bg-[#7EA046]/30"></div>
-          
-          {/* Arrow Container */}
-          <motion.div 
-            className="relative bg-[#7EA046]/10 p-5 rounded-full border-2 border-[#7EA046]/30 backdrop-blur-sm 
-                       hover:bg-[#7EA046]/20 hover:border-[#7EA046]/50 transition-all duration-300
-                       hover:scale-110 group"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+          <div 
+            className="relative cursor-pointer scale-75 sm:scale-90 md:scale-100" 
+            onClick={() => scrollToSection("about")}
           >
-            <ChevronDown className="w-6 h-6 text-[#7EA046] group-hover:text-white transition-colors duration-300" />
-          </motion.div>
-        </div>
-      </motion.div>
+            {/* Glow Effect */}
+            <div className="absolute inset-0 rounded-full blur-lg bg-[#7EA046]/30"></div>
+            
+            {/* Arrow Container */}
+            <motion.div 
+              className="relative bg-[#7EA046]/10 p-5 rounded-full border-2 border-[#7EA046]/30 backdrop-blur-sm 
+                         hover:bg-[#7EA046]/20 hover:border-[#7EA046]/50 transition-all duration-300
+                         hover:scale-110 group"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <ChevronDown className="w-6 h-6 text-[#7EA046] group-hover:text-white transition-colors duration-300" />
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

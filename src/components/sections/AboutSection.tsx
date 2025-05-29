@@ -125,15 +125,29 @@ export default function AboutSection() {
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    // Implementation of touch start
+    setTouchStart(e.touches[0].clientX);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    // Implementation of touch move
+    setTouchEnd(e.touches[0].clientX);
   };
 
   const handleTouchEnd = () => {
-    // Implementation of touch end
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      goToNext();
+    }
+    if (isRightSwipe) {
+      goToPrev();
+    }
+
+    setTouchStart(0);
+    setTouchEnd(0);
   };
 
   const getImagePosition = (index: number) => {
@@ -154,6 +168,35 @@ export default function AboutSection() {
         repeatDelay: index * 0.1
       }
     })
+  };
+
+  // Card animation variants
+  const cardVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    })
+  };
+
+  // Swipe direction state
+  const [[page, direction], setPage] = useState([0, 0]);
+
+  const paginate = (newDirection: number) => {
+    const newPage = page + newDirection;
+    if (newPage >= 0 && newPage < timelineEvents.length) {
+      setPage([newPage, newDirection]);
+      setCurrentIndex(newPage);
+    }
   };
 
   return (
@@ -448,8 +491,8 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* Mobile Timeline (Horizontal Swipe) */}
-        <div className="md:hidden">
+        {/* Mobile Timeline (Swipeable Cards) */}
+        <div className="block md:hidden">
           {/* Progress Bar and Dots Container */}
           <div className="relative w-full h-8 mb-6 flex items-center">
             {/* Progress Bar */}
@@ -484,61 +527,49 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* Navigation Buttons - Adjusted for mobile */}
-          <div className="flex justify-between items-center mb-4 px-2">
-            <button 
-              onClick={goToPrev}
-              disabled={currentIndex === 0}
-              className={`p-2 rounded-full transition-colors duration-300 ${
-                currentIndex === 0 
-                ? 'text-gray-500 opacity-50' 
-                : 'text-[#7EA046] hover:bg-[#7EA046]/10'
-              }`}
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <span className="text-white text-xs font-medium bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
-              {currentIndex + 1} / {timelineEvents.length}
-            </span>
-            <button 
-              onClick={goToNext}
-              disabled={currentIndex === timelineEvents.length - 1}
-              className={`p-2 rounded-full transition-colors duration-300 ${
-                currentIndex === timelineEvents.length - 1 
-                ? 'text-gray-500 opacity-50' 
-                : 'text-[#7EA046] hover:bg-[#7EA046]/10'
-              }`}
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-
-          {/* Swipeable Cards Container - Mobile optimized */}
           <div 
-            className="overflow-hidden touch-pan-x px-4"
+            className="relative overflow-hidden touch-pan-y"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <AnimatePresence mode="wait">
+            <AnimatePresence initial={false} custom={direction}>
               <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.3 }}
+                key={page}
+                custom={direction}
+                variants={cardVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.2 }
+                }}
                 className="w-full"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = Math.abs(offset.x) * velocity.x;
+
+                  if (swipe < -10000) {
+                    paginate(1);
+                  } else if (swipe > 10000) {
+                    paginate(-1);
+                  }
+                }}
               >
-                <div className="bg-black/40 backdrop-blur-sm border border-[#7EA046]/30 rounded-xl overflow-hidden shadow-xl
-                              min-h-[480px] max-w-sm mx-auto">
-                  {/* Image Container with Dynamic Position */}
-                  <div className="relative h-44 overflow-hidden">
+                {/* Card Content */}
+                <div className="bg-black/40 backdrop-blur-sm border border-[#7EA046]/30 rounded-xl overflow-hidden 
+                              shadow-xl transition-all duration-1000 ease-in-out mx-4">
+                  {/* Image Container */}
+                  <div className="relative h-48 overflow-hidden">
                     <img
                       src={timelineEvents[currentIndex].image}
                       alt={timelineEvents[currentIndex].title}
-                      className={`w-full h-full object-cover transform transition-transform duration-500 ${getImagePosition(currentIndex)}`}
+                      className={`w-full h-full object-cover ${getImagePosition(currentIndex)}`}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <div className="absolute top-3 right-3 p-1.5 rounded-full bg-[#7EA046]/20">
                       {timelineEvents[currentIndex].icon}
                     </div>
@@ -547,61 +578,52 @@ export default function AboutSection() {
                     </div>
                   </div>
 
-                  {/* Content - Mobile optimized */}
+                  {/* Content */}
                   <div className="p-4">
-                    <h3 className="text-white font-bold text-base mb-1">{timelineEvents[currentIndex].title}</h3>
-                    <p style={{ color: '#7EA046' }} className="text-sm mb-3">{timelineEvents[currentIndex].subtitle}</p>
-                    <p className="text-gray-300 text-sm leading-relaxed mb-4">{timelineEvents[currentIndex].description}</p>
-
-                    {/* Achievements/Projects - Mobile optimized */}
-                    {(timelineEvents[currentIndex].achievements || timelineEvents[currentIndex].projects) && (
-                      <div className="mt-3 pt-3 border-t border-[#7EA046]/20">
-                        {timelineEvents[currentIndex].achievements?.map((achievement, i) => (
-                          <div key={i} className="mb-2.5 last:mb-0">
-                            <h4 style={{ color: '#7EA046' }} className="text-sm font-semibold mb-0.5">
-                              {achievement.title}
-                            </h4>
-                            {achievement.link ? (
-                              <a 
-                                href={achievement.link} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="text-gray-300 text-xs hover:text-[#7EA046] transition-colors duration-300 underline"
-                              >
-                                {achievement.detail}
-                              </a>
-                            ) : (
-                              <p className="text-gray-300 text-xs">{achievement.detail}</p>
-                            )}
-                          </div>
-                        ))}
-                        {timelineEvents[currentIndex].projects?.map((project, i) => (
-                          <div key={i} className="mb-2.5 last:mb-0">
-                            <h4 style={{ color: '#7EA046' }} className="text-sm font-semibold mb-0.5">
-                              {project.title}
-                            </h4>
-                            <p className="text-gray-300 text-xs">{project.detail}</p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                    <h3 className="text-white font-bold text-lg leading-tight mb-1">
+                      {timelineEvents[currentIndex].title}
+                    </h3>
+                    <p style={{ color: '#7EA046' }} className="text-sm opacity-80 mb-3">
+                      {timelineEvents[currentIndex].subtitle}
+                    </p>
+                    <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                      {timelineEvents[currentIndex].description}
+                    </p>
+                    
+                    {/* Achievements/Projects List */}
+                    <div className="space-y-2 pt-3 border-t border-[#7EA046]/20">
+                      {timelineEvents[currentIndex].achievements?.map((achievement, idx) => (
+                        <div key={idx} className="mb-2 last:mb-0">
+                          <h4 style={{ color: '#7EA046' }} className="text-sm font-semibold mb-0.5">
+                            {achievement.title}
+                          </h4>
+                          {achievement.link ? (
+                            <a 
+                              href={achievement.link} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="text-gray-300 text-xs hover:text-[#7EA046] transition-colors duration-300 underline"
+                            >
+                              {achievement.detail}
+                            </a>
+                          ) : (
+                            <p className="text-gray-300 text-xs">{achievement.detail}</p>
+                          )}
+                        </div>
+                      ))}
+                      {timelineEvents[currentIndex].projects?.map((project, idx) => (
+                        <div key={idx} className="mb-2 last:mb-0">
+                          <h4 style={{ color: '#7EA046' }} className="text-sm font-semibold mb-0.5">
+                            {project.title}
+                          </h4>
+                          <p className="text-gray-300 text-xs">{project.detail}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
             </AnimatePresence>
-          </div>
-
-          {/* Bottom Dot Indicators - Mobile optimized */}
-          <div className="flex justify-center gap-1.5 mt-4">
-            {timelineEvents.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? 'w-4 bg-[#7EA046]' : 'w-1.5 bg-[#7EA046]/30'
-                }`}
-              />
-            ))}
           </div>
         </div>
       </div>

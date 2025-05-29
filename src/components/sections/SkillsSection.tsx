@@ -33,6 +33,11 @@ export default function SkillsSection() {
     }
   }, [observeElement]);
 
+  // Function to handle card expansion
+  const handleCardExpand = (skillName: string) => {
+    setExpandedSkill(currentSkill => currentSkill === skillName ? null : skillName);
+  };
+
   return (
     <section id="skills" className="py-12 md:py-16 relative overflow-hidden" 
              style={{ background: 'linear-gradient(160deg, #18432f 0%, #1c3b45 50%, #18432f 100%)' }}>
@@ -55,11 +60,6 @@ export default function SkillsSection() {
 
         {/* Mobile View - Horizontal Scrollable Sections */}
         <div className="md:hidden space-y-6">
-          {/* Section Headers */}
-          <div className="flex items-center justify-between px-1">
-            <h3 className="text-base font-medium text-[#7EA046]">Swipe to explore →</h3>
-          </div>
-
           {/* Expertise Section */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-4 px-1">Expertise</h3>
@@ -81,7 +81,7 @@ export default function SkillsSection() {
                       {/* Header */}
                       <div
                         className="p-4 cursor-pointer group/header hover:bg-[#7EA046]/5 transition-colors duration-300"
-                        onClick={() => setExpandedSkill(expandedSkill === skill.name ? null : skill.name)}
+                        onClick={() => handleCardExpand(skill.name)}
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
@@ -129,8 +129,17 @@ export default function SkillsSection() {
                       {/* Expandable Content */}
                       <motion.div
                         initial={false}
-                        animate={{ height: expandedSkill === skill.name ? 'auto' : 0 }}
-                        className="overflow-hidden"
+                        animate={{ 
+                          height: expandedSkill === skill.name ? 'auto' : 0,
+                          opacity: expandedSkill === skill.name ? 1 : 0,
+                          scale: expandedSkill === skill.name ? 1 : 0.95
+                        }}
+                        transition={{
+                          height: { duration: 0.3 },
+                          opacity: { duration: 0.2 },
+                          scale: { duration: 0.2 }
+                        }}
+                        className="overflow-hidden origin-top"
                       >
                         <div className="p-4 pt-0">
                           <div className="border-t border-[#7EA046]/20 pt-4">
@@ -220,7 +229,7 @@ export default function SkillsSection() {
                     {/* Header */}
                     <div
                       className="p-4 cursor-pointer group/header hover:bg-[#7EA046]/5 transition-colors duration-300"
-                      onClick={() => setExpandedSkill(expandedSkill === skill.name ? null : skill.name)}
+                      onClick={() => handleCardExpand(skill.name)}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -353,7 +362,7 @@ export default function SkillsSection() {
                   {/* Header */}
                   <div
                     className="p-4 cursor-pointer group/header hover:bg-[#7EA046]/5 transition-colors duration-300"
-                    onClick={() => setExpandedSkill(expandedSkill === skill.name ? null : skill.name)}
+                    onClick={() => handleCardExpand(skill.name)}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
