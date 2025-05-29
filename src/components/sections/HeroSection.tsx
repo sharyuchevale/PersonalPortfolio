@@ -54,20 +54,25 @@ export default function HeroSection() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-start">
             <motion.div 
-              className="md:w-7/12 lg:w-6/12 md:pr-10 lg:pr-16"
+              className="w-full sm:w-10/12 md:w-8/12 lg:w-7/12 xl:w-6/12 
+                         sm:mx-auto md:mx-0"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
             >
               <motion.div variants={itemVariants} className="mb-4">
                 <p className="text-2xl md:text-3xl font-medium text-white shadow-text">Hi! I'm</p>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white shadow-text">Sharyu <span style={{ color: '#7EA046' }}>Chevale</span></h1>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white shadow-text whitespace-nowrap">
+                  Sharyu <span style={{ color: '#7EA046' }}>Chevale</span>
+                </h1>
               </motion.div>
               <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl text-white mb-6 shadow-text">
                 Product Manager
               </motion.h2>
               <motion.p variants={itemVariants} className="text-white text-base sm:text-lg md:text-lg lg:text-lg max-w-2xl mb-8 leading-relaxed shadow-text">
-                <span className="block text-lg sm:text-xl md:text-xl lg:text-2xl font-medium mb-2" style={{ color: '#7EA046' }}>Built to build — products, plans, and purpose-driven progress</span>
+                <span className="block text-lg sm:text-xl md:text-xl lg:text-2xl font-medium mb-2" style={{ color: '#7EA046' }}>
+                  Built to build — products, plans, and purpose-driven progress
+                </span>
                 My journey blends software development, product management, and business strategy. I've built fintech products at Citi, worked on enterprise-wide strategic planning at HPE, and earned a Master's in MIS from Texas A&M. With expertise across fintech, enterprise solutions, & academic domains I enjoy creating thoughtful, useful products that help organizations move forward.
               </motion.p>
               <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
