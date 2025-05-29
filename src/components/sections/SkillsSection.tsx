@@ -58,151 +58,135 @@ export default function SkillsSection() {
           <h2 className="text-2xl md:text-4xl font-bold text-white">Professional Skills</h2>
         </div>
 
-        {/* Mobile View - Horizontal Scrollable Sections */}
-        <div className="md:hidden space-y-6">
-          {/* Expertise Section */}
+        {/* Mobile View - Simplified Layout */}
+        <div className="md:hidden space-y-8">
+          {/* Core Skills Section */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4 px-1">Expertise</h3>
-            <div className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-thin scrollbar-thumb-[#7EA046]/20 scrollbar-track-transparent">
-              <div className="flex gap-3 min-w-max">
-                {skills.map((skill, index) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="w-[280px]"
+            <h3 className="text-lg font-semibold text-white mb-4 px-1">Core Skills</h3>
+            <div className="space-y-3">
+              {skills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <div
+                    className={`bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-sm 
+                              border border-[#7EA046]/30 rounded-xl overflow-hidden transition-all duration-300
+                              ${expandedSkill === skill.name ? 'shadow-[0_4px_20px_rgba(126,160,70,0.2)]' : ''}`}
                   >
+                    {/* Header */}
                     <div
-                      className={`bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-sm border border-[#7EA046]/30 rounded-xl overflow-hidden transition-all duration-300 h-full
-                                ${expandedSkill === skill.name ? 'shadow-[0_4px_20px_rgba(126,160,70,0.2)]' : 'hover:shadow-[0_4px_20px_rgba(126,160,70,0.15)]'}`}
+                      className="p-4 cursor-pointer hover:bg-[#7EA046]/5 transition-colors duration-300"
+                      onClick={() => setExpandedSkill(expandedSkill === skill.name ? null : skill.name)}
                     >
-                      {/* Header */}
-                      <div
-                        className="p-4 cursor-pointer group/header hover:bg-[#7EA046]/5 transition-colors duration-300"
-                        onClick={() => handleCardExpand(skill.name)}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <div className="p-2 rounded-lg bg-gradient-to-br from-[#7EA046]/20 to-[#7EA046]/10">
-                              {skillIcons[skill.name]}
-                            </div>
-                            <h3 className="text-base font-semibold text-white group-hover/header:text-[#7EA046] transition-colors line-clamp-1">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3 flex-1">
+                          <div className="p-2 rounded-lg bg-gradient-to-br from-[#7EA046]/20 to-[#7EA046]/10 flex-shrink-0">
+                            {skillIcons[skill.name]}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <h3 className="text-base font-semibold text-white mb-1 line-clamp-1">
                               {skill.name}
                             </h3>
+                            {/* Simplified Progress Bar */}
+                            <div className="flex items-center gap-2">
+                              <div className="h-1 flex-1 bg-black/20 rounded-full overflow-hidden">
+                                <motion.div
+                                  initial={{ width: 0 }}
+                                  animate={{ width: visibleProgress ? `${skill.percentage}%` : 0 }}
+                                  transition={{ duration: 1, delay: index * 0.2 }}
+                                  className="h-full bg-gradient-to-r from-[#7EA046] to-[#94B06F] rounded-full"
+                                />
+                              </div>
+                              <span className="text-xs text-[#7EA046] flex-shrink-0">{skill.percentage}%</span>
+                            </div>
                           </div>
-                          <motion.div
-                            animate={{ 
-                              rotate: expandedSkill === skill.name ? 180 : 0,
-                              scale: expandedSkill === skill.name ? 1.1 : 1
-                            }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            <ChevronDown className="w-4 h-4 text-[#7EA046]" />
-                          </motion.div>
                         </div>
+                        <motion.div
+                          animate={{ 
+                            rotate: expandedSkill === skill.name ? 180 : 0,
+                            scale: expandedSkill === skill.name ? 1.1 : 1
+                          }}
+                          transition={{ duration: 0.2 }}
+                          className="ml-2 flex-shrink-0"
+                        >
+                          <ChevronDown className="w-4 h-4 text-[#7EA046]" />
+                        </motion.div>
+                      </div>
+                    </div>
 
-                        {/* Progress Bar */}
-                        <div className="mt-4">
-                          <div className="flex justify-between items-center mb-2">
-                            <span className="text-xs text-gray-400">Proficiency</span>
-                            <span className="text-xs text-[#7EA046]">{skill.percentage}%</span>
-                          </div>
-                          <div className="h-1.5 bg-black/20 rounded-full overflow-hidden">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              animate={{ width: visibleProgress ? `${skill.percentage}%` : 0 }}
-                              transition={{ duration: 1, delay: index * 0.2 }}
-                              className="h-full bg-gradient-to-r from-[#7EA046] to-[#94B06F] rounded-full relative"
-                            >
-                              <motion.div
-                                animate={{ x: ['0%', '100%'] }}
-                                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                              />
-                            </motion.div>
+                    {/* Expandable Content - Technologies */}
+                    <motion.div
+                      initial={false}
+                      animate={{ 
+                        height: expandedSkill === skill.name ? 'auto' : 0,
+                        opacity: expandedSkill === skill.name ? 1 : 0
+                      }}
+                      transition={{
+                        height: { duration: 0.3 },
+                        opacity: { duration: 0.2 }
+                      }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-4 pb-4">
+                        <div className="pt-2 border-t border-[#7EA046]/20">
+                          <div className="flex flex-wrap gap-2">
+                            {getTechnologies(skill.name).map((tech, i) => (
+                              <span
+                                key={i}
+                                className="px-2.5 py-1 rounded-full bg-gradient-to-br from-[#7EA046]/20 to-[#7EA046]/5 
+                                         text-gray-300 text-xs border border-[#7EA046]/20"
+                              >
+                                {tech}
+                              </span>
+                            ))}
                           </div>
                         </div>
                       </div>
-
-                      {/* Expandable Content */}
-                      <motion.div
-                        initial={false}
-                        animate={{ 
-                          height: expandedSkill === skill.name ? 'auto' : 0,
-                          opacity: expandedSkill === skill.name ? 1 : 0,
-                          scale: expandedSkill === skill.name ? 1 : 0.95
-                        }}
-                        transition={{
-                          height: { duration: 0.3 },
-                          opacity: { duration: 0.2 },
-                          scale: { duration: 0.2 }
-                        }}
-                        className="overflow-hidden origin-top"
-                      >
-                        <div className="p-4 pt-0">
-                          <div className="border-t border-[#7EA046]/20 pt-4">
-                            <div className="flex flex-wrap gap-2">
-                              {getTechnologies(skill.name).map((tech, i) => (
-                                <span
-                                  key={i}
-                                  className="px-3 py-1.5 rounded-full bg-gradient-to-br from-[#7EA046]/20 to-[#7EA046]/5 
-                                           text-gray-300 text-xs border border-[#7EA046]/20
-                                           hover:from-[#7EA046]/30 hover:to-[#7EA046]/10 hover:text-white 
-                                           transition-all duration-300"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
 
-          {/* Tools & Software Section */}
+          {/* Tools & Software Section - Simplified Grid */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-4 px-1">Tools & Software</h3>
-            <div className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-thin scrollbar-thumb-[#7EA046]/20 scrollbar-track-transparent">
-              <div className="flex gap-3 min-w-max">
-                {software.map((category, categoryIndex) => (
-                  <motion.div
-                    key={category.category}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: categoryIndex * 0.1 }}
-                    className="w-[280px] bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-sm 
-                              border border-[#7EA046]/30 rounded-xl p-4 hover:shadow-[0_4px_20px_rgba(126,160,70,0.15)]
-                              transition-all duration-300"
-                  >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 rounded-lg bg-gradient-to-br from-[#7EA046]/20 to-[#7EA046]/10">
-                        {skillIcons[category.category]}
-                      </div>
-                      <h3 className="text-base font-semibold text-white line-clamp-1">{category.category}</h3>
+            <div className="grid grid-cols-2 gap-3">
+              {software.map((category, categoryIndex) => (
+                <motion.div
+                  key={category.category}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: categoryIndex * 0.1 }}
+                  className="bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-sm 
+                            border border-[#7EA046]/30 rounded-xl p-3"
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="p-1.5 rounded-lg bg-gradient-to-br from-[#7EA046]/20 to-[#7EA046]/10">
+                      {skillIcons[category.category]}
                     </div>
+                    <h3 className="text-sm font-semibold text-white line-clamp-1">{category.category}</h3>
+                  </div>
 
-                    <div className="space-y-3">
-                      {category.tools.map((tool, toolIndex) => (
-                        <div
-                          key={tool.name}
-                          className="flex items-center gap-2.5 text-gray-300 hover:text-white transition-colors duration-200 group/tool"
-                        >
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#7EA046]/50 group-hover/tool:bg-[#7EA046] group-hover/tool:scale-125 transition-all duration-300" />
-                          <span className="text-sm">{tool.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                  <div className="space-y-2">
+                    {category.tools.map((tool, toolIndex) => (
+                      <div
+                        key={tool.name}
+                        className="flex items-center gap-2 text-gray-300 text-xs"
+                      >
+                        <div className="w-1 h-1 rounded-full bg-[#7EA046]/50" />
+                        <span className="line-clamp-1">{tool.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>

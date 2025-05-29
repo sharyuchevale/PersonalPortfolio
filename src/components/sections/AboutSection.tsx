@@ -129,21 +129,31 @@ export default function AboutSection() {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.touches[0].clientX);
+    if (!touchStart) return;
+    const currentTouch = e.touches[0].clientX;
+    setTouchEnd(currentTouch);
   };
 
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
 
     const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
+    const minSwipeDistance = 50; // Minimum distance for swipe
 
-    if (isLeftSwipe) {
-      goToNext();
-    }
-    if (isRightSwipe) {
-      goToPrev();
+    if (Math.abs(distance) > minSwipeDistance) {
+      if (distance > 0) {
+        // Swiped left
+        if (currentIndex < timelineEvents.length - 1) {
+          setPage([currentIndex + 1, 1]);
+          setCurrentIndex(currentIndex + 1);
+        }
+      } else {
+        // Swiped right
+        if (currentIndex > 0) {
+          setPage([currentIndex - 1, -1]);
+          setCurrentIndex(currentIndex - 1);
+        }
+      }
     }
 
     setTouchStart(0);
@@ -170,34 +180,37 @@ export default function AboutSection() {
     })
   };
 
-  // Card animation variants
+  // Enhanced swipe animation variants
   const cardVariants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0
+      x: direction > 0 ? '100%' : '-100%',
+      opacity: 0,
+      scale: 0.95
     }),
     center: {
-      zIndex: 1,
       x: 0,
-      opacity: 1
+      opacity: 1,
+      scale: 1,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 },
+        scale: { duration: 0.2 }
+      }
     },
     exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0
+      x: direction < 0 ? '100%' : '-100%',
+      opacity: 0,
+      scale: 0.95,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 },
+        scale: { duration: 0.2 }
+      }
     })
   };
 
   // Swipe direction state
   const [[page, direction], setPage] = useState([0, 0]);
-
-  const paginate = (newDirection: number) => {
-    const newPage = page + newDirection;
-    if (newPage >= 0 && newPage < timelineEvents.length) {
-      setPage([newPage, newDirection]);
-      setCurrentIndex(newPage);
-    }
-  };
 
   return (
     <section 
@@ -508,21 +521,23 @@ export default function AboutSection() {
             {/* Dots Container - positioned relative to the bar */}
             <div className="absolute left-[2%] right-[2%] flex justify-between items-center">
               {timelineEvents.map((_, index) => (
-                <div key={index} className="relative">
-                  <motion.div
-                    className={`w-3 h-3 rounded-full border-2 ${
-                      index <= currentIndex 
-                        ? 'bg-[#7EA046] border-[#7EA046]' 
-                        : 'bg-transparent border-[#7EA046]/30'
-                    }`}
-                    variants={dotVariants}
-                    animate="animate"
-                    custom={index}
-                  />
-                  {index === currentIndex && (
-                    <div className="absolute inset-0 bg-[#7EA046]/20 rounded-full blur-md -z-10" />
-                  )}
-                </div>
+                <motion.div
+                  key={index}
+                  className={`w-3 h-3 rounded-full border-2 ${
+                    index <= currentIndex 
+                      ? 'bg-[#7EA046] border-[#7EA046]' 
+                      : 'bg-transparent border-[#7EA046]/30'
+                  }`}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => {
+                    const direction = index > currentIndex ? 1 : -1;
+                    setPage([index, direction]);
+                    setCurrentIndex(index);
+                  }}
+                  variants={dotVariants}
+                  animate="animate"
+                  custom={index}
+                />
               ))}
             </div>
           </div>
@@ -533,7 +548,11 @@ export default function AboutSection() {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <AnimatePresence initial={false} custom={direction}>
+            <AnimatePresence
+              initial={false}
+              custom={direction}
+              mode="popLayout"
+            >
               <motion.div
                 key={page}
                 custom={direction}
@@ -541,57 +560,81 @@ export default function AboutSection() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{
-                  x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 }
-                }}
-                className="w-full"
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
+                dragElastic={0.7}
                 onDragEnd={(e, { offset, velocity }) => {
                   const swipe = Math.abs(offset.x) * velocity.x;
+                  const threshold = 50000;
 
-                  if (swipe < -10000) {
-                    paginate(1);
-                  } else if (swipe > 10000) {
-                    paginate(-1);
+                  if (swipe < -threshold && currentIndex < timelineEvents.length - 1) {
+                    setPage([currentIndex + 1, 1]);
+                    setCurrentIndex(currentIndex + 1);
+                  } else if (swipe > threshold && currentIndex > 0) {
+                    setPage([currentIndex - 1, -1]);
+                    setCurrentIndex(currentIndex - 1);
                   }
                 }}
+                className="w-full px-4"
               >
                 {/* Card Content */}
-                <div className="bg-black/40 backdrop-blur-sm border border-[#7EA046]/30 rounded-xl overflow-hidden 
-                              shadow-xl transition-all duration-1000 ease-in-out mx-4">
+                <motion.div
+                  className="bg-black/40 backdrop-blur-sm border border-[#7EA046]/30 rounded-xl overflow-hidden 
+                            shadow-xl transition-all duration-300"
+                  layoutId={`card-${currentIndex}`}
+                >
                   {/* Image Container */}
                   <div className="relative h-48 overflow-hidden">
-                    <img
+                    <motion.img
                       src={timelineEvents[currentIndex].image}
                       alt={timelineEvents[currentIndex].title}
                       className={`w-full h-full object-cover ${getImagePosition(currentIndex)}`}
+                      layoutId={`image-${currentIndex}`}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div className="absolute top-3 right-3 p-1.5 rounded-full bg-[#7EA046]/20">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <motion.div 
+                      className="absolute top-3 right-3 p-1.5 rounded-full bg-[#7EA046]/20"
+                      layoutId={`icon-${currentIndex}`}
+                    >
                       {timelineEvents[currentIndex].icon}
-                    </div>
-                    <div className="absolute bottom-3 left-3">
-                      <span style={{ color: '#7EA046' }} className="text-sm font-bold">{timelineEvents[currentIndex].year}</span>
-                    </div>
+                    </motion.div>
+                    <motion.div 
+                      className="absolute bottom-3 left-3"
+                      layoutId={`year-${currentIndex}`}
+                    >
+                      <span style={{ color: '#7EA046' }} className="text-sm font-bold">
+                        {timelineEvents[currentIndex].year}
+                      </span>
+                    </motion.div>
                   </div>
 
                   {/* Content */}
                   <div className="p-4">
-                    <h3 className="text-white font-bold text-lg leading-tight mb-1">
+                    <motion.h3 
+                      className="text-white font-bold text-lg leading-tight mb-1"
+                      layoutId={`title-${currentIndex}`}
+                    >
                       {timelineEvents[currentIndex].title}
-                    </h3>
-                    <p style={{ color: '#7EA046' }} className="text-sm opacity-80 mb-3">
+                    </motion.h3>
+                    <motion.p 
+                      style={{ color: '#7EA046' }} 
+                      className="text-sm opacity-80 mb-3"
+                      layoutId={`subtitle-${currentIndex}`}
+                    >
                       {timelineEvents[currentIndex].subtitle}
-                    </p>
-                    <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                    </motion.p>
+                    <motion.p 
+                      className="text-gray-300 text-sm leading-relaxed mb-4"
+                      layoutId={`description-${currentIndex}`}
+                    >
                       {timelineEvents[currentIndex].description}
-                    </p>
+                    </motion.p>
                     
                     {/* Achievements/Projects List */}
-                    <div className="space-y-2 pt-3 border-t border-[#7EA046]/20">
+                    <motion.div 
+                      className="space-y-2 pt-3 border-t border-[#7EA046]/20"
+                      layoutId={`details-${currentIndex}`}
+                    >
                       {timelineEvents[currentIndex].achievements?.map((achievement, idx) => (
                         <div key={idx} className="mb-2 last:mb-0">
                           <h4 style={{ color: '#7EA046' }} className="text-sm font-semibold mb-0.5">
@@ -619,9 +662,9 @@ export default function AboutSection() {
                           <p className="text-gray-300 text-xs">{project.detail}</p>
                         </div>
                       ))}
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             </AnimatePresence>
           </div>
