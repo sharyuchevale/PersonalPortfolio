@@ -120,24 +120,26 @@ export default function ProjectsSection() {
                   <SwiperSlide key={index} className="max-w-[90vw] md:max-w-[45vw] lg:max-w-[40vw] xl:max-w-[35vw] 2xl:max-w-[30vw]">
                     <div className="relative group transition-all duration-700 ease-out hover:scale-[1.02]">
                       {/* Card Container */}
-                      <div className="relative h-[400px] sm:h-[420px] md:h-[450px] rounded-xl overflow-hidden bg-background/50 backdrop-blur-sm border border-[#7EA046]/20">
+                      <div className="relative h-[400px] sm:h-[420px] md:h-[450px] rounded-xl overflow-hidden bg-black/60 backdrop-blur-sm border border-[#7EA046]/20">
                         {/* Image Section */}
-                        <div className="relative h-[45%]" style={{ background: 'linear-gradient(135deg, rgba(23, 58, 45, 0.95) 0%, rgba(26, 66, 87, 0.95) 100%)' }}>
-                          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-                            <img 
-                              src={project.image}
-                              alt={project.title}
-                              className="w-[95%] h-[95%] object-cover transition-transform duration-1000 ease-out group-hover:scale-105" 
-                            />
+                        <div className="relative h-[45%]" style={{ background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(15, 23, 42, 0.95) 100%)' }}>
+                          <div className="absolute inset-0 p-3 flex items-center justify-center overflow-hidden rounded-t-xl">
+                            <div className="relative w-full h-full rounded-lg overflow-hidden">
+                              <img 
+                                src={project.image}
+                                alt={project.title}
+                                className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105" 
+                              />
+                            </div>
                           </div>
-                          {/* Updated gradient overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-background via-[rgba(23,58,45,0.7)] to-transparent opacity-70"></div>
+                          {/* Updated gradient overlay with stronger contrast */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-80 rounded-t-xl"></div>
                           
                           {/* Subtle pattern overlay */}
                           <div 
-                            className="absolute inset-0 opacity-5 mix-blend-overlay"
+                            className="absolute inset-0 opacity-10 mix-blend-overlay rounded-t-xl"
                             style={{
-                              backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(126,160,70,0.4) 1px, transparent 0)',
+                              backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(126,160,70,0.6) 1px, transparent 0)',
                               backgroundSize: '20px 20px'
                             }}
                           ></div>
@@ -242,24 +244,26 @@ export default function ProjectsSection() {
                   >
                     {/* Mobile Image Section */}
                     <div 
-                      className="relative h-48" 
-                      style={{ background: 'linear-gradient(315deg, rgba(23, 58, 45, 0.95) 0%, rgba(26, 66, 87, 0.95) 100%)' }}
+                      className="relative h-48 rounded-t-xl" 
+                      style={{ background: 'linear-gradient(315deg, rgba(15, 23, 42, 0.98) 0%, rgba(15, 23, 42, 0.95) 100%)' }}
                     >
-                      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-                        <img 
-                          src={project.image}
-                          alt={project.title}
-                          className="w-[95%] h-[95%] object-cover transition-transform hover:scale-105 duration-500" 
-                        />
+                      <div className="absolute inset-0 p-3 flex items-center justify-center overflow-hidden rounded-t-xl">
+                        <div className="relative w-full h-full rounded-lg overflow-hidden">
+                          <img 
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover transition-transform hover:scale-105 duration-500" 
+                          />
+                        </div>
                       </div>
-                      {/* Updated gradient overlay - reversed direction */}
-                      <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-[rgba(23,58,45,0.7)] to-transparent opacity-70"></div>
+                      {/* Updated gradient overlay with stronger contrast */}
+                      <div className="absolute inset-0 bg-gradient-to-b from-black/95 via-black/80 to-transparent opacity-80 rounded-t-xl"></div>
                       
                       {/* Subtle pattern overlay */}
                       <div 
-                        className="absolute inset-0 opacity-5 mix-blend-overlay"
+                        className="absolute inset-0 opacity-10 mix-blend-overlay rounded-t-xl"
                         style={{
-                          backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(126,160,70,0.4) 1px, transparent 0)',
+                          backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(126,160,70,0.6) 1px, transparent 0)',
                           backgroundSize: '20px 20px'
                         }}
                       ></div>
