@@ -45,7 +45,9 @@ export default function HeroSection() {
                       md:scale-110 md:object-[85%_center] lg:object-center 
                       object-[70%_center] transform-gpu"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 to-transparent"></div>
+          {/* Enhanced gradient overlay with multiple layers for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/65 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40"></div>
         </div>
       </div>
 

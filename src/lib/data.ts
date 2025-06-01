@@ -34,7 +34,7 @@ export const projects = [
     githubLink: "#"
   },
   {
-    title: "SimpliBills: Budget Tracker",
+    title: "Simplibills: Easy Claims",
     type: "Product Breakdown",
     description: "Product to help patients navigate the complex journey of hospital bill payments and claims",
     technologies: ["Figma", "Google Forms", "Microsoft 365", "Perplexity"],

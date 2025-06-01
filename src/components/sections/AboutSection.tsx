@@ -6,7 +6,8 @@ import {
   School,
   Award,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  ChevronDown
 } from "lucide-react";
 import vnitCampus from "@/assets/optimized/optimized-vnit_campus.jpg";
 import citiImage from "@/assets/optimized/optimized-citi.jpg";
@@ -20,7 +21,10 @@ export default function AboutSection() {
   const timelineEvents = [
     {
       year: "2017-2021",
-      title: "Bachelor's in Electrical & Electronics Engineering",
+      title: {
+        line1: "Bachelors",
+        line2: "Electrical & Electronics Engineering"
+      },
       subtitle: "VNIT, Nagpur",
       description: "Studied electrical engineering with a focus on power systems and electronics, led research in DC microgrids and solar tech, and built leadership skills through campus involvement.",
       achievements: [
@@ -39,8 +43,11 @@ export default function AboutSection() {
     },
     {
       year: "2021-2023",
-      title: "Technology Analyst - Fintech",
-      subtitle: "Citi, Full-time",
+      title: {
+        line1: "Full-Time",
+        line2: "Technology Analyst"
+      },
+      subtitle: "Citibank",
       description: "Took fintech products from idea to launch—conducting market and user research, shaping product strategy, designing user experiences, leading development, and guiding releases to production",
       projects: [
         {
@@ -62,8 +69,11 @@ export default function AboutSection() {
     },
     {
       year: "2023-2025",
-      title: "Master's in Management Information Systems",
-      subtitle: "Texas A&M University",
+      title: {
+        line1: "Masters",
+        line2: "Management Information Systems"
+      },
+      subtitle: "Texas A&M",
       description: "Dived deep into the business and management side of products and organizations while building the technical skills needed to develop great products",
       achievements: [
         {
@@ -81,11 +91,15 @@ export default function AboutSection() {
         }
       ],
       icon: <GraduationCap className="w-6 h-6" />,
-      image: tamuImage
+      image: tamuImage,
+      imagePosition: "rotate-[-90deg] origin-center transform-gpu"
     },
     {
       year: "2024",
-      title: "Product Manager Intern",
+      title: {
+        line1: "Internship",
+        line2: "Product Manager"
+      },
       subtitle: "Hewlett Packard Enterprise",
       description: "Worked on Projects in the Global IT organization that support the backend administration of aaS offering at HPE",
       projects: [
@@ -103,7 +117,10 @@ export default function AboutSection() {
     },
     {
       year: "2025 - Present",
-      title: "IT Business Consultant",
+      title: {
+        line1: "Full-Time",
+        line2: "IT Business Consultant"
+      },
       subtitle: "Hewlett Packard Enterprise",
       description: "Joining Hewlett Packard Enterprise as a full-time PREP through the HPE PREP rotational program, starting July.",
       icon: <Building2 className="w-6 h-6" />,
@@ -113,8 +130,14 @@ export default function AboutSection() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+
+  // Reset expanded card when section is out of view
+  const handleViewportLeave = () => {
+    setExpandedCard(null);
+  };
 
   const goToPrev = () => {
     setCurrentIndex((prevIndex: number) => (prevIndex === 0 ? timelineEvents.length - 1 : prevIndex - 1));
@@ -144,13 +167,11 @@ export default function AboutSection() {
       if (distance > 0) {
         // Swiped left
         if (currentIndex < timelineEvents.length - 1) {
-          setPage([currentIndex + 1, 1]);
           setCurrentIndex(currentIndex + 1);
         }
       } else {
         // Swiped right
         if (currentIndex > 0) {
-          setPage([currentIndex - 1, -1]);
           setCurrentIndex(currentIndex - 1);
         }
       }
@@ -160,11 +181,12 @@ export default function AboutSection() {
     setTouchEnd(0);
   };
 
+  const handleCardClick = (index: number) => {
+    setExpandedCard(expandedCard === index ? null : index);
+  };
+
   const getImagePosition = (index: number) => {
     const event = timelineEvents[index];
-    if (event.title === "Master's in Management Information Systems") {
-      return "rotate-[270deg] scale-[2.2] origin-center"; // Corrected rotation and increased zoom
-    }
     return event.imagePosition || 'object-center';
   };
 
@@ -218,7 +240,10 @@ export default function AboutSection() {
       className="py-12 section-fade [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" 
       style={{ background: 'linear-gradient(120deg, #0f2e3d, #173a2d)' }}
     >
-      <div className="container mx-auto px-8">
+      <motion.div 
+        className="container mx-auto px-8"
+        onViewportLeave={handleViewportLeave}
+      >
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -232,7 +257,10 @@ export default function AboutSection() {
 
         {/* Desktop Timeline (Horizontal) */}
         <div className="hidden lg:block">
-          <div className="relative max-w-[90rem] mx-auto">
+          <motion.div 
+            className="relative max-w-[90rem] mx-auto"
+            onViewportLeave={handleViewportLeave}
+          >
             {/* Horizontal Line with Gradient - Positioned at top */}
             <div className="absolute top-0 left-0 right-0 px-4">
               {/* Main Timeline Line */}
@@ -276,21 +304,28 @@ export default function AboutSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   className="w-[calc(20%-1rem)]"
+                  onClick={() => handleCardClick(index)}
+                  onViewportLeave={() => {
+                    if (expandedCard === index) {
+                      setExpandedCard(null);
+                    }
+                  }}
                 >
                   {/* Card */}
                   <div className="relative">
                     {/* Main Card */}
-                    <div className="bg-black/40 backdrop-blur-sm border border-[#7EA046]/30 rounded-xl overflow-hidden 
-                                  shadow-xl transition-all duration-1000 ease-in-out transform hover:-translate-y-2 
-                                  hover:shadow-[0_8px_30px_rgba(126,160,70,0.15)] hover:border-[#7EA046]/50 
-                                  min-h-[450px] h-full group">
+                    <div className={`bg-black/40 backdrop-blur-sm border border-[#7EA046]/30 rounded-xl overflow-hidden 
+                                  shadow-xl transition-all duration-500 ease-in-out transform 
+                                  ${expandedCard === index ? 'translate-y-0 border-[#7EA046]/50 shadow-[0_8px_30px_rgba(126,160,70,0.15)]' : 'hover:-translate-y-2'} 
+                                  min-h-[450px] h-full group cursor-pointer`}>
                       {/* Image Container - Fixed height */}
                       <div className="relative h-48 overflow-hidden">
                         <img
                           src={event.image}
-                          alt={event.title}
-                          className={`w-full h-full object-cover transform transition-all duration-1000 ease-in-out
-                                    group-hover:scale-105 ${event.imagePosition || 'object-center'}`}
+                          alt={event.title.line1}
+                          className={`w-full h-full object-cover transform transition-all duration-700 ease-in-out
+                                    ${event.subtitle === "Texas A&M" ? 'scale-[2] group-hover:scale-[2.2]' : 'group-hover:scale-110'} 
+                                    ${getImagePosition(index)}`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent 
                                       group-hover:via-black/30 transition-all duration-700 ease-in-out"></div>
@@ -302,69 +337,109 @@ export default function AboutSection() {
                                       hover:shadow-[0_0_15px_rgba(126,160,70,0.4)]">
                           {event.year}
                         </div>
+
+                        {/* Icon Badge - Added back */}
+                        <div className="absolute top-4 left-4 p-2.5 rounded-full bg-[#7EA046]/20 backdrop-blur-sm
+                                      transform transition-all duration-500 ease-in-out group-hover:scale-110
+                                      border border-[#7EA046]/30 shadow-[0_0_10px_rgba(126,160,70,0.2)]">
+                          {event.icon}
+                        </div>
                       </div>
 
                       {/* Content - Flex grow to fill space */}
-                      <div className="p-4 flex flex-col h-[calc(100%-12rem)]">
-                        <div className="flex items-start gap-3 mb-3">
-                          <div className="p-2 rounded-full bg-[#7EA046]/20 transform group-hover:rotate-12 
-                                        transition-all duration-700 ease-in-out group-hover:bg-[#7EA046]/30
-                                        group-hover:scale-110">
-                            {event.icon}
-                          </div>
-                          <div>
-                            <h3 className="text-white font-bold text-lg leading-tight mb-1 
-                                         group-hover:text-[#7EA046] transition-colors duration-500 ease-in-out">
-                              {event.title}
+                      <div className="p-4 flex flex-col h-[calc(100%-12rem)] relative">
+                        {/* Fixed height container for title and subtitle */}
+                        <div className="mb-3">
+                          <div className="space-y-0.5">
+                            <h3 className={`text-white font-bold text-base transition-colors duration-500 ease-in-out
+                                       ${expandedCard === index ? 'text-[#7EA046]' : ''}`}>
+                              {event.title.line1}
                             </h3>
-                            <p style={{ color: '#7EA046' }} className="text-sm opacity-80 transition-opacity duration-500 ease-in-out 
-                                                                      group-hover:opacity-100">{event.subtitle}</p>
+                            <h4 className={`text-white font-medium text-sm leading-tight transition-all duration-500 ease-in-out
+                                       ${expandedCard === index ? 'text-[#7EA046]' : ''} 
+                                       ${expandedCard === index ? '' : 'whitespace-nowrap overflow-hidden text-ellipsis'}`}>
+                              {event.title.line2}
+                            </h4>
                           </div>
+                          <p style={{ color: '#7EA046' }} className={`text-sm mt-2 transition-opacity duration-500 ease-in-out
+                                                            ${expandedCard === index ? 'opacity-100' : 'opacity-80'}`}>
+                            {event.subtitle}
+                          </p>
                         </div>
 
                         {/* Content Container with smooth height transition */}
-                        <div className="relative">
+                        <div className="relative flex-grow pb-12">
                           {/* Description - Always visible */}
                           <div className="mb-3">
-                            <p className="text-gray-300 text-sm leading-relaxed transition-all duration-700 ease-in-out
-                                        transform group-hover:text-gray-200 line-clamp-3 group-hover:line-clamp-none">
+                            <p className={`text-gray-300 text-sm leading-relaxed transition-all duration-500 ease-in-out
+                                      ${expandedCard === index ? 'text-gray-200' : ''} 
+                                      ${expandedCard === index ? '' : 'line-clamp-4'}`}>
                               {event.description}
                             </p>
                           </div>
                           
-                          {/* Achievements/Projects Section - Hidden by default, shown on hover */}
-                          <div className="space-y-2 pt-2 border-t border-[#7EA046]/20 transition-all duration-1000 ease-out
-                                        group-hover:border-[#7EA046]/30 max-h-0 overflow-hidden opacity-0 
-                                        group-hover:max-h-[800px] group-hover:opacity-100 transform translate-y-4
-                                        group-hover:translate-y-0 origin-top">
-                            {event.achievements?.map((achievement, i) => (
-                              <div key={i} className="mb-2 last:mb-0">
-                                <h4 style={{ color: '#7EA046' }} className="text-sm font-semibold mb-0.5">
-                                  {achievement.title}
-                                </h4>
-                                {achievement.link ? (
-                                  <a 
-                                    href={achievement.link} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    className="text-gray-300 text-sm hover:text-[#7EA046] transition-colors duration-300 underline"
-                                  >
-                                    {achievement.detail}
-                                  </a>
-                                ) : (
-                                  <p className="text-gray-300 text-sm">{achievement.detail}</p>
-                                )}
-                              </div>
-                            ))}
-                            {event.projects?.map((project, i) => (
-                              <div key={i} className="mb-2 last:mb-0">
-                                <h4 style={{ color: '#7EA046' }} className="text-sm font-semibold mb-0.5">
-                                  {project.title}
-                                </h4>
-                                <p className="text-gray-300 text-sm">{project.detail}</p>
-                              </div>
-                            ))}
-                          </div>
+                          {/* Achievements/Projects Section - Hidden by default, shown on click */}
+                          <motion.div 
+                            className={`space-y-2 pt-3 border-t border-[#7EA046]/20
+                                      ${expandedCard === index ? 'border-[#7EA046]/30' : ''}`}
+                            initial={false}
+                            animate={{
+                              height: expandedCard === index ? 'auto' : 0,
+                              opacity: expandedCard === index ? 1 : 0,
+                            }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 100,
+                              damping: 20,
+                              mass: 1
+                            }}
+                          >
+                            <div className={expandedCard === index ? 'visible' : 'invisible'}>
+                              {event.achievements?.map((achievement, i) => (
+                                <div key={i} className="mb-2 last:mb-0">
+                                  <h4 style={{ color: '#7EA046' }} className="text-sm font-semibold mb-1">
+                                    {achievement.title}
+                                  </h4>
+                                  {achievement.link ? (
+                                    <a 
+                                      href={achievement.link} 
+                                      target="_blank" 
+                                      rel="noopener noreferrer" 
+                                      className="text-gray-300 text-sm hover:text-[#7EA046] transition-colors duration-300 underline"
+                                    >
+                                      {achievement.detail}
+                                    </a>
+                                  ) : (
+                                    <p className="text-gray-300 text-sm">{achievement.detail}</p>
+                                  )}
+                                </div>
+                              ))}
+                              {event.projects?.map((project, i) => (
+                                <div key={i} className="mb-2 last:mb-0">
+                                  <h4 style={{ color: '#7EA046' }} className="text-sm font-semibold mb-1">
+                                    {project.title}
+                                  </h4>
+                                  <p className="text-gray-300 text-sm">{project.detail}</p>
+                                </div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        </div>
+
+                        {/* Icon as expand/collapse indicator - Fixed position at bottom center */}
+                        <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-4">
+                          <motion.div 
+                            className="p-2.5 rounded-full bg-[#7EA046]/20 transition-colors duration-500 
+                                     ease-in-out hover:bg-[#7EA046]/30 cursor-pointer"
+                            animate={{ rotate: expandedCard === index ? 180 : 0 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 200,
+                              damping: 20
+                            }}
+                          >
+                            <ChevronDown className="w-5 h-5 text-[#7EA046]" />
+                          </motion.div>
                         </div>
                       </div>
                     </div>
@@ -386,7 +461,7 @@ export default function AboutSection() {
                 </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Tablet Timeline (Vertical) */}
@@ -438,12 +513,12 @@ export default function AboutSection() {
                   <div className="flex">
                     {/* Image Section */}
                     <div className="w-1/3 relative overflow-hidden">
-                      <img 
-                        src={event.image} 
-                        alt={event.title}
+                      <img
+                        src={event.image}
+                        alt={event.title.line1}
                         className={`w-full h-full object-cover transition-transform duration-700 ${
-                          event.title === "Master's in Management Information Systems" 
-                          ? "md:rotate-[270deg] md:scale-[2.2] md:object-cover md:object-[45%_center] md:group-hover:scale-[2.4]" 
+                          event.subtitle === "TAMU"
+                          ? "md:rotate-[-90deg] md:scale-[2] md:object-cover md:object-center md:group-hover:scale-[2.1]" 
                           : `group-hover:scale-110 ${event.imagePosition || 'object-center'}`
                         }`}
                         style={{ minHeight: '200px' }}
@@ -456,14 +531,17 @@ export default function AboutSection() {
 
                     {/* Content Section */}
                     <div className="w-2/3 p-4">
-                      <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#7EA046] transition-colors">
-                        {event.title}
+                      <h3 className="text-white font-bold text-base mb-1 group-hover:text-[#7EA046] transition-colors">
+                        {event.title.line1}
                       </h3>
+                      <h4 className="text-white font-medium text-sm leading-tight mb-2 group-hover:text-[#7EA046] transition-colors whitespace-nowrap overflow-hidden text-ellipsis">
+                        {event.title.line2}
+                      </h4>
                       <p className="text-[#7EA046] text-sm mb-2">{event.subtitle}</p>
                       <p className="text-gray-300 text-sm leading-relaxed mb-3">{event.description}</p>
 
                       {/* Achievements/Projects */}
-                      {(event.achievements || event.projects) && (
+                        {(event.achievements || event.projects) && (
                         <div className="border-t border-[#7EA046]/20 pt-3 mt-3">
                           <div className="grid grid-cols-2 gap-3">
                             {event.achievements?.map((achievement, i) => (
@@ -494,8 +572,8 @@ export default function AboutSection() {
                               </div>
                             ))}
                           </div>
-                        </div>
-                      )}
+                          </div>
+                        )}
                     </div>
                   </div>
                 </div>
@@ -521,7 +599,7 @@ export default function AboutSection() {
             {/* Dots Container - positioned relative to the bar */}
             <div className="absolute left-[2%] right-[2%] flex justify-between items-center">
               {timelineEvents.map((_, index) => (
-                <motion.div
+            <motion.div
                   key={index}
                   className={`w-3 h-3 rounded-full border-2 ${
                     index <= currentIndex 
@@ -587,7 +665,7 @@ export default function AboutSection() {
                   <div className="relative h-48 overflow-hidden">
                     <motion.img
                       src={timelineEvents[currentIndex].image}
-                      alt={timelineEvents[currentIndex].title}
+                      alt={timelineEvents[currentIndex].title.line1}
                       className={`w-full h-full object-cover ${getImagePosition(currentIndex)}`}
                       layoutId={`image-${currentIndex}`}
                     />
@@ -606,16 +684,22 @@ export default function AboutSection() {
                         {timelineEvents[currentIndex].year}
                       </span>
                     </motion.div>
-                  </div>
+                </div>
 
                   {/* Content */}
                   <div className="p-4">
                     <motion.h3 
-                      className="text-white font-bold text-lg leading-tight mb-1"
+                      className="text-white font-bold text-base leading-tight mb-1"
                       layoutId={`title-${currentIndex}`}
                     >
-                      {timelineEvents[currentIndex].title}
+                      {timelineEvents[currentIndex].title.line1}
                     </motion.h3>
+                    <motion.h4 
+                      className="text-white font-medium text-sm leading-tight mb-1 whitespace-nowrap overflow-hidden text-ellipsis"
+                      layoutId={`title-${currentIndex}-line2`}
+                    >
+                      {timelineEvents[currentIndex].title.line2}
+                    </motion.h4>
                     <motion.p 
                       style={{ color: '#7EA046' }} 
                       className="text-sm opacity-80 mb-3"
@@ -638,38 +722,38 @@ export default function AboutSection() {
                       {timelineEvents[currentIndex].achievements?.map((achievement, idx) => (
                         <div key={idx} className="mb-2 last:mb-0">
                           <h4 style={{ color: '#7EA046' }} className="text-sm font-semibold mb-0.5">
-                            {achievement.title}
-                          </h4>
-                          {achievement.link ? (
-                            <a 
-                              href={achievement.link} 
-                              target="_blank" 
-                              rel="noopener noreferrer" 
-                              className="text-gray-300 text-xs hover:text-[#7EA046] transition-colors duration-300 underline"
-                            >
-                              {achievement.detail}
-                            </a>
-                          ) : (
-                            <p className="text-gray-300 text-xs">{achievement.detail}</p>
-                          )}
-                        </div>
-                      ))}
+                              {achievement.title}
+                            </h4>
+                            {achievement.link ? (
+                              <a 
+                                href={achievement.link} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-gray-300 text-xs hover:text-[#7EA046] transition-colors duration-300 underline"
+                              >
+                                {achievement.detail}
+                              </a>
+                            ) : (
+                              <p className="text-gray-300 text-xs">{achievement.detail}</p>
+                            )}
+                          </div>
+                        ))}
                       {timelineEvents[currentIndex].projects?.map((project, idx) => (
                         <div key={idx} className="mb-2 last:mb-0">
                           <h4 style={{ color: '#7EA046' }} className="text-sm font-semibold mb-0.5">
-                            {project.title}
-                          </h4>
-                          <p className="text-gray-300 text-xs">{project.detail}</p>
-                        </div>
-                      ))}
+                              {project.title}
+                            </h4>
+                            <p className="text-gray-300 text-xs">{project.detail}</p>
+                          </div>
+                        ))}
                     </motion.div>
                   </div>
                 </motion.div>
               </motion.div>
             </AnimatePresence>
-          </div>
-        </div>
-      </div>
+                </div>
+              </div>
+            </motion.div>
     </section>
   );
 }
