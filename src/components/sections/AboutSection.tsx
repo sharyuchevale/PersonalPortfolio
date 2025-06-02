@@ -20,52 +20,37 @@ export default function AboutSection() {
   // Timeline data
   const timelineEvents = [
     {
-      year: "2017-2021",
-      title: {
-        line1: "Bachelors",
-        line2: "Electrical & Electronics Engineering"
-      },
-      subtitle: "VNIT, Nagpur",
-      description: "Studied electrical engineering with a focus on power systems and electronics, led research in DC microgrids and solar tech, and built leadership skills through campus involvement.",
-      achievements: [
-        {
-          title: "Research Publication",
-          detail: "Application of Z-Source Circuit Breaker in Solar PV based DC Microgrid",
-          link: "https://ieeexplore.ieee.org/document/9670127"
-        },
-        {
-          title: "MahaDBT Scholarship",
-          detail: "Awarded Maharashtra Direct Benefit Transfer Scholarship (2018-2020)"
-        }
-      ],
-      icon: <GraduationCap className="w-6 h-6" />,
-      image: vnitCampus
-    },
-    {
-      year: "2021-2023",
+      year: "2025 - Present",
       title: {
         line1: "Full-Time",
-        line2: "Technology Analyst"
+        line2: "IT Business Consultant"
       },
-      subtitle: "Citibank",
-      description: "Took fintech products from idea to launch—conducting market and user research, shaping product strategy, designing user experiences, leading development, and guiding releases to production",
+      subtitle: "Hewlett Packard Enterprise",
+      description: "Joining Hewlett Packard Enterprise as a full-time PREP through the HPE PREP rotational program, starting July.",
+      icon: <Building2 className="w-6 h-6" />,
+      image: fulltimeImage,
+      imagePosition: "object-bottom"
+    },
+    {
+      year: "2024",
+      title: {
+        line1: "Internship",
+        line2: "Product Manager"
+      },
+      subtitle: "Hewlett Packard Enterprise",
+      description: "Worked on Projects in the Global IT organization that support the backend administration of aaS offering at HPE",
       projects: [
         {
-          title: "Broker Reconciliation Tool",
-          detail: "Built full-stack web apps to automate financial reconciliation in commodities trading"
+          title: "HPE Long Term Strategic Planning",
+          detail: "Strategic organization-wide project planning for Fiscal Year 2025"
         },
         {
-          title: "UI Testing Framework",
-          detail: "Led product strategy to enhance and restructure automated UI testing application"
-        },
-        {
-          title: "MSME Loan Provider",
-          detail: "Developed an award-winning marketplace app enabling small businesses to easily process loans"
+          title: "Data & Analytics Platform Migration",
+          detail: "Managed data reporting platform migration initiatives as part of M&A"
         }
       ],
-      icon: <Building2 className="w-6 h-6" />,
-      image: citiImage,
-      imagePosition: "object-top"
+      icon: <Briefcase className="w-6 h-6" />,
+      image: internshipImage
     },
     {
       year: "2023-2025",
@@ -95,37 +80,52 @@ export default function AboutSection() {
       imagePosition: "rotate-[-90deg] origin-center transform-gpu"
     },
     {
-      year: "2024",
-      title: {
-        line1: "Internship",
-        line2: "Product Manager"
-      },
-      subtitle: "Hewlett Packard Enterprise",
-      description: "Worked on Projects in the Global IT organization that support the backend administration of aaS offering at HPE",
-      projects: [
-        {
-          title: "HPE Long Term Strategic Planning",
-          detail: "Strategic organization-wide project planning for Fiscal Year 2025"
-        },
-        {
-          title: "Data & Analytics Platform Migration",
-          detail: "Managed data reporting platform migration initiatives as part of M&A"
-        }
-      ],
-      icon: <Briefcase className="w-6 h-6" />,
-      image: internshipImage
-    },
-    {
-      year: "2025 - Present",
+      year: "2021-2023",
       title: {
         line1: "Full-Time",
-        line2: "IT Business Consultant"
+        line2: "Technology Analyst"
       },
-      subtitle: "Hewlett Packard Enterprise",
-      description: "Joining Hewlett Packard Enterprise as a full-time PREP through the HPE PREP rotational program, starting July.",
+      subtitle: "Citibank",
+      description: "Took fintech products from idea to launch—conducting market and user research, shaping product strategy, designing user experiences, leading development, and guiding releases to production",
+      projects: [
+        {
+          title: "Broker Reconciliation Tool",
+          detail: "Built full-stack web apps to automate financial reconciliation in commodities trading"
+        },
+        {
+          title: "UI Testing Framework",
+          detail: "Led product strategy to enhance and restructure automated UI testing application"
+        },
+        {
+          title: "MSME Loan Provider",
+          detail: "Developed an award-winning marketplace app enabling small businesses to easily process loans"
+        }
+      ],
       icon: <Building2 className="w-6 h-6" />,
-      image: fulltimeImage,
-      imagePosition: "object-bottom"
+      image: citiImage,
+      imagePosition: "object-top"
+    },
+    {
+      year: "2017-2021",
+      title: {
+        line1: "Bachelors",
+        line2: "Electrical & Electronics Engineering"
+      },
+      subtitle: "VNIT, Nagpur",
+      description: "Studied electrical engineering with a focus on power systems and electronics, led research in DC microgrids and solar tech, and built leadership skills through campus involvement.",
+      achievements: [
+        {
+          title: "Research Publication",
+          detail: "Application of Z-Source Circuit Breaker in Solar PV based DC Microgrid",
+          link: "https://ieeexplore.ieee.org/document/9670127"
+        },
+        {
+          title: "MahaDBT Scholarship",
+          detail: "Awarded Maharashtra Direct Benefit Transfer Scholarship (2018-2020)"
+        }
+      ],
+      icon: <GraduationCap className="w-6 h-6" />,
+      image: vnitCampus
     }
   ];
 
@@ -517,8 +517,8 @@ export default function AboutSection() {
                         src={event.image}
                         alt={event.title.line1}
                         className={`w-full h-full object-cover transition-transform duration-700 ${
-                          event.subtitle === "TAMU"
-                          ? "md:rotate-[-90deg] md:scale-[2] md:object-cover md:object-center md:group-hover:scale-[2.1]" 
+                          event.subtitle === "Texas A&M"
+                          ? "md:rotate-[270deg] md:scale-[2.2] md:object-cover md:object-center md:group-hover:scale-[2.4] scale-[2.5]" 
                           : `group-hover:scale-110 ${event.imagePosition || 'object-center'}`
                         }`}
                         style={{ minHeight: '200px' }}
@@ -666,7 +666,11 @@ export default function AboutSection() {
                     <motion.img
                       src={timelineEvents[currentIndex].image}
                       alt={timelineEvents[currentIndex].title.line1}
-                      className={`w-full h-full object-cover ${getImagePosition(currentIndex)}`}
+                      className={`w-full h-full object-cover ${
+                        timelineEvents[currentIndex].subtitle === "Texas A&M" 
+                        ? "rotate-[270deg] scale-[2.8] object-center" 
+                        : getImagePosition(currentIndex)
+                      }`}
                       layoutId={`image-${currentIndex}`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
